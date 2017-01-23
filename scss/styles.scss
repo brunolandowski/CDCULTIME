@@ -17,6 +17,32 @@ header {
 	#hd_bd_top {
 		background:yellow;
 		height:100px;
+		font-size: 12px;
+		.inner {
+			margin:0 60px;
+			height:100px;
+			p {
+				
+				
+				display: inline-block;
+				
+
+			}
+			img {
+				margin-top:10px;
+				vertical-align: middle;
+				margin-left:20px;
+				height:80px;
+				width:100px;
+				background:#333;
+				&:nth-child(4) {
+					margin-right:20px;
+					
+				}
+
+			}
+		}
+		
 	}
 
 	#hd_title {

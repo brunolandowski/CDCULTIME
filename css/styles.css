@@ -13,7 +13,22 @@ header {
   height: 100%; }
   header #hd_bd_top {
     background: yellow;
-    height: 100px; }
+    height: 100px;
+    font-size: 12px; }
+    header #hd_bd_top .inner {
+      margin: 0 60px;
+      height: 100px; }
+      header #hd_bd_top .inner p {
+        display: inline-block; }
+      header #hd_bd_top .inner img {
+        margin-top: 10px;
+        vertical-align: middle;
+        margin-left: 20px;
+        height: 80px;
+        width: 100px;
+        background: #333; }
+        header #hd_bd_top .inner img:nth-child(4) {
+          margin-right: 20px; }
   header #hd_title {
     color: #F5F5F5;
     background: orange;
