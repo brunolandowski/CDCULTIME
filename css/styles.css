@@ -12,27 +12,51 @@ body {
 header {
   height: 100%; }
   header #hd_bd_top {
-    background: yellow;
-    height: 100px;
     font-size: 12px; }
     header #hd_bd_top .inner {
-      margin: 0 60px;
-      height: 100px; }
+      margin: 10px 60px 10px 60px;
+      height: 80px; }
+      header #hd_bd_top .inner .hd_right {
+        display: inline-block;
+        position: fixed;
+        margin-top: 30px;
+        right: 60px; }
+        header #hd_bd_top .inner .hd_right button {
+          background: transparent;
+          border: none; }
+        header #hd_bd_top .inner .hd_right #burger {
+          vertical-align: middle;
+          margin-left: 20px; }
+          header #hd_bd_top .inner .hd_right #burger div {
+            margin-top: 8px;
+            width: 40px;
+            height: 1px;
+            background: #333; }
+            header #hd_bd_top .inner .hd_right #burger div:first-of-type {
+              width: 20px;
+              margin-top: 0; }
+            header #hd_bd_top .inner .hd_right #burger div:last-of-type {
+              width: 30px; }
       header #hd_bd_top .inner p {
-        display: inline-block; }
+        display: inline-block;
+        vertical-align: middle; }
       header #hd_bd_top .inner img {
-        margin-top: 10px;
         vertical-align: middle;
         margin-left: 20px;
         height: 80px;
-        width: 100px;
-        background: #333; }
-        header #hd_bd_top .inner img:nth-child(4) {
-          margin-right: 20px; }
+        width: 100px; }
+      header #hd_bd_top .inner hr {
+        vertical-align: middle;
+        margin: 0 20px;
+        display: inline-block;
+        height: 60px;
+        border: none;
+        width: 1px;
+        background: #ccc; }
   header #hd_title {
     color: #F5F5F5;
-    background: orange;
-    height: calc(100% - 200px); }
+    height: calc(100% - 200px);
+    background: #00ff00 url("https://images.unsplash.com/photo-1429728001698-8ba1c4c64783?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=") no-repeat fixed center; }
     header #hd_title .hd_title_ct {
       padding-top: 100px;
       width: 500px;
@@ -43,7 +67,7 @@ header {
         font-weight: 100;
         line-height: 70px; }
       header #hd_title .hd_title_ct p {
-        margin-top: 20px;
+        margin-top: 10px;
         font-size: 14px; }
     header #hd_title .hd_title_cta {
       text-align: center;
@@ -58,3 +82,6 @@ header {
   header #hd_bd_bottom {
     background: yellow;
     height: 100px; }
+
+#wrap {
+  height: 500px; }

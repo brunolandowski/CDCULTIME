@@ -12,6 +12,9 @@
     $('#hd_title .hd_title_ct p').html(data.homepage.headline);
 
     $('#hd_title .hd_title_cta p').html(data.homepage.liste);
+
+
+    $('#hd_bd_bottom p').html(data.homepage.bottom);
   
   });
 
@@ -25,6 +28,8 @@ $("button#fr").click(function(){
       $('#hd_title .hd_title_ct p').html(result_fr.homepage.headline);
 
       $('#hd_title .hd_title_cta p').html(result_fr.homepage.liste);
+
+      $('#hd_bd_bottom p').html(result_fr.homepage.bottom);
     });
 });
 
@@ -38,6 +43,8 @@ $("button#en").click(function(){
       $('#hd_title .hd_title_ct p').html(result_en.homepage.headline);
 
       $('#hd_title .hd_title_cta p').html(result_en.homepage.liste); 
+
+       $('#hd_bd_bottom p').html(result_en.homepage.bottom);      
     });
 });
 
