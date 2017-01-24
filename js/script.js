@@ -78,10 +78,10 @@ $(window).bind("load resize scroll",function(e) {
   console.log(doc_height);
 });
 
-/* 
+ 
 $(window).on("scroll", function(e) {
    
-  if ($(window).scrollTop() > doc_height + 10) {
+  if ($(window).scrollTop() > doc_height) {
       $('nav').addClass('fixed');
        $('#option').addClass('fixed');
   } else {
@@ -90,12 +90,33 @@ $(window).on("scroll", function(e) {
   }
   
 });
-*/
+
 // SCROLL TO BOTTOM 
 $(".hd_title_cta").on("click", function() {
-     $("html, body").animate({ scrollTop: doc_height + 10 }, 600);
+     $("html, body").animate({ scrollTop: doc_height}, 600);
     return false;
 });
 
+// STATISTIQUES OPEN/CLOSE
+$( "#burger" ).click(function() {
+  $('body').css('overflow','hidden');
+  $('#aside_placeholder').fadeIn(300);
+  $( "aside" ).animate({
+    left: "0%",
+   }, 300, function() {
+    // Animation complete.
+  });
 
+});
+
+$( "#aside_placeholder" ).click(function() {
+   $('body').css('overflow','auto');
+  $('#aside_placeholder').fadeOut(300);
+  $( "aside" ).animate({
+    left: "-100%",
+   }, 300, function() {
+    // Animation complete.
+  });
+
+});
 // ISOTOPE
