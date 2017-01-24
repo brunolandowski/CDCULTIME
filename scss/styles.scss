@@ -83,7 +83,7 @@ header {
 
 	#hd_title {
 		color:#F5F5F5;
-		height:calc(100% - 160px);
+		height:calc(100% - 200px);
 		  background: #f9b5a1 url('') no-repeat center center fixed; 
 		  -webkit-background-size: cover;
 		  -moz-background-size: cover;
@@ -122,8 +122,8 @@ header {
 	}
 	#hd_bd_bottom {
 		font-size:12px;
-		height:60px;
-		background:white;
+		height:100px;
+		background:#F5F5F5;
 		.inner {
 			margin:0 60px;
 			padding-top:10px;
@@ -151,8 +151,9 @@ header {
 nav {
 	z-index:-1;
 	height:60px;
-	background:red;
+	
 	width:100%;
+	background:white;
 	
 	&.fixed {
 		position:fixed;
@@ -188,6 +189,9 @@ nav {
 		box-shadow: 0px 0px 15px 0px rgba(204,204,204,.2);
 	 	background:white;
 	 	margin-bottom: 20px;
+	 	&.big {
+	 		width: calc(66.666666% - 8px);
+	 	}
 	 	.vi_bd {
 	 		background: #f9b5a1;
 	 		width:100%;
@@ -207,6 +211,7 @@ nav {
 				color:#f9b5a1;
 			}
 			.vi_cate {
+				margin-top:20px;
 				width:16px;
 				height:16px;
 				border-radius:8px;
