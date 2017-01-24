@@ -15,6 +15,8 @@
 
 
     $('#hd_bd_bottom p').html(data.homepage.bottom);
+
+    $('nav h3').html(data.homepage.main_title);
   
   });
 
@@ -30,6 +32,8 @@ $("button#fr").click(function(){
       $('#hd_title .hd_title_cta p').html(result_fr.homepage.liste);
 
       $('#hd_bd_bottom p').html(result_fr.homepage.bottom);
+
+      $('nav h3').html(result_fr.homepage.main_title);
     });
 });
 
@@ -44,15 +48,54 @@ $("button#en").click(function(){
 
       $('#hd_title .hd_title_cta p').html(result_en.homepage.liste); 
 
-       $('#hd_bd_bottom p').html(result_en.homepage.bottom);      
+       $('#hd_bd_bottom p').html(result_en.homepage.bottom); 
+
+        $('nav h3').html(result_en.homepage.main_title);     
     });
 });
 
 
 
+// PARALAXE HOMEPAGE
 
-$('.grid').isotope({
-  // options
-  itemSelector: '.grid-item',
-  layoutMode: 'fitRows'
+  
+  $(window).bind("load resize scroll",function(e) {
+    var y = $(window).scrollTop();
+    
+
+    $("#hd_title").filter(function() {
+        return $(this).offset().top < (y + 450) &&
+               $(this).offset().top + $(this).height() > y;
+    }).css('background-position', '50% calc(25% - ' + parseInt(y / 2) + 'px');
 });
+
+
+// FIXED NAV SCROLLING 
+var doc_height;
+
+$(window).bind("load resize scroll",function(e) {
+  doc_height = $(window).height();
+  console.log(doc_height);
+});
+
+/* 
+$(window).on("scroll", function(e) {
+   
+  if ($(window).scrollTop() > doc_height + 10) {
+      $('nav').addClass('fixed');
+       $('#option').addClass('fixed');
+  } else {
+      $('nav').removeClass('fixed');
+       $('#option').removeClass('fixed');
+  }
+  
+});
+*/
+// SCROLL TO BOTTOM 
+$(".hd_title_cta").on("click", function() {
+     $("html, body").animate({ scrollTop: doc_height + 10 }, 600);
+    return false;
+});
+
+
+// ISOTOPE
