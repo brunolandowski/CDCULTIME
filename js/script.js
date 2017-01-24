@@ -59,7 +59,7 @@ $("button#en").click(function(){
 // PARALAXE HOMEPAGE
 
   
-  $(window).bind("load resize scroll",function(e) {
+$(window).bind("load resize scroll",function(e) {
     var y = $(window).scrollTop();
     
 
@@ -119,4 +119,36 @@ $( "#aside_placeholder" ).click(function() {
   });
 
 });
+
+
+// MENU OPEN/CLOSE BUTTON
+$( "nav button" ).click(function() {
+  $( '#option' ).toggleClass( "option_show" );
+});
+
+
 // ISOTOPE
+
+
+var $grid = $('#wrap').isotope({
+  masonry: {
+   
+    gutter:20
+  },
+  itemSelector: '.grid-item',
+});
+
+
+$grid.on( 'click', '.grid-item', function() {
+  $('.grid-item').not(this).removeClass('big');
+    $(this).toggleClass('big');
+  
+    $grid.isotope('layout');
+
+      var scrolltopitem =  $(this).offset().top;
+      var calcdiff = scrolltopitem - 100;
+      
+     $('html, body').animate({
+        scrollTop: calcdiff
+    }, 500);
+}); 

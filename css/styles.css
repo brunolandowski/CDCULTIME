@@ -110,7 +110,8 @@ nav {
   z-index: -1;
   height: 60px;
   width: 100%;
-  background: white; }
+  background: white;
+  margin-bottom: -60px; }
   nav.fixed {
     position: fixed;
     top: 0; }
@@ -118,14 +119,14 @@ nav {
     padding: 10px 60px 10px 60px;
     height: 40px; }
     nav .inner h3 {
-      display: table-cell;
-      vertical-align: middle;
+      margin-top: 10px;
+      display: inline-block;
       height: 40px;
       font-size: 18px;
       font-weight: 500; }
 
 #wrap {
-  margin: 300px 60px 0 60px;
+  margin: 100px 60px 0 60px;
   z-index: -2; }
   #wrap .grid-item {
     width: calc(16.666666% - 17px);
@@ -159,11 +160,14 @@ nav {
         background: red; }
 
 #option {
-  top: 60px;
-  height: 200px;
-  background: #333;
-  width: 100%;
-  margin-bottom: -260px; }
+  float: left;
+  margin-top: 60px;
+  top: 0;
+  height: 0px;
+  background: rgba(51, 51, 51, 0.97);
+  width: 100%; }
+  #option.option_show {
+    height: 200px; }
   #option.fixed {
     position: fixed; }
 
@@ -173,13 +177,20 @@ aside {
   top: 0;
   width: 66.666666%;
   height: 100%;
-  background: #333;
-  overflow: scroll; }
-  aside div {
-    margin: 60px;
-    height: 3000px;
-    width: 100%;
-    background: red; }
+  background: rgba(51, 51, 51, 0.97);
+  overflow: scroll;
+  color: #cccccc;
+  font-size: 12px; }
+  aside .inner {
+    margin: 30px 60px; }
+    aside .inner #aside_header {
+      border-bottom: 1px solid #F5F5F5;
+      padding-bottom: 30px; }
+      aside .inner #aside_header ul li {
+        display: inline-block;
+        font-size: 14px; }
+        aside .inner #aside_header ul li:not(:first-of-type) {
+          margin-left: 40px; }
 
 #aside_placeholder {
   display: none;
