@@ -301,15 +301,96 @@ nav {
 	float:left;
 	margin-top:60px;
 	top:0;
-	height:0px;
+	display:none;
 	background:rgba(51, 51, 51, 0.97);
 	width:100%;
-	
+	font-size:12px;
+	line-height:20px;
+	color:#CCCCCC;
+	ul {
+		margin-top:30px;
+		li {
+			
+			list-style:none;
+			button {
+				border:none;
+				padding:0;
+				height:16px;
+				width:16px;
+				border-radius:8px;
+				background:red;
+				margin-right:20px;
+				position:absolute;
+			}
+			span {
+				margin-right:20px;
+				margin-left:36px;
+				color:#F5F5F5;
+				
+			}
+			
+		}
+	}
 	&.option_show {
-		height:200px;
+		display:flex;
 	}
 	&.fixed {
 		position:fixed;
+	}
+	h4 {
+		font-size:14px;
+		color:#F5F5F5;
+		font-weight:500;
+		margin-left:66px;
+	}
+	#strip {
+		position:absolute;
+		height:30px;
+		width:44px;
+		background:red;
+	}
+	.opt_left_col {
+		margin:20px;
+		
+		width:33.333333%;
+		.services {
+			
+			
+		}
+		.geo {
+			
+			margin-top:60px;
+			
+		}
+	}
+	.opt_middle_col {
+		margin:10px;
+		
+		width:33.333333%;
+		.clients {
+			
+			
+		}
+		.sort {
+			
+			margin-top:60px;
+			
+		}
+	}
+	.opt_right_col {
+		margin:10px;
+		
+		width:33.333333%;
+		.technologies {
+
+			
+			
+		}
+		.result {
+			
+			margin-top:60px;
+			
+		}
 	}
 	
 }
@@ -338,6 +419,7 @@ aside  {
 				margin-bottom:30px;
 				font-size:20px;
 				color:#F5F5F5;
+				font-weight:500;
 
 			}
 			ul {
@@ -351,6 +433,7 @@ aside  {
 					span {
 						display: inline-block;
 						width:40px;
+						color:#F5F5F5;
 					}
 					.histo {
 						display: inline-block;
@@ -388,6 +471,13 @@ aside  {
 	position:fixed;
 	top:0;
 	left:0;
+}
+// ICONS 
+.arrow {
+	width:10px;
+	margin-left: 20px;
+
+	
 }
 
 //CHART 
