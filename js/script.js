@@ -152,3 +152,42 @@ $grid.on( 'click', '.grid-item', function() {
         scrollTop: calcdiff
     }, 500);
 }); 
+
+
+// CHART ELIPSE STATS AND ANIMATE
+var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e4c0", "#bb7ff3", "#fbc9df"];
+var perc_chart = ["1.0", ".90", ".80", ".70", ".60", ".50", ".40", ".30"]
+
+$( ".circle" ).each(function(i) {
+  var count = i+1;
+  
+  var idcircle = "#circle_" + count;
+  var fromzero = count - 1;
+  
+  var numberposition = count * 30;
+  
+
+
+  var bar = new ProgressBar.SemiCircle(idcircle, {
+    strokeWidth: count,
+    easing: 'easeInOut',
+    duration: 1000,
+    svgStyle: null,
+    color: colors_chart[fromzero],
+  });
+
+  $( "#burger" ).click(function() {
+    bar.animate(perc_chart[fromzero]);  
+  });
+  
+  $( "#aside_placeholder" ).click(function() {
+    bar.animate(.0, {duration: 80});  
+  });
+
+  $(this).css({
+    "width": numberposition, 
+    "height": numberposition / 2,
+  })
+});
+
+
