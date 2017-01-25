@@ -141,7 +141,7 @@ var $grid = $('#wrap').isotope({
 
 $grid.on( 'click', '.grid-item', function() {
   $('.grid-item').not(this).removeClass('big');
-    $(this).toggleClass('big');
+    $(this).addClass('big');
   
     $grid.isotope('layout');
 
@@ -156,7 +156,7 @@ $grid.on( 'click', '.grid-item', function() {
 
 // CHART ELIPSE STATS AND ANIMATE
 var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e4c0", "#bb7ff3", "#fbc9df"];
-var perc_chart = ["1.0", ".90", ".80", ".70", ".60", ".50", ".40", ".30"];
+var perc_chart = ["1.0", ".4", ".3", ".05", ".60", ".50", ".40", ".30"];
 var strokew_chart = ["10", "7.5", "6", "5", "4", "3.6", "3.3", "3"];
 
 

@@ -139,21 +139,60 @@ nav {
     #wrap .grid-item.big {
       width: calc(66.666666% - 8px); }
       #wrap .grid-item.big article {
-        margin: 30px 20px 20px 200px; }
-    #wrap .grid-item .whenopen .row {
-      margin: 20px;
-      display: flex;
-      /* or inline-flex */
-      justify-content: space-between;
-      border-bottom: 1px solid #CCCCCC; }
-      #wrap .grid-item .whenopen .row:last-of-type {
-        border-bottom: none; }
-      #wrap .grid-item .whenopen .row .left {
-        color: #8D8D8D; }
-      #wrap .grid-item .whenopen .row .left, #wrap .grid-item .whenopen .row .right {
-        width: 50%;
+        margin: 30px 20px 20px 250px; }
+        #wrap .grid-item.big article h4 {
+          font-size: 24px; }
+      #wrap .grid-item.big .whenopen {
+        display: block; }
+    #wrap .grid-item .whenopen {
+      display: none; }
+      #wrap .grid-item .whenopen .row {
+        margin: 20px;
+        display: flex;
+        /* or inline-flex */
+        padding-bottom: 20px;
+        border-bottom: 1px solid #CCCCCC; }
+        #wrap .grid-item .whenopen .row:last-of-type {
+          border-bottom: none; }
+        #wrap .grid-item .whenopen .row .left {
+          color: #8D8D8D;
+          width: 230px; }
+        #wrap .grid-item .whenopen .row .left, #wrap .grid-item .whenopen .row .right {
+          font-size: 12px;
+          line-height: 20px; }
+      #wrap .grid-item .whenopen .item_dropdown {
+        height: 40px;
+        padding: 0 20px;
+        border-radius: 3px 3px 3px 3px;
+        display: table-cell;
+        vertical-align: middle;
+        background: #333;
+        color: #F5F5F5;
         font-size: 12px;
-        line-height: 20px; }
+        line-height: 20px;
+        float: right;
+        margin: 20px;
+        z-index: 2; }
+        #wrap .grid-item .whenopen .item_dropdown .cale {
+          height: 10px;
+          display: block; }
+        #wrap .grid-item .whenopen .item_dropdown .item_dropdown_content {
+          border-radius: 3px 3px 0px 0px;
+          padding: 20px;
+          position: relative;
+          bottom: 130px;
+          width: 100%;
+          left: -20px;
+          background: white;
+          display: none;
+          box-shadow: 0px -1px 5px 2px rgba(204, 204, 204, 0.3); }
+          #wrap .grid-item .whenopen .item_dropdown .item_dropdown_content a {
+            color: #333;
+            text-decoration: none; }
+        #wrap .grid-item .whenopen .item_dropdown:hover {
+          border-radius: 0px 0px 3px 3px; }
+        #wrap .grid-item .whenopen .item_dropdown:hover .item_dropdown_content {
+          display: block; }
     #wrap .grid-item .vi_bd {
       background: #f9b5a1;
       width: 100%;
