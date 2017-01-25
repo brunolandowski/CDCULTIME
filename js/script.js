@@ -156,7 +156,10 @@ $grid.on( 'click', '.grid-item', function() {
 
 // CHART ELIPSE STATS AND ANIMATE
 var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e4c0", "#bb7ff3", "#fbc9df"];
-var perc_chart = ["1.0", ".90", ".80", ".70", ".60", ".50", ".40", ".30"]
+var perc_chart = ["1.0", ".90", ".80", ".70", ".60", ".50", ".40", ".30"];
+var strokew_chart = ["10", "7.5", "6", "5", "4", "3.6", "3.3", "3"];
+
+
 
 $( ".circle" ).each(function(i) {
   var count = i+1;
@@ -164,12 +167,13 @@ $( ".circle" ).each(function(i) {
   var idcircle = "#circle_" + count;
   var fromzero = count - 1;
   
-  var numberposition = count * 30;
-  
+  var numberposition = 60 + (count * 40);
+
+
 
 
   var bar = new ProgressBar.SemiCircle(idcircle, {
-    strokeWidth: count,
+    strokeWidth: strokew_chart[fromzero],
     easing: 'easeInOut',
     duration: 1000,
     svgStyle: null,
@@ -178,6 +182,8 @@ $( ".circle" ).each(function(i) {
 
   $( "#burger" ).click(function() {
     bar.animate(perc_chart[fromzero]);  
+    
+
   });
   
   $( "#aside_placeholder" ).click(function() {
@@ -187,7 +193,11 @@ $( ".circle" ).each(function(i) {
   $(this).css({
     "width": numberposition, 
     "height": numberposition / 2,
+    
+
+
   })
 });
 
+// HISTO HORIZONTAL CHART ANIMATED
 

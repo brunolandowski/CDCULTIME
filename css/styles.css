@@ -117,7 +117,8 @@ nav {
     top: 0; }
   nav .inner {
     padding: 10px 60px 10px 60px;
-    height: 40px; }
+    height: 40px;
+    box-shadow: 0px 0px 15px 0px rgba(204, 204, 204, 0.2); }
     nav .inner h3 {
       margin-top: 10px;
       display: inline-block;
@@ -137,6 +138,22 @@ nav {
     margin-bottom: 20px; }
     #wrap .grid-item.big {
       width: calc(66.666666% - 8px); }
+      #wrap .grid-item.big article {
+        margin: 30px 20px 20px 200px; }
+    #wrap .grid-item .whenopen .row {
+      margin: 20px;
+      display: flex;
+      /* or inline-flex */
+      justify-content: space-between;
+      border-bottom: 1px solid #CCCCCC; }
+      #wrap .grid-item .whenopen .row:last-of-type {
+        border-bottom: none; }
+      #wrap .grid-item .whenopen .row .left {
+        color: #8D8D8D; }
+      #wrap .grid-item .whenopen .row .left, #wrap .grid-item .whenopen .row .right {
+        width: 50%;
+        font-size: 12px;
+        line-height: 20px; }
     #wrap .grid-item .vi_bd {
       background: #f9b5a1;
       width: 100%;
@@ -197,7 +214,7 @@ aside {
         list-style: none;
         line-height: 20px; }
         aside .inner .stats_box ul li p {
-          width: 50%;
+          width: calc(50% - 40px);
           display: inline-block; }
         aside .inner .stats_box ul li span {
           display: inline-block;
@@ -205,7 +222,7 @@ aside {
         aside .inner .stats_box ul li .histo {
           display: inline-block;
           height: 10px;
-          width: calc(50% - 40px);
+          width: 0;
           background: #F5F5F5; }
     aside .inner #aside_header {
       border-bottom: 1px solid #F5F5F5;
@@ -225,13 +242,14 @@ aside {
   top: 0;
   left: 0; }
 
-.circle {
-  -moz-transform: scale(1, -1) rotate(90deg);
-  -webkit-transform: scale(1, -1) rotate(90deg);
-  -o-transform: scale(1, -1) rotate(90deg);
-  -ms-transform: scale(1, -1) rotate(90deg);
-  transform: scale(1, -1) rotate(90deg);
-  background: transparent;
+#curves {
+  margin-left: calc(50% - 60px);
+  margin-top: -20px;
   position: absolute;
-  margin-top: -85px;
-  margin-left: calc(50% - 45px); }
+  margin-top: -215px; }
+  #curves .circle {
+    transform: scale(1, -1) rotate(90deg);
+    transform-origin: 0 100%;
+    background: transparent;
+    position: absolute;
+    margin-top: 20px; }
