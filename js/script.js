@@ -258,11 +258,8 @@ $window.trigger('scroll');
 
 // HISTO HORIZONTAL CHART ANIMATED
 
-// OPTION CLICK ON ITEMS
- $('#option ul li').on('click', function(e) {
-      $(this).toggleClass("selected"); //you can list several class names 
-      e.preventDefault();
-    });
+
+
 
 // SEARCH BAR 
 function searching() {

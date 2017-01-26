@@ -62,7 +62,7 @@ header {
   header #hd_title {
     color: #F5F5F5;
     height: calc(100% - 200px);
-    background: #f9b5a1 url("") no-repeat center center fixed;
+    background: #f9b5a1 url("https://images.unsplash.com/photo-1483187647623-7c961f7d6195?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -121,6 +121,7 @@ nav {
     height: 40px;
     box-shadow: 0px 0px 15px 0px rgba(204, 204, 204, 0.2); }
     nav .inner input {
+      outline: none;
       width: 180px;
       border: none;
       border-bottom: 1px solid #bbb;
@@ -254,9 +255,7 @@ nav {
     #option ul li {
       cursor: pointer;
       list-style: none; }
-      #option ul li.selected button {
-        opacity: .2; }
-      #option ul li button {
+      #option ul li input[type="checkbox"], #option ul li input[type="radio"] {
         margin-top: 3px;
         border: none;
         padding: 0;
@@ -269,7 +268,10 @@ nav {
       #option ul li span {
         margin-right: 20px;
         margin-left: 36px;
-        color: #F5F5F5; }
+        color: #F5F5F5;
+        position: absolute; }
+      #option ul li label {
+        margin-left: 65px; }
   #option .opt_wrap {
     margin: 50px 60px; }
   #option.fixed {
@@ -280,7 +282,7 @@ nav {
     font-size: 14px;
     color: #F5F5F5;
     font-weight: 500;
-    margin-left: 66px; }
+    margin-left: 65px; }
   #option #strip {
     text-align: center;
     margin-left: calc(50% - 25px);
