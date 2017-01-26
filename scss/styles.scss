@@ -341,14 +341,20 @@ nav {
 	color:#CCCCCC;
 	position:relative;
 	z-index:-1;
-
+	.sort {
+		p {
+			margin-left:36px;
+		}
+	}
 	ul {
 		margin-top:20px;
 		li {
 			cursor:pointer;
 			list-style:none;
-			
-			input[type="checkbox"], input[type="radio"] {
+			&.selected .pastille {
+				opacity:.2;
+			}
+			.pastille {
 				margin-top:3px;
 				border:none;
 				padding:0;
@@ -367,7 +373,7 @@ nav {
 				position:absolute;
 				
 			}
-			label {
+			p {
 				margin-left:65px;
 			}
 			

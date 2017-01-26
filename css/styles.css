@@ -250,12 +250,16 @@ nav {
   color: #CCCCCC;
   position: relative;
   z-index: -1; }
+  #option .sort p {
+    margin-left: 36px; }
   #option ul {
     margin-top: 20px; }
     #option ul li {
       cursor: pointer;
       list-style: none; }
-      #option ul li input[type="checkbox"], #option ul li input[type="radio"] {
+      #option ul li.selected .pastille {
+        opacity: .2; }
+      #option ul li .pastille {
         margin-top: 3px;
         border: none;
         padding: 0;
@@ -270,7 +274,7 @@ nav {
         margin-left: 36px;
         color: #F5F5F5;
         position: absolute; }
-      #option ul li label {
+      #option ul li p {
         margin-left: 65px; }
   #option .opt_wrap {
     margin: 50px 60px; }
