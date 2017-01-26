@@ -7,5 +7,32 @@
         "liste":"startups listées",
         "bottom":"Co-réalisé avec"
     },
-     "count":1
+     "aside":{
+       	"header": {
+        	"submit": "Postuler",
+        	"share": "Partager",
+        	"download": "Télécharger",
+        	"contact": "Contacter"
+      	},
+        "statistiques":{
+        	"title": "Statistiques",
+        	"rise": "levées de fond",
+        	"award": "startups récompensées",
+        	"listed": "startups listées"
+      	},
+      	"about":{
+        	"title": "À propos",
+        	"paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id lacinia risus. Sed feugiat ultrices porta. Donec at purus rutrum, gravida nisl nec, luctus lorem. Phasellus at auctor libero. Vivamus elementum ex sed elit gravida aliquet. Nullam lobortis lorem a metus tempor commodo. Donec tempor mi eu erat imperdiet auctor."
+        },
+        "contact":{
+        	"title": "Contact",
+        	"label": "fifty-five",
+        	"street": "7 rue d'Athènes",
+        	"city": "fifty-five",
+        	"tel":"0123456789"
+        },
+        "headline":"Découvrer les acteurs de l'EdTech française",
+        "liste":"startups listées",
+        "bottom":"Co-réalisé avec"
+    }
 }

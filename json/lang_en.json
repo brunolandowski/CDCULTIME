@@ -1,11 +1,23 @@
 {
     "homepage":{
-        "top_left":"Initiated by",
+        "top_left":"Intiated by",
         "top_middle":"Supported by",
         "main_title":"EdTech Observatory",
-        "headline":"Find french EdTech main startups",
+        "headline":"Fond French EdTech startups",
         "liste":"startups listed",
-        "bottom":"Co-directed with"
+        "bottom":"Co-produced with"
     },
-    "count":1
+     "aside":{
+       	"header": {
+        	"submit": "Submit your startup",
+        	"share": "Share",
+        	"download": "Download",
+        	"contact": "Contact"
+      	},
+        "top_middle":"Avec le soutien de",
+        "main_title":"Observatoire EdTech",
+        "headline":"Découvrer les acteurs de l'EdTech française",
+        "liste":"startups listées",
+        "bottom":"Co-réalisé avec"
+    }
 }

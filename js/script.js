@@ -1,14 +1,16 @@
- console.log('fifty-five');
+console.log('fifty-five');
 
 
+// FUNCTION AIMING TO LOAD JSON LANG
+function jsonload(x){
+  
+  $.getJSON('json/lang_'+ x +'.json', function (data) {
 
-
- $.getJSON('json/lang_fr.json', function (data) {
-
-   $('#hd_bd_top p:first-of-type').html(data.homepage.top_left);
+    // homepage
+    $('#hd_bd_top p:first-of-type').html(data.homepage.top_left);
     $('#hd_bd_top p:last-of-type').html(data.homepage.top_middle);
   
- 	  $('#hd_title .hd_title_ct h1').html(data.homepage.main_title);
+    $('#hd_title .hd_title_ct h1').html(data.homepage.main_title);
     $('#hd_title .hd_title_ct p').html(data.homepage.headline);
 
     $('#hd_title .hd_title_cta p').html(data.homepage.liste);
@@ -17,41 +19,34 @@
     $('#hd_bd_bottom p').html(data.homepage.bottom);
 
     $('nav h3').html(data.homepage.main_title);
+
+    
+    // aside
+    $('#aside_header ul li:nth-child(1)').html(data.aside.header.submit);
+    $('#aside_header ul li:nth-child(2)').html(data.aside.header.share);
+    $('#aside_header ul li:nth-child(3)').html(data.aside.header.download);
+    $('#aside_header ul li:nth-child(4)').html(data.aside.header.contact);
+
+    $('aside #box_stats h3').html(data.aside.statistiques.title);    
+    $('aside #box_stats p:nth-child(2)').html(data.aside.statistiques.rise);    
+    $('aside #box_stats p:nth-child(3)').html(data.aside.statistiques.award); 
+    $('aside #box_stats p:nth-child(4)').html(data.aside.statistiques.listed); 
   
   });
+} 
 
+// CALL JSON LANG FR BY DEFAULT
+$( document ).ready(function() {
+    jsonload('fr');
+});
 
 $("button#fr").click(function(){
-    $.getJSON("json/lang_fr.json", function(result_fr){
-      $('#hd_bd_top p:first-of-type').html(result_fr.homepage.top_left);
-    $('#hd_bd_top p:last-of-type').html(result_fr.homepage.top_middle);
-
-      $('#hd_title .hd_title_ct h1').html(result_fr.homepage.main_title);
-      $('#hd_title .hd_title_ct p').html(result_fr.homepage.headline);
-
-      $('#hd_title .hd_title_cta p').html(result_fr.homepage.liste);
-
-      $('#hd_bd_bottom p').html(result_fr.homepage.bottom);
-
-      $('nav h3').html(result_fr.homepage.main_title);
-    });
+   jsonload('fr');
 });
 
 
 $("button#en").click(function(){
-    $.getJSON("json/lang_en.json", function(result_en){
-       $('#hd_bd_top p:first-of-type').html(result_en.homepage.top_left);
-    $('#hd_bd_top p:last-of-type').html(result_en.homepage.top_middle);
-
-      $('#hd_title .hd_title_ct h1').html(result_en.homepage.main_title);
-      $('#hd_title .hd_title_ct p').html(result_en.homepage.headline);
-
-      $('#hd_title .hd_title_cta p').html(result_en.homepage.liste); 
-
-       $('#hd_bd_bottom p').html(result_en.homepage.bottom); 
-
-        $('nav h3').html(result_en.homepage.main_title);     
-    });
+   jsonload('en');
 });
 
 
@@ -160,7 +155,6 @@ var perc_chart = ["1.0", ".4", ".3", ".05", ".60", ".50", ".40", ".30"];
 var strokew_chart = ["10", "7.5", "6", "5", "4", "3.6", "3.3", "3"];
 
 
-
 $( ".circle" ).each(function(i) {
   var count = i+1;
   
@@ -199,5 +193,37 @@ $( ".circle" ).each(function(i) {
   })
 });
 
-// HISTO HORIZONTAL CHART ANIMATED
+// SCROLLING EFFECT PARAL
+var $animation_elements = $('.grid-item');
+var $window = $(window);
 
+function check_if_in_view() {
+  var window_height = $window.height();
+  var window_top_position = $window.scrollTop();
+  var window_bottom_position = (window_top_position + window_height);
+ 
+  $.each($animation_elements, function() {
+    var $element = $(this);
+    var element_height = $element.outerHeight();
+    var element_top_position = $element.offset().top;
+    var element_bottom_position = (element_top_position + element_height);
+ 
+    //check to see if this current container is within viewport
+    if ((element_bottom_position >= window_top_position) &&
+        (element_top_position <= window_bottom_position)) {
+      $element.addClass('in-view');
+    } else {
+      $element.removeClass('in-view');
+    }
+  });
+}
+
+$window.on('scroll resize', check_if_in_view);
+$window.trigger('scroll');
+
+// HISTO HORIZONTAL CHART ANIMATED
+// OPTION CLICK ON ITEMS
+ $('#option ul li').on('click', function(e) {
+      $(this).toggleClass("selected"); //you can list several class names 
+      e.preventDefault();
+    });
