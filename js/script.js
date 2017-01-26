@@ -276,8 +276,10 @@ function searching() {
         a = li[i].getElementsByTagName("h4")[0];
         if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";
+             $grid.isotope('layout');
         } else {
             li[i].style.display = "none";
+             $grid.isotope('layout');
 
         }
     }
