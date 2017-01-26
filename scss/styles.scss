@@ -192,6 +192,7 @@ nav {
 #wrap {
 	margin:100px 60px 0 60px;
 	z-index:-2;
+	 min-height:calc(100% - 100px);
 	.grid-item { 
 		width: calc(16.666666% - 17px);
 	 	
@@ -499,7 +500,7 @@ aside  {
 		margin:30px 60px;
 		.wrapper {
 			 display: flex; /* or inline-flex */
-			 
+			
 			 #box_about {
 			 	padding-right:30px;
 			 	width:calc(50% - 30px);
