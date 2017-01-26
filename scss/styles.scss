@@ -31,6 +31,7 @@ header {
 				position:fixed;
 				margin-top:10px;
 				right:60px;
+				z-index:9;
 				button {
 					background:transparent;
 					border:none;
@@ -149,7 +150,7 @@ header {
 
 
 nav {
-	z-index:-1;
+	z-index:1;
 	height:60px;
 	
 	width:100%;
@@ -202,11 +203,11 @@ nav {
     	transition: opacity 0.5s ease-in-out;
 	 	background:white;
 	 	margin-bottom: 20px;
-	 	opacity:.4;
+	 	
 	 	
 		&.in-view {
 			
-			opacity:1;
+			
 			
 		}
 	 	&.big {
@@ -223,6 +224,17 @@ nav {
 	 	}
 	 	.whenopen {
 	 		display:none;
+	 		.item_close {
+	 			position: absolute;
+    			right: 40px;
+    			top: 40px;
+    			width: 16px;
+    			transform-origin: 8px 8px;
+          		transition: transform .3s ease-in-out;
+          		&:hover {
+          			transform: rotate(180deg);
+          		}
+	 		}
 	 		.row {
 	 			margin:20px;
 	 			display: flex; /* or inline-flex */
@@ -319,12 +331,14 @@ nav {
 	float:left;
 	margin-top:60px;
 	top:0;
-	display:none;
+	display:block;
 	background:rgba(51, 51, 51, 0.97);
 	width:100%;
 	font-size:12px;
 	line-height:20px;
 	color:#CCCCCC;
+	position:relative;
+	z-index:-1;
 
 	ul {
 		margin-top:20px;
@@ -359,13 +373,14 @@ nav {
 		margin:50px 60px;
 	}
 	&.option_show {
-		display:block;
+		
 	}
-	&.option_show .opt_wrap {
-		display:flex;
-	}
+	
 	&.fixed {
 		position:fixed;
+	}
+	.opt_wrap {
+		display:flex;
 	}
 	h4 {
 		font-size:14px;
@@ -375,7 +390,7 @@ nav {
 	}
 	#strip {
 		text-align:center;
-		margin-left:calc(50% - 22px);
+		margin-left:calc(50% - 25px);
 		height:15px;
 		display: block;
 		width:44px;
@@ -467,6 +482,19 @@ aside  {
 	overflow:scroll;
 	color:#cccccc;
 	font-size:12px;
+	z-index:999;
+	.aside_close {
+		position:absolute;
+		right:60px;
+		top:30px;
+		width:16px;
+		transform-origin: 8px 8px;
+        transition: transform .3s ease-in-out;
+        &:hover {
+        	transform: rotate(180deg);
+        }
+
+	}
 	.inner {
 		margin:30px 60px;
 		.wrapper {
@@ -547,6 +575,7 @@ aside  {
 	position:fixed;
 	top:0;
 	left:0;
+	z-index:99;
 }
 // ICONS 
 .arrow {

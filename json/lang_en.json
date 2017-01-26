@@ -1,6 +1,6 @@
 {
     "homepage":{
-        "top_left":"Intiated by",
+        "top_left":"Initiated by",
         "top_middle":"Supported by",
         "main_title":"EdTech Observatory",
         "headline":"Fond French EdTech startups",
@@ -9,13 +9,28 @@
     },
      "aside":{
        	"header": {
-        	"submit": "Submit your startup",
+        	"submit": "Submit",
         	"share": "Share",
         	"download": "Download",
         	"contact": "Contact"
       	},
-        "top_middle":"Avec le soutien de",
-        "main_title":"Observatoire EdTech",
+        "statistiques":{
+        	"title": "Statistics",
+        	"rise": "foundraising",
+        	"award": "startups awarded",
+        	"listed": "startups listed"
+      	},
+      	"about":{
+        	"title": "About",
+        	"paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id lacinia risus. Sed feugiat ultrices porta. Donec at purus rutrum, gravida nisl nec, luctus lorem. Phasellus at auctor libero. Vivamus elementum ex sed elit gravida aliquet. Nullam lobortis lorem a metus tempor commodo. Donec tempor mi eu erat imperdiet auctor."
+        },
+        "contact":{
+        	"title": "Contact",
+        	"label": "fifty-five",
+        	"street": "7 rue d'Athènes",
+        	"city": "fifty-five",
+        	"tel":"0123456789"
+        },
         "headline":"Découvrer les acteurs de l'EdTech française",
         "liste":"startups listées",
         "bottom":"Co-réalisé avec"

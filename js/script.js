@@ -5,7 +5,7 @@ console.log('fifty-five');
 function jsonload(x){
   
   $.getJSON('json/lang_'+ x +'.json', function (data) {
-
+    
     // homepage
     $('#hd_bd_top p:first-of-type').html(data.homepage.top_left);
     $('#hd_bd_top p:last-of-type').html(data.homepage.top_middle);
@@ -40,11 +40,12 @@ $( document ).ready(function() {
     jsonload('fr');
 });
 
+// CALL JSON LANG FR WHEN CLICK FR BTN
 $("button#fr").click(function(){
    jsonload('fr');
 });
 
-
+// CALL JSON LANG EN WHEN CLICK EN BTN
 $("button#en").click(function(){
    jsonload('en');
 });
@@ -104,7 +105,7 @@ $( "#burger" ).click(function() {
 
 });
 
-$( "#aside_placeholder" ).click(function() {
+$( "#aside_placeholder, .aside_close" ).click(function() {
    $('body').css('overflow','auto');
   $('#aside_placeholder').fadeOut(300);
   $( "aside" ).animate({
@@ -117,8 +118,33 @@ $( "#aside_placeholder" ).click(function() {
 
 
 // MENU OPEN/CLOSE BUTTON
-$( "nav button" ).click(function() {
-  $( '#option' ).toggleClass( "option_show" );
+var opt_height = $('#option').height();
+opt_height_calc = opt_height - 60;
+$('#option').css('margin-top','-'+opt_height_calc+'px');
+
+
+$("nav button").on("click", function (){
+      if ($("#option").css("marginTop") == "60px") {
+           console.log('nice');
+          
+          $( "#option" ).animate({
+            marginTop: "-"+opt_height_calc+"px",
+          }, 300, "easeInExpo", function() {
+          // Animation complete.
+          });
+
+      }
+        
+      else {
+          
+           console.log('cool');
+
+          $( "#option" ).animate({
+            marginTop: "60px",
+          }, 300, "easeOutExpo", function() {
+          // Animation complete.
+          });
+      }
 });
 
 
@@ -148,6 +174,14 @@ $grid.on( 'click', '.grid-item', function() {
     }, 500);
 }); 
 
+// CLOSE ITEM 
+$( ".item_close" ).click(function() {
+  $(this).parent('.whenopen').parent().removeClass( "big" );
+  $grid.isotope('layout');
+  return false;
+
+});
+
 
 // CHART ELIPSE STATS AND ANIMATE
 var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e4c0", "#bb7ff3", "#fbc9df"];
@@ -174,13 +208,14 @@ $( ".circle" ).each(function(i) {
     color: colors_chart[fromzero],
   });
 
+
   $( "#burger" ).click(function() {
     bar.animate(perc_chart[fromzero]);  
     
 
   });
   
-  $( "#aside_placeholder" ).click(function() {
+  $( "#aside_placeholder,  .aside_close" ).click(function() {
     bar.animate(.0, {duration: 80});  
   });
 
@@ -227,3 +262,23 @@ $window.trigger('scroll');
       $(this).toggleClass("selected"); //you can list several class names 
       e.preventDefault();
     });
+
+// SEARCH BAR WITH LISTJS
+function searching() {
+    var input, filter, ul, li, a, i;
+    
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("wrap");
+    li = ul.getElementsByClassName("grid-item");
+    
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("h4")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+
+        }
+    }
+}
