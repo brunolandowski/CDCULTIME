@@ -61,6 +61,7 @@ header {
         right: 60px;
         z-index: 9; }
         header #hd_bd_top .inner .hd_right button {
+          cursor: pointer;
           background: transparent;
           border: none; }
           header #hd_bd_top .inner .hd_right button#fr {
@@ -141,9 +142,11 @@ header {
       bottom: 130px; }
       header #hd_title .hd_title_cta h2 {
         font-weight: 800;
-        font-size: 80px; }
+        font-size: 80px;
+        cursor: pointer; }
       header #hd_title .hd_title_cta p {
-        font-size: 14px; }
+        font-size: 14px;
+        cursor: pointer; }
   header #hd_bd_bottom {
     font-size: 12px;
     height: 100px;
@@ -193,7 +196,8 @@ nav {
     nav .inner button {
       margin-left: 20px;
       border: none;
-      background: 0; }
+      background: 0;
+      cursor: pointer; }
       nav .inner button:hover div span {
         animation-name: opt_btn_2;
         animation-duration: .5s;
@@ -236,6 +240,7 @@ nav {
   min-height: calc(100% - 100px); }
   #wrap .grid-item {
     width: calc(16.666666% - 17px);
+    cursor: pointer;
     -webkit-box-shadow: 0px 0px 15px 0px rgba(204, 204, 204, 0.2);
     -moz-box-shadow: 0px 0px 15px 0px rgba(204, 204, 204, 0.2);
     box-shadow: 0px 0px 15px 0px rgba(204, 204, 204, 0.2);
@@ -245,7 +250,8 @@ nav {
     background: white;
     margin-bottom: 20px; }
     #wrap .grid-item.big {
-      width: calc(66.666666% - 8px); }
+      width: calc(66.666666% - 8px);
+      cursor: auto; }
       #wrap .grid-item.big .vi_cate {
         display: none; }
       #wrap .grid-item.big article {
@@ -263,7 +269,8 @@ nav {
         top: 40px;
         width: 16px;
         transform-origin: 8px 8px;
-        transition: transform .3s ease-in-out; }
+        transition: transform .3s ease-in-out;
+        cursor: pointer; }
         #wrap .grid-item .whenopen .item_close:hover {
           transform: rotate(180deg); }
       #wrap .grid-item .whenopen .row {
@@ -406,6 +413,7 @@ nav {
     margin-top: 110px;
     margin-bottom: -20px;
     bottom: -20px;
+    cursor: pointer;
     border-radius: 0 0 3px 3px;
     background: rgba(51, 51, 51, 0.97); }
     #option #strip .arrow {
@@ -466,7 +474,8 @@ aside {
     top: 30px;
     width: 16px;
     transform-origin: 8px 8px;
-    transition: transform .3s ease-in-out; }
+    transition: transform .3s ease-in-out;
+    cursor: pointer; }
     aside .aside_close:hover {
       transform: rotate(180deg); }
   aside .inner {
