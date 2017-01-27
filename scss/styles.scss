@@ -13,8 +13,50 @@ body {
 	background:#F5F5F5;
 }
 
+// DISABLE OUTLINE BLUE FROM BUTTON 
+
+button {
+	outline:none;
+}
+
+// ANIMATE FUNCTIONS
+	// MAIN BURGER
+	@keyframes main_b_1-3 {
+	    0% {width:10px;}
+	    50% {width:40px;}
+	    100% {width:10px;}
+	   
+
+
+	}
+
+	@keyframes main_b_2 {
+	    0% {width:40px;}
+	    50% {width:10px;}
+	    100% {width:40px;}
+	}
+
+
+	// OPTION BUTTON
+	@keyframes opt_btn_1-3 {
+	    0% {margin-left:5px;}
+	    50% {margin-left:-12px;}
+	    100% {margin-left:5px;}
+	   
+
+
+	}
+
+	@keyframes opt_btn_2 {
+	    0% {margin-left:-12px;}
+	    50% {margin-left:5px;}
+	    100% {margin-left:-12px;}
+	}
+
+
 
 // HOMEPAGE
+
 
 header {
 	height:100%;
@@ -35,11 +77,36 @@ header {
 				button {
 					background:transparent;
 					border:none;
+					&#fr {
+						text-decoration: underline;
+					}
 				}
 				#burger {
 					z-index:9;
 					vertical-align: middle;
 					margin-left:20px;
+					width:40px;
+					&:hover {
+						div {
+							width:10px;
+							animation-name: main_b_2; 
+						    animation-duration: .5s; 
+						    animation-iteration-count: infinite;
+						    animation-timing-function: ease-in-out;
+						    &:first-child {
+						    	animation-name: main_b_1-3; 
+						    	animation-duration: .75s; 
+						    	animation-iteration-count: infinite;
+						    	animation-timing-function: ease-in-out;
+						    }
+						    &:last-child {
+						    	animation-name: main_b_1-3; 
+						    	animation-duration: 1s; 
+						    	animation-iteration-count: infinite;
+						    	animation-timing-function: ease-in-out;
+						    }
+						}
+					}
 					div {
 						
 						margin-top:8px;
@@ -169,10 +236,11 @@ nav {
 			width: 180px;
 		    border: none;
 		    border-bottom: 1px solid #bbb;
-		    margin-left: 30px;
+		    margin-left: 20px;
 		    color: #333;
 		    font-size: 12px;
 		    padding-bottom: 3px;
+		    vertical-align: super;
 		}
 		h3 {
 			margin-top: 10px;
@@ -181,6 +249,67 @@ nav {
 			font-size: 18px;
 			font-weight:500;
 		}
+		button {
+			margin-left:20px;
+			border:none;
+			background:0;
+			&:hover {
+				div {
+					span {
+						animation-name: opt_btn_2; 
+						animation-duration: .5s; 
+						animation-iteration-count: infinite;
+						animation-timing-function: ease-in-out;
+					}
+					&:first-child {
+						span {
+							animation-name: opt_btn_1-3; 
+							animation-duration: .75s; 
+							animation-iteration-count: infinite;
+							animation-timing-function: ease-in-out;
+						}
+					} 
+					&:last-child {
+						span {
+							animation-name: opt_btn_1-3; 
+							animation-duration: 1s; 
+							animation-iteration-count: infinite;
+							animation-timing-function: ease-in-out;
+						}
+					}
+				}
+			}
+			div {
+				height:1px;
+				background:#333;
+				width:30px;
+				margin-top:8px;
+				&:first-child {
+					margin-top: 0;
+					span {
+						margin-left:5px;
+					} 
+				}
+				&:last-child {
+					span {
+						margin-left:5px;
+					}
+				}
+				span {
+
+					margin-left: -12px;
+					margin-top: -3px;
+					height:5px;
+					width:5px;
+					border-radius:4px;
+					background:white;
+					border:1px solid #333;
+					position:absolute;
+					
+				}
+			}
+		}
+		
 	}
 	
 	

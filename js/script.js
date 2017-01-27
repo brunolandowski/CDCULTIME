@@ -43,11 +43,16 @@ $( document ).ready(function() {
 // CALL JSON LANG FR WHEN CLICK FR BTN
 $("button#fr").click(function(){
    jsonload('fr');
+   $(this).css('text-decoration','underline');
+   $("button#en").css('text-decoration','none');
+
 });
 
 // CALL JSON LANG EN WHEN CLICK EN BTN
 $("button#en").click(function(){
    jsonload('en');
+   $(this).css('text-decoration','underline');
+   $("button#fr").css('text-decoration','none');
 });
 
 
