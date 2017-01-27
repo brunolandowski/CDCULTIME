@@ -123,9 +123,9 @@ opt_height_calc = opt_height - 60;
 $('#option').css('margin-top','-'+opt_height_calc+'px');
 
 
-$("nav button").on("click", function (){
+$("nav button, #strip").on("click", function (){
       if ($("#option").css("marginTop") == "60px") {
-           console.log('nice');
+           $('#option').removeClass('rotate');
           
           $( "#option" ).animate({
             marginTop: "-"+opt_height_calc+"px",
@@ -137,7 +137,7 @@ $("nav button").on("click", function (){
         
       else {
           
-           console.log('cool');
+            $('#option').addClass('rotate');
 
           $( "#option" ).animate({
             marginTop: "60px",
