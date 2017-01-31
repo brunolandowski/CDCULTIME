@@ -1,13 +1,27 @@
 * {
 	margin:0;
 	padding:0;
+	
 }
+
+
+@font-face {
+    font-family: 'bikobold';
+    src: url('../font/biko_bold-webfont.woff2') format('woff2'),
+         url('../font/biko_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 
 html {
 	height:100%;
+
 }
 
 body {
+	transition: all 0.5s ease;
 	height:100%;
 	font-family: 'Raleway', sans-serif;
 	background:#F5F5F5;
@@ -66,8 +80,8 @@ header {
 		font-size: 12px;
 		.inner {
 			margin:0 60px;
-			padding-top:10px;
-			height:90px;
+			padding-top:15px;
+			height:85px;
 			.hd_right {
 				display: inline-block;
 				position:fixed;
@@ -134,8 +148,8 @@ header {
 			img {
 				vertical-align: middle;
 				margin-left:20px;
-				height:80px;
-				width:100px;
+				height:70px;
+				
 			}
 			hr {
 				vertical-align: middle;
@@ -164,6 +178,9 @@ header {
 			width:500px;
 			margin:auto;
 			text-align: center;
+			img {
+				width:290px;
+			}
 			h1 {
 				font-size: 80px;
 				font-weight:100;
@@ -185,6 +202,8 @@ header {
 				font-weight: 800;
 				font-size:80px;
 				cursor:pointer;
+				font-family: 'bikobold';
+				height:85px;
 			}
 			p {
 				font-size: 14px;
@@ -252,6 +271,7 @@ nav {
 			height:40px;
 			font-size: 18px;
 			font-weight:500;
+
 		}
 		button {
 			margin-left:20px;

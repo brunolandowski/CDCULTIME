@@ -10,7 +10,10 @@ function jsonload(x){
     $('#hd_bd_top p:first-of-type').html(data.homepage.top_left);
     $('#hd_bd_top p:last-of-type').html(data.homepage.top_middle);
   
-    $('#hd_title .hd_title_ct h1').html(data.homepage.main_title);
+    
+    $('#main_logo').attr('src',"img/logo_et_"+x+".svg").attr('alt',data.homepage.main_title);
+
+    // $('#hd_title .hd_title_ct h1').html(data.homepage.main_title);
     $('#hd_title .hd_title_ct p').html(data.homepage.headline);
 
     $('#hd_title .hd_title_cta p').html(data.homepage.liste);
