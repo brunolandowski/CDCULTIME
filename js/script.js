@@ -190,6 +190,10 @@ $( ".item_close" ).click(function() {
 
 });
 
+// CHART HISTO ANIMATE
+
+
+
 
 // CHART ELIPSE STATS AND ANIMATE
 var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e4c0", "#bb7ff3", "#fbc9df"];
@@ -198,15 +202,13 @@ var strokew_chart = ["10", "7.5", "6", "5", "4", "3.6", "3.3", "3"];
 
 
 $( ".circle" ).each(function(i) {
+  
   var count = i+1;
   
   var idcircle = "#circle_" + count;
   var fromzero = count - 1;
   
   var numberposition = 60 + (count * 40);
-
-
-
 
   var bar = new ProgressBar.SemiCircle(idcircle, {
     strokeWidth: strokew_chart[fromzero],
@@ -219,7 +221,6 @@ $( ".circle" ).each(function(i) {
 
   $( "#burger" ).click(function() {
     bar.animate(perc_chart[fromzero]);  
-    
 
   });
   
@@ -230,10 +231,7 @@ $( ".circle" ).each(function(i) {
   $(this).css({
     "width": numberposition, 
     "height": numberposition / 2,
-    
-
-
-  })
+    })
 });
 
 // SCROLLING EFFECT PARAL
