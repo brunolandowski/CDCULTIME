@@ -20,6 +20,45 @@
         	"award": "startups awarded",
         	"listed": "startups listed"
       	},
+        "services":{
+            "title": "Products",
+            "filter_services_1": "School operations & teaching tools",
+            "filter_services_2": "Academic curriculum products",
+            "filter_services_3": "Vocational curriculum products",
+            "filter_services_4": "Digital skills training",
+            "filter_services_5": "Special education",
+            "filter_services_6": "Family & student support",
+            "filter_services_7": "Personal development & after-school activities",
+            "filter_services_8": "Other"
+
+        },
+        "clients":{
+            "title": "Clients",
+            "filter_clients_1": "School & universities",
+            "filter_clients_2": "Training organisations",
+            "filter_clients_3": "Companies",
+            "filter_clients_4": "Non-profit & public institutions",
+            "filter_clients_5": "Individuals",
+            "filter_clients_6": "Other"
+
+        },
+        "technologies":{
+            "title": "Technologies",
+            "filter_tech_1": "LMS, CMS etc.",
+            "filter_tech_2": "Innovative contents",
+            "filter_tech_3": "Adaptive learning tools",
+            "filter_tech_4": "Distribution services",
+            "filter_tech_5": "Games & learning apps",
+            "filter_tech_6": "IoT & digital school places",
+            "filter_tech_7": "Blended learning tools & coding schools",
+            "filter_tech_8": "Services platforms",
+            "filter_tech_9": "Social tools",
+            "filter_tech_10": "Virtual & augmented reality",
+            "filter_tech_11": "Equipment & infrastructures",
+            "filter_tech_12": "Back/middle technologies",
+            "filter_tech_13": "Other"
+
+        },
       	"about":{
         	"title": "About",
         	"paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id lacinia risus. Sed feugiat ultrices porta. Donec at purus rutrum, gravida nisl nec, luctus lorem. Phasellus at auctor libero. Vivamus elementum ex sed elit gravida aliquet. Nullam lobortis lorem a metus tempor commodo. Donec tempor mi eu erat imperdiet auctor."

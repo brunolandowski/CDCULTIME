@@ -54,10 +54,10 @@ var template = function(content, params) {
  * @returns {void}
  */
 var render = function(item) {
-    var panel = '<div class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span>{{web}}</span><div class="vi_cate"></div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span><div class="row"><div class="left"><p>Description</p></div><div class="right"><p>{{description_fr}}</p></div></div><div class="row"><div class="left"><p>Services</p><div class="vi_serv"></div></div><div class="right">{{services}}</div></div><div class="row"><div class="left"><p>Utilisateurs</p></div><div class="right">{{users}}</div></div><div class="row"><div class="left"><p>Clients</p></div><div class="right">{{clients}}</div></div><div class="row"><div class="left"><p>Technologies</p></div><div class="right">{{tech}}</div></div><div class="row"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row"><div class="left"><p>Basée en</p></div><div class="right"><p>{{zip}}</p></div></div></div></div>';
-    return template(panel, item);
-}
-//get data and generate HTML output
+        var panel = '<div class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span>{{web}}</span><div class="vi_cate"></div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span><div class="row"><div class="left"><p>Description</p></div><div class="right"><p>{{description_fr}}</p></div></div><div class="row"><div class="left"><p>Services</p><div class="vi_serv"></div></div><div class="right">{{services}}</div></div><div class="row"><div class="left"><p>Utilisateurs</p></div><div class="right">{{users}}</div></div><div class="row"><div class="left"><p>Clients</p></div><div class="right">{{clients}}</div></div><div class="row"><div class="left"><p>Technologies</p></div><div class="right">{{tech}}</div></div><div class="row"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row"><div class="left"><p>Basée en</p></div><div class="right"><p>{{zip}}</p></div></div></div></div>';
+        return template(panel, item);
+    }
+    //get data and generate HTML output
 getData().then(function(data) {
     //remove loader here
     var self = this;
@@ -122,88 +122,59 @@ getData().then(function(data) {
 
     var $grid = $('#wrap').isotope({
         masonry: {
-
-            gutter: 20
+      gutter: 20
         },
         itemSelector: '.grid-item',
     });
 
 
-        
-       var $grid = $('#wrap');
+
+    var $grid = $('#wrap');
     $grid.isotope({
-      masonry: {
-        gutter: 20
-      },
-      itemSelector: '.grid-item'
+        masonry: {
+            gutter: 20
+        },
+        itemSelector: '.grid-item'
     });
 
-    var filters = []; // A convenient bucket for all the filter options, 
-                      // just so we don't have to look them up in the DOM every time.
-                      // (a global array is maybe sort of not the most elegant 
-                      // way you could deal with this but you get the idea.)
-    
-    // Search event handlers
+    var filters = []; 
     $('#myInput').on('keyup', function() {
-        // debounce removed for brevity, but you'd put it here
         filters[0] = this.value;
         runFilter();
     });
-   
 
-    // The filter itself
+  // The filter itself
     var runFilter = function() {
         $grid.isotope({
             filter: function() {
                 if (filters[0]) {
-                    // at least some search text was entered:
                     var qsRegex = new RegExp(filters[0], 'gi');
-
-                    // if the title doesn't match, eliminate it:
                     if (!$(this).find('h4').text().match(qsRegex)) {
                         return false;
                     }
                 }
-
-                
-
-                // etcetera, for any other filters 
-
-                // successfully passed all conditions, so:
                 return true;
             }
         });
     }
 
-
-
-
-
-
-
-    $grid.on('click', '.grid-item', function() {
+  $grid.on('click', '.grid-item', function() {
         $('.grid-item').not(this).removeClass('big');
         $(this).addClass('big');
-
-        $grid.isotope('layout');
-
-
-        var that = $(this);
-          $grid.one( 'layoutComplete', function() {
-              console.log('loaded');
-             
-              var scrolltopitem = that.offset().top;
-              var calcdiff = scrolltopitem - 100;
-
-
-              console.log(scrolltopitem);
-              $('html, body').animate({
-                  scrollTop: calcdiff
-              }, 500);
+    $grid.isotope('layout');
+    var that = $(this);
+        $grid.one('layoutComplete', function() {
+            console.log('loaded');
+      var scrolltopitem = that.offset().top;
+            var calcdiff = scrolltopitem - 100;
+      console.log(scrolltopitem);
+            $('html, body').animate({
+                scrollTop: calcdiff
+            }, 300);
         });
 
 
-    
+
     });
 
     // CLOSE ITEM 
@@ -214,17 +185,17 @@ getData().then(function(data) {
 
     });
 
+    // CALL JSON FR WHEN LIST IS READY
+    jsonload('fr');
+
+    // END OF JSON FUNCTION
+
 });
-
-
 
 function jsonloaded() {
     console.log('loaded');
 
 }
-
-
-
 
 // FUNCTION AIMING TO LOAD JSON LANG
 function jsonload(x) {
@@ -260,13 +231,58 @@ function jsonload(x) {
         $('aside #box_stats p:nth-child(3)').html(data.aside.statistiques.award);
         $('aside #box_stats p:nth-child(4)').html(data.aside.statistiques.listed);
 
+        // Clients LOOP
+        var arraystats = ['clients','technologies'];
+        $.each(arraystats, function(index, value) {
+            alert(index + ': ' + value);
+        });
+
+        $.each(["clients","technologies"], function(index){
+            var thisvalue = $(this);
+            
+            
+            var clientjson = data.aside.clients.loop;
+            var clientsarray = [];
+            var clientsmax;
+            var clientsmin;
+            // We create a loop to define max and min value
+            $.each(clientjson, function(key, value) {
+              var keyclean = key.replace(/\_/g,"");
+                  keycleanforclass = '.'+keyclean;
+                  clientslenght = $(keycleanforclass).length;      
+                  clientsarray.push(clientslenght);
+               
+             });
+
+            // here we get the min and max value 
+            clientsmax = Math.max.apply(Math,clientsarray);
+            clientsmin = Math.min.apply(Math,clientsarray); 
+            
+            // we reloop
+             $.each(clientjson, function(key, value) {
+                var keyclean = key.replace(/\_/g,"");
+                  keycleanforclass = '.'+keyclean;
+                  clientslenght = $(keycleanforclass).length; 
+
+                var clientscalc = (((clientslenght - clientsmin ) * 100) / (clientsmax - clientsmin)) / 2;    
+               
+             });
+        
+        });
+
+
+
+
+        
+
+      
+
+
+       
+
     });
 }
 
-// CALL JSON LANG FR BY DEFAULT
-$(document).ready(function() {
-    jsonload('fr');
-});
 
 // CALL JSON LANG FR WHEN CLICK FR BTN
 $("button#fr").click(function() {
@@ -286,8 +302,6 @@ $("button#en").click(function() {
 
 
 // PARALAXE HOMEPAGE
-
-
 $(window).bind("load resize scroll", function(e) {
     var y = $(window).scrollTop();
 
@@ -380,9 +394,6 @@ $("nav button, #strip").on("click", function() {
     }
 });
 
-
-
-
 // CHART ELIPSE STATS AND ANIMATE
 var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e4c0", "#bb7ff3", "#fbc9df"];
 var perc_chart = ["1.0", ".4", ".3", ".05", ".60", ".50", ".40", ".30"];
@@ -391,15 +402,9 @@ var strokew_chart = ["10", "7.5", "6", "5", "4", "3.6", "3.3", "3"];
 
 $(".circle").each(function(i) {
     var count = i + 1;
-
     var idcircle = "#circle_" + count;
     var fromzero = count - 1;
-
     var numberposition = 60 + (count * 40);
-
-
-
-
     var bar = new ProgressBar.SemiCircle(idcircle, {
         strokeWidth: strokew_chart[fromzero],
         easing: 'easeInOut',
@@ -411,8 +416,6 @@ $(".circle").each(function(i) {
 
     $("#burger").click(function() {
         bar.animate(perc_chart[fromzero]);
-
-
     });
 
     $("#aside_placeholder,  .aside_close").click(function() {
@@ -424,9 +427,6 @@ $(".circle").each(function(i) {
     $(this).css({
         "width": numberposition,
         "height": numberposition / 2,
-
-
-
     })
 });
 
@@ -466,9 +466,4 @@ $('#option ul li').on('click', function(e) {
 
 });
 
-// SEARCH BAR 
-
-
-
-
-
+// SEARCH BAR
