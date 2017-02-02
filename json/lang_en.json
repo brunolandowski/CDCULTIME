@@ -8,18 +8,18 @@
         "bottom":"Co-produced with"
     },
      "aside":{
-       	"header": {
-        	"submit": "Submit",
-        	"share": "Share",
-        	"download": "Download",
-        	"contact": "Contact"
-      	},
+        "header": {
+            "submit": "Postuler",
+            "share": "Share",
+            "download": "Download",
+            "contact": "Contact"
+        },
         "statistiques":{
-        	"title": "Statistics",
-        	"rise": "foundraising",
-        	"award": "startups awarded",
-        	"listed": "startups listed"
-      	},
+            "title": "Statistics",
+            "rise": "foundraising",
+            "award": "startups awarded",
+            "listed": "startups listed"
+        },
         "services":{
             "title": "Products",
             "filter_services_1": "School operations & teaching tools",
@@ -34,41 +34,43 @@
         },
         "clients":{
             "title": "Clients",
-            "filter_clients_1": "School & universities",
-            "filter_clients_2": "Training organisations",
-            "filter_clients_3": "Companies",
-            "filter_clients_4": "Non-profit & public institutions",
-            "filter_clients_5": "Individuals",
-            "filter_clients_6": "Other"
+            "loop":{
+                "filter_clients_1": "School & universities",
+                "filter_clients_2": "Training organisations",
+                "filter_clients_3": "Companies",
+                "filter_clients_4": "Non-profit & public institutions",
+                "filter_clients_5": "Individuals",
+                "filter_clients_6": "Other"}
 
         },
         "technologies":{
             "title": "Technologies",
-            "filter_tech_1": "LMS, CMS etc.",
-            "filter_tech_2": "Innovative contents",
-            "filter_tech_3": "Adaptive learning tools",
-            "filter_tech_4": "Distribution services",
-            "filter_tech_5": "Games & learning apps",
-            "filter_tech_6": "IoT & digital school places",
-            "filter_tech_7": "Blended learning tools & coding schools",
-            "filter_tech_8": "Services platforms",
-            "filter_tech_9": "Social tools",
-            "filter_tech_10": "Virtual & augmented reality",
-            "filter_tech_11": "Equipment & infrastructures",
-            "filter_tech_12": "Back/middle technologies",
-            "filter_tech_13": "Other"
+            "loop":{
+                "filter_tech_1": "LMS, CMS etc.",
+                "filter_tech_2": "Innovative contents",
+                "filter_tech_3": "Adaptive learning tools",
+                "filter_tech_4": "Distribution services",
+                "filter_tech_5": "Games & learning apps",
+                "filter_tech_6": "IoT & digital school places",
+                "filter_tech_7": "Blended learning tools & coding schools",
+                "filter_tech_8": "Services platforms",
+                "filter_tech_9": "Social tools",
+                "filter_tech_10": "Virtual & augmented reality",
+                "filter_tech_11": "Equipment & infrastructures",
+                "filter_tech_12": "Back/middle technologies",
+                "filter_tech_13": "Other"}
 
         },
-      	"about":{
-        	"title": "About",
-        	"paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id lacinia risus. Sed feugiat ultrices porta. Donec at purus rutrum, gravida nisl nec, luctus lorem. Phasellus at auctor libero. Vivamus elementum ex sed elit gravida aliquet. Nullam lobortis lorem a metus tempor commodo. Donec tempor mi eu erat imperdiet auctor."
+        "about":{
+            "title": "About",
+            "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id lacinia risus. Sed feugiat ultrices porta. Donec at purus rutrum, gravida nisl nec, luctus lorem. Phasellus at auctor libero. Vivamus elementum ex sed elit gravida aliquet. Nullam lobortis lorem a metus tempor commodo. Donec tempor mi eu erat imperdiet auctor."
         },
         "contact":{
-        	"title": "Contact",
-        	"label": "fifty-five",
-        	"street": "7 rue d'Athènes",
-        	"city": "fifty-five",
-        	"tel":"0123456789"
+            "title": "Contact",
+            "label": "fifty-five",
+            "street": "7 rue d'Athènes",
+            "city": "fifty-five",
+            "tel":"0123456789"
         },
         "headline":"Découvrer les acteurs de l'EdTech française",
         "liste":"startups listées",

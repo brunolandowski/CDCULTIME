@@ -232,16 +232,21 @@ function jsonload(x) {
         $('aside #box_stats p:nth-child(4)').html(data.aside.statistiques.listed);
 
         // Clients LOOP
-        var arraystats = ['clients','technologies'];
-        $.each(arraystats, function(index, value) {
-            alert(index + ': ' + value);
-        });
+      
 
-        $.each(["clients","technologies"], function(index){
-            var thisvalue = $(this);
-            
-            
-            var clientjson = data.aside.clients.loop;
+        var arraystats = ['clients','technologies'];
+        
+
+
+
+        $.each(arraystats, function(index, value) {
+
+            var clientvalue = value;
+            $('#'+clientvalue+' ul').empty();
+
+            var clientjson = data.aside[value].loop;
+            console.log(clientvalue);
+           
             var clientsarray = [];
             var clientsmax;
             var clientsmin;
@@ -265,17 +270,16 @@ function jsonload(x) {
                   clientslenght = $(keycleanforclass).length; 
 
                 var clientscalc = (((clientslenght - clientsmin ) * 100) / (clientsmax - clientsmin)) / 2;    
-               
+                console.log("client calc"+clientscalc+"key"+value+"clientslenght"+clientslenght);
+
+                console.log(clientvalue);
+                                $('#'+clientvalue+' ul').append('<li><p>'+value+'</p><span>'+clientslenght+'</span><div style="width:'+clientscalc+'%;" class="histo"></div></li>');
+
              });
-        
         });
 
-
-
-
+    
         
-
-      
 
 
        
