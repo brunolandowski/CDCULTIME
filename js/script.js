@@ -54,7 +54,7 @@ var template = function(content, params) {
  * @returns {void}
  */
 var render = function(item) {
-        var panel = '<div class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span>{{web}}</span><div class="vi_cate"></div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span><div class="row"><div class="left"><p>Description</p></div><div class="right"><p>{{description_fr}}</p></div></div><div class="row"><div class="left"><p>Services</p><div class="vi_serv"></div></div><div class="right">{{services}}</div></div><div class="row"><div class="left"><p>Utilisateurs</p></div><div class="right">{{users}}</div></div><div class="row"><div class="left"><p>Clients</p></div><div class="right">{{clients}}</div></div><div class="row"><div class="left"><p>Technologies</p></div><div class="right">{{tech}}</div></div><div class="row"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row"><div class="left"><p>Basée en</p></div><div class="right"><p>{{zip}}</p></div></div><span class="item_dropdown"> <span class="cale"></span> <span>Partager cette startup<img class="arrow" src="img/arrow_up.svg"> <div class="item_dropdown_content"> <p><a href="http://google.fr">Sur Twitter</a></p> <p><a href="http://google.fr">Sur Facebook</a></p> <p><a href="http://google.fr">Copier le lien</a></p> </div> </span></div></div>';
+        var panel = '<div class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span>{{web}}</span><div class="vi_cate"></div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span><div class="row"><div class="left"><p>Description</p></div><div class="right"><p>{{description_fr}}</p></div></div><div class="row"><div class="left"><p>Services</p><div class="vi_serv"></div></div><div class="right">{{services}}</div></div><div class="row"><div class="left"><p>Utilisateurs</p></div><div class="right">{{users}}</div></div><div class="row"><div class="left"><p>Clients</p></div><div class="right">{{clients}}</div></div><div class="row"><div class="left"><p>Technologies</p></div><div class="right">{{tech}}</div></div><div class="row"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row"><div class="left"><p>Basée en</p></div><div class="right"><p>{{zip}}</p></div></div><span class="item_dropdown"><span class="cale"></span><span>Partager cette startup<img class="arrow" src="img/arrow_up.svg"><div class="item_dropdown_content"><p><a href="http://google.fr">Sur Twitter</a></p><p><a href="http://google.fr">Sur Facebook</a></p><p><a href="http://google.fr">Copier le lien</a></p></div></span></div></div>';
         return template(panel, item);
     }
     //get data and generate HTML output
@@ -167,7 +167,7 @@ getData().then(function(data) {
             console.log('loaded');
       var scrolltopitem = that.offset().top;
             var calcdiff = scrolltopitem - 100;
-      console.log(scrolltopitem);
+      
             $('html, body').animate({
                 scrollTop: calcdiff
             }, 300);
@@ -198,6 +198,10 @@ function jsonloaded() {
 }
 
 // FUNCTION AIMING TO LOAD JSON LANG
+  // Create array for the circle stats
+
+  var circlearray = []; 
+
 function jsonload(x) {
 
     $.getJSON('json/lang_' + x + '.json', function(data) {
@@ -245,7 +249,7 @@ function jsonload(x) {
             $('#'+clientvalue+' ul').empty();
 
             var clientjson = data.aside[value].loop;
-            console.log(clientvalue);
+           
            
             var clientsarray = [];
             var clientsmax;
@@ -270,14 +274,21 @@ function jsonload(x) {
                   clientslenght = $(keycleanforclass).length; 
 
                 var clientscalc = (((clientslenght - clientsmin ) * 100) / (clientsmax - clientsmin)); 
-                 
-                console.log("client calc"+clientscalc+"key"+value+"clientslenght"+clientslenght);
-                var calcgood = (5+.45*clientscalc);
+                
 
-                console.log(calcgood);
-                $('#'+clientvalue+' ul').append('<li><p>'+value+'</p><span>'+clientslenght+'</span><div data-wd='+calcgood+' class="histo"></div></li>');
+                var calcgood = (5+.45*clientscalc);
+                var calcgoodcircle = (20+.80*clientscalc);
+
+                $('#'+clientvalue+' ul').append('<li><p>'+value+'</p><span>'+clientslenght+'</span><div data-circle='+calcgoodcircle+' data-wd='+calcgood+' class="histo"></div></li>');
 
              });
+        });
+
+
+        $("#services ul li .histo").each(function() {
+          var circlevalue = $(this).attr('data-circle');
+
+          circlearray.push(circlevalue);
         });
 
     
@@ -325,7 +336,7 @@ var doc_height;
 
 $(window).bind("load resize scroll", function(e) {
     doc_height = $(window).height();
-    console.log(doc_height);
+    
 });
 
 
@@ -442,21 +453,14 @@ $("nav button, #strip").on("click", function() {
 });
 
 // CHART ELIPSE STATS AND ANIMATE
+
+
+
+
 var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e4c0", "#bb7ff3", "#fbc9df"];
-var perc_chart = ["1.0", ".4", ".3", ".05", ".60", ".50", ".40", ".30"];
+
 var strokew_chart = ["10", "7.5", "6", "5", "4", "3.6", "3.3", "3"];
 
-// STAT OPEN
-$("#burger").click(function() {
-      
-
-});
-
-
-// STATS CLOSE
-    $("#aside_placeholder,  .aside_close").click(function() {
-      
-});
 
 
 
@@ -475,7 +479,10 @@ $(".circle").each(function(i) {
 
 
     $("#burger").click(function() {
-        bar.animate(perc_chart[fromzero]);
+        
+       
+        
+        bar.animate(circlearray[fromzero]/100);
 
     });
 
