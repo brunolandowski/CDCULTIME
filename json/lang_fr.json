@@ -22,14 +22,15 @@
         },
         "services":{
             "title": "Products",
-            "filter_services_1": "School operations & teaching tools",
-            "filter_services_2": "Academic curriculum products",
-            "filter_services_3": "Vocational curriculum products",
-            "filter_services_4": "Digital skills training",
-            "filter_services_5": "Special education",
-            "filter_services_6": "Family & student support",
-            "filter_services_7": "Personal development & after-school activities",
-            "filter_services_8": "Other"
+            "loop":{
+                "filter_services_1": "School operations & teaching tools",
+                "filter_services_2": "Academic curriculum products",
+                "filter_services_3": "Vocational curriculum products",
+                "filter_services_4": "Digital skills training",
+                "filter_services_5": "Special education",
+                "filter_services_6": "Family & student support",
+                "filter_services_7": "Personal development & after-school activities",
+                "filter_services_8": "Other"}
 
         },
         "clients":{

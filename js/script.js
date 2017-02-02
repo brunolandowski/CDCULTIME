@@ -54,7 +54,7 @@ var template = function(content, params) {
  * @returns {void}
  */
 var render = function(item) {
-        var panel = '<div class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span>{{web}}</span><div class="vi_cate"></div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span><div class="row"><div class="left"><p>Description</p></div><div class="right"><p>{{description_fr}}</p></div></div><div class="row"><div class="left"><p>Services</p><div class="vi_serv"></div></div><div class="right">{{services}}</div></div><div class="row"><div class="left"><p>Utilisateurs</p></div><div class="right">{{users}}</div></div><div class="row"><div class="left"><p>Clients</p></div><div class="right">{{clients}}</div></div><div class="row"><div class="left"><p>Technologies</p></div><div class="right">{{tech}}</div></div><div class="row"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row"><div class="left"><p>Basée en</p></div><div class="right"><p>{{zip}}</p></div></div></div></div>';
+        var panel = '<div class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span>{{web}}</span><div class="vi_cate"></div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span><div class="row"><div class="left"><p>Description</p></div><div class="right"><p>{{description_fr}}</p></div></div><div class="row"><div class="left"><p>Services</p><div class="vi_serv"></div></div><div class="right">{{services}}</div></div><div class="row"><div class="left"><p>Utilisateurs</p></div><div class="right">{{users}}</div></div><div class="row"><div class="left"><p>Clients</p></div><div class="right">{{clients}}</div></div><div class="row"><div class="left"><p>Technologies</p></div><div class="right">{{tech}}</div></div><div class="row"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row"><div class="left"><p>Basée en</p></div><div class="right"><p>{{zip}}</p></div></div><span class="item_dropdown"> <span class="cale"></span> <span>Partager cette startup<img class="arrow" src="img/arrow_up.svg"> <div class="item_dropdown_content"> <p><a href="http://google.fr">Sur Twitter</a></p> <p><a href="http://google.fr">Sur Facebook</a></p> <p><a href="http://google.fr">Copier le lien</a></p> </div> </span></div></div>';
         return template(panel, item);
     }
     //get data and generate HTML output
@@ -234,7 +234,7 @@ function jsonload(x) {
         // Clients LOOP
       
 
-        var arraystats = ['clients','technologies'];
+        var arraystats = ['services','clients','technologies'];
         
 
 
@@ -269,11 +269,13 @@ function jsonload(x) {
                   keycleanforclass = '.'+keyclean;
                   clientslenght = $(keycleanforclass).length; 
 
-                var clientscalc = (((clientslenght - clientsmin ) * 100) / (clientsmax - clientsmin)) / 2;    
+                var clientscalc = (((clientslenght - clientsmin ) * 100) / (clientsmax - clientsmin)); 
+                 
                 console.log("client calc"+clientscalc+"key"+value+"clientslenght"+clientslenght);
+                var calcgood = (5+.45*clientscalc);
 
-                console.log(clientvalue);
-                                $('#'+clientvalue+' ul').append('<li><p>'+value+'</p><span>'+clientslenght+'</span><div style="width:'+clientscalc+'%;" class="histo"></div></li>');
+                console.log(calcgood);
+                $('#'+clientvalue+' ul').append('<li><p>'+value+'</p><span>'+clientslenght+'</span><div data-wd='+calcgood+' class="histo"></div></li>');
 
              });
         });
@@ -286,6 +288,7 @@ function jsonload(x) {
 
     });
 }
+
 
 
 // CALL JSON LANG FR WHEN CLICK FR BTN
@@ -353,13 +356,53 @@ $("#burger").click(function() {
     $("aside").animate({
         left: "0%",
     }, 300, function() {
-        // Animation complete.
+        
+        // Animate Clients histo
+        $( "#clients ul li .histo" ).each(function() {
+          var data_wd = $(this).attr('data-wd');
+          $(this).animate({
+            width: data_wd+"%",
+            }, 1000, "easeOutExpo", function() {
+            // Animation complete.
+          });
+        });
+
+        // Animate Technologies histo
+        $( "#technologies ul li .histo" ).each(function() {
+          var data_wd = $(this).attr('data-wd');
+          $(this).animate({
+            width: data_wd+"%",
+            }, 1000, "easeOutExpo", function() {
+            // Animation complete.
+          });
+        }); 
+
     });
 
 });
 
 $("#aside_placeholder, .aside_close").click(function() {
     $('body').css('overflow', 'auto');
+    
+    $( "#clients ul li .histo" ).each(function() {
+          var data_wd = $(this).attr('data-wd');
+          $(this).animate({
+            width: "0%",
+            }, 100, "easeOutExpo", function() {
+            // Animation complete.
+          });
+    });
+
+    $( "#technologies ul li .histo" ).each(function() {
+          var data_wd = $(this).attr('data-wd');
+          $(this).animate({
+            width: "0%",
+            }, 100, "easeOutExpo", function() {
+            // Animation complete.
+          });
+    });
+
+
     $('#aside_placeholder').fadeOut(300);
     $("aside").animate({
         left: "-100%",
@@ -403,6 +446,19 @@ var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e
 var perc_chart = ["1.0", ".4", ".3", ".05", ".60", ".50", ".40", ".30"];
 var strokew_chart = ["10", "7.5", "6", "5", "4", "3.6", "3.3", "3"];
 
+// STAT OPEN
+$("#burger").click(function() {
+      
+
+});
+
+
+// STATS CLOSE
+    $("#aside_placeholder,  .aside_close").click(function() {
+      
+});
+
+
 
 $(".circle").each(function(i) {
     var count = i + 1;
@@ -420,6 +476,7 @@ $(".circle").each(function(i) {
 
     $("#burger").click(function() {
         bar.animate(perc_chart[fromzero]);
+
     });
 
     $("#aside_placeholder,  .aside_close").click(function() {
