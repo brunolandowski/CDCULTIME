@@ -74,11 +74,9 @@ getData().then(function(data) {
                 filters.push(item[prop].$t);
             }
 
-            
             if (prop === 'gsx$fundraising' && item[prop].$t.length) {
                 filters.push('fundraising'+item[prop].$t);
             }
-
 
             if (prop === 'gsx$awards' && item[prop].$t.length) {
                 filters.push('award');
@@ -128,94 +126,66 @@ getData().then(function(data) {
     $('#grid-container').html(els);
 
     // ISOTOPE
-    jsonloaded();
+                
 
-                // FILTERRING WITH HASH
+            // quick search regex
+            var qsRegex;
+            var buttonFilter;
 
-                // filter functions
-                var filterFns = {
-                  // show if number is greater than 50
-                  numberGreaterThan50: function() {
-                    var number = $(this).find('.number').text();
-                    return parseInt( number, 10 ) > 50;
-                  },
-                  // show if name ends with -ium
-                  ium: function() {
-                    var name = $(this).find('.name').text();
-                    return name.match( /ium$/ );
-                  }
-                };
-
-                function getHashFilter() {
-                  // get filter=filterName
-                  var matches = location.hash.match( /filter=([^&]+)/i );
-                  var hashFilter = matches && matches[1];
-                  return hashFilter && decodeURIComponent( hashFilter );
-                }
-
-                // init Isotope
-                var $grid = $('#wrap');
-
-                // bind filter button click
-                var $filterButtonGroup = $('.sort');
-                $filterButtonGroup.on( 'click', 'button', function() {
-                  var filterAttr = $( this ).attr('data-filter');
-                  // set filter in hash
-                  location.hash = 'filter=' + encodeURIComponent( filterAttr );
-                });
-
-                var isIsotopeInit = false;
-
-                function onHashchange() {
-                  var hashFilter = getHashFilter();
-                  if ( !hashFilter && isIsotopeInit ) {
-                    return;
-                  }
-                  isIsotopeInit = true;
-                  // filter isotope
-                  $grid.isotope({
-                    itemSelector: '.grid-item',
-                    
-                    masonry:{
-                        gutter: 20
-                    }, 
-                    // use filterFns
-                    filter: filterFns[ hashFilter ] || hashFilter
-                  });
-                  // set selected class on button
-                  if ( hashFilter ) {
-                    $filterButtonGroup.find('.is-checked').removeClass('is-checked');
-                    $filterButtonGroup.find('[data-filter="' + hashFilter + '"]').addClass('is-checked');
-                  }
-                }
-
-                $(window).on( 'hashchange', onHashchange );
-
-                // trigger event handler to init Isotope
-                onHashchange();
-
-  
-
-    var filters = []; 
-    $('#myInput').on('keyup', function() {
-        filters[0] = this.value;
-        runFilter();
-    });
-
-  // The filter itself
-    var runFilter = function() {
-        $grid.isotope({
+            // init Isotope
+            var $grid = $('#wrap').isotope({
+              itemSelector: '.grid-item',
+              masonry: {
+                gutter:20
+              },
             filter: function() {
-                if (filters[0]) {
-                    var qsRegex = new RegExp(filters[0], 'gi');
-                    if (!$(this).find('h4').text().match(qsRegex)) {
-                        return false;
-                    }
+                var $this = $(this);
+                var searchResult = qsRegex ? $this.find('h4').text().match( qsRegex ) : true;
+                var buttonResult = buttonFilter ? $this.is( buttonFilter ) : true;
+                return searchResult && buttonResult;
+              }
+            });
+
+            $('#option').on( 'click', '.filter_btn', function() {
+              buttonFilter = $( this ).attr('data-filter');
+              $grid.isotope();
+            });
+
+            // use value of search field to filter
+            var $quicksearch = $('#myInput').keyup( debounce( function() {
+              qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+
+              $grid.isotope();
+            }) );
+
+
+              // change is-checked class on buttons
+            $('#option').each( function( i, buttonGroup ) {
+              var $buttonGroup = $( buttonGroup );
+              $buttonGroup.on( 'click', '.filter_btn', function() {
+                $buttonGroup.find('.is-checked').removeClass('is-checked');
+                $( this ).addClass('is-checked');
+              });
+            });
+              
+
+            // debounce so filtering doesn't happen every millisecond
+            function debounce( fn, threshold ) {
+              var timeout;
+              return function debounced() {
+                if ( timeout ) {
+                  clearTimeout( timeout );
                 }
-                return true;
+                function delayed() {
+                  fn();
+                  timeout = null;
+                }
+                setTimeout( delayed, threshold || 100 );
+              };
             }
-        });
-    }
+
+                
+
 
   $grid.on('click', '.grid-item', function() {
         $('.grid-item').not(this).removeClass('big');
@@ -247,7 +217,10 @@ getData().then(function(data) {
     // CALL JSON FR WHEN LIST IS READY
     jsonload('fr');
 
-   
+    jsonloaded();
+
+
+
 
 });
 
@@ -256,6 +229,7 @@ function jsonloaded() {
 
 }
 
+ 
 
 
 
@@ -355,7 +329,7 @@ function jsonload(x) {
                 $('#'+clientvalue+' ul').append('<li><p>'+value+'</p><span>'+clientslenght+'</span><div data-circle='+calcgoodcircle+' data-wd='+calcgood+' class="histo"></div></li>');
 
                 $('.'+clientvalue+' h4').html(clientjsonh4);
-                $('.'+clientvalue+' ul').append('<li><div class="pastille"></div><span>'+clientslenght+'</span><p>'+value+'</p></li>');
+                $('.'+clientvalue+' ul').append('<li class="filter_btn" data-filter='+keycleanforclass+'><div class="pastille"></div><span>'+clientslenght+'</span><p>'+value+'</p></li>');
   
              });
         });
@@ -368,12 +342,9 @@ function jsonload(x) {
         });
 
     
-        // OPTION CLICK ON ITEMS
-        $('#option ul li').on('click', function(e) {
-            $(this).toggleClass("selected"); //you can list several class names 
+        
 
-        });
-
+        filteropenclose();
 
        
 
@@ -505,33 +476,35 @@ $("#aside_placeholder, .aside_close").click(function() {
 
 
 // MENU OPEN/CLOSE BUTTON
-var opt_height = $('#option').height();
-opt_height_calc = opt_height - 60;
-$('#option').css('margin-top', '-' + opt_height_calc + 'px');
+function filteropenclose() {
+
+    var opt_height = $('#option').height();
+    opt_height_calc = opt_height - 60;
+    $('#option').css('margin-top', '-' + opt_height_calc + 'px');
 
 
-$("nav button, #strip").on("click", function() {
-    if ($("#option").css("marginTop") == "60px") {
-        $('#option').removeClass('rotate');
+    $("nav button, #strip").on("click", function() {
+        if ($("#option").css("marginTop") == "60px") {
+            $('#option').removeClass('rotate');
 
-        $("#option").animate({
-            marginTop: "-" + opt_height_calc + "px",
-        }, 300, "easeInExpo", function() {
-            // Animation complete.
-        });
+            $("#option").animate({
+                marginTop: "-" + opt_height_calc + "px",
+            }, 300, "easeInExpo", function() {
+                // Animation complete.
+            });
 
-    } else {
+        } else {
 
-        $('#option').addClass('rotate');
+            $('#option').addClass('rotate');
 
-        $("#option").animate({
-            marginTop: "60px",
-        }, 300, "easeOutExpo", function() {
-            // Animation complete.
-        });
-    }
-});
-
+            $("#option").animate({
+                marginTop: "60px",
+            }, 300, "easeOutExpo", function() {
+                // Animation complete.
+            });
+        }
+    });
+}
 // CHART ELIPSE STATS AND ANIMATE
 
 
