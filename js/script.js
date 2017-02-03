@@ -1,6 +1,5 @@
 console.log('fifty-five');
 
-
 //data
 
 /**
@@ -74,6 +73,17 @@ getData().then(function(data) {
             if (prop === 'gsx$zip' && item[prop].$t.length) {
                 filters.push(item[prop].$t);
             }
+
+            
+            if (prop === 'gsx$fundraising' && item[prop].$t.length) {
+                filters.push('fundraising'+item[prop].$t);
+            }
+
+
+            if (prop === 'gsx$awards' && item[prop].$t.length) {
+                filters.push('award');
+            }
+
             if (prop.startsWith('gsx$filterservices') && item[prop].$t.length) {
                 services.push(item[prop].$t);
             }
@@ -120,22 +130,71 @@ getData().then(function(data) {
     // ISOTOPE
     jsonloaded();
 
-    var $grid = $('#wrap').isotope({
-        masonry: {
-      gutter: 20
-        },
-        itemSelector: '.grid-item',
-    });
+                // FILTERRING WITH HASH
 
+                // filter functions
+                var filterFns = {
+                  // show if number is greater than 50
+                  numberGreaterThan50: function() {
+                    var number = $(this).find('.number').text();
+                    return parseInt( number, 10 ) > 50;
+                  },
+                  // show if name ends with -ium
+                  ium: function() {
+                    var name = $(this).find('.name').text();
+                    return name.match( /ium$/ );
+                  }
+                };
 
+                function getHashFilter() {
+                  // get filter=filterName
+                  var matches = location.hash.match( /filter=([^&]+)/i );
+                  var hashFilter = matches && matches[1];
+                  return hashFilter && decodeURIComponent( hashFilter );
+                }
 
-    var $grid = $('#wrap');
-    $grid.isotope({
-        masonry: {
-            gutter: 20
-        },
-        itemSelector: '.grid-item'
-    });
+                // init Isotope
+                var $grid = $('#wrap');
+
+                // bind filter button click
+                var $filterButtonGroup = $('.sort');
+                $filterButtonGroup.on( 'click', 'button', function() {
+                  var filterAttr = $( this ).attr('data-filter');
+                  // set filter in hash
+                  location.hash = 'filter=' + encodeURIComponent( filterAttr );
+                });
+
+                var isIsotopeInit = false;
+
+                function onHashchange() {
+                  var hashFilter = getHashFilter();
+                  if ( !hashFilter && isIsotopeInit ) {
+                    return;
+                  }
+                  isIsotopeInit = true;
+                  // filter isotope
+                  $grid.isotope({
+                    itemSelector: '.grid-item',
+                    
+                    masonry:{
+                        gutter: 20
+                    }, 
+                    // use filterFns
+                    filter: filterFns[ hashFilter ] || hashFilter
+                  });
+                  // set selected class on button
+                  if ( hashFilter ) {
+                    $filterButtonGroup.find('.is-checked').removeClass('is-checked');
+                    $filterButtonGroup.find('[data-filter="' + hashFilter + '"]').addClass('is-checked');
+                  }
+                }
+
+                $(window).on( 'hashchange', onHashchange );
+
+                // trigger event handler to init Isotope
+                onHashchange();
+
+  
 
     var filters = []; 
     $('#myInput').on('keyup', function() {
@@ -188,7 +247,7 @@ getData().then(function(data) {
     // CALL JSON FR WHEN LIST IS READY
     jsonload('fr');
 
-    // END OF JSON FUNCTION
+   
 
 });
 
@@ -197,6 +256,9 @@ function jsonloaded() {
 
 }
 
+
+
+
 // FUNCTION AIMING TO LOAD JSON LANG
   // Create array for the circle stats
 
@@ -204,8 +266,16 @@ function jsonloaded() {
 
 function jsonload(x) {
 
-    $.getJSON('json/lang_' + x + '.json', function(data) {
 
+    $.getJSON('json/lang_' + x + '.json', function(data) {
+         // END OF JSON FUNCTION
+      
+        // MAIN VAR 
+        // Check number of startup listed
+        var number_startup = $('.grid-item').length;
+        var number_fundraising = $('.fundraising1').length;
+        var number_award = $('.award').length;
+       
         // homepage
         $('#hd_bd_top p:first-of-type').html(data.homepage.top_left);
         $('#hd_bd_top p:last-of-type').html(data.homepage.top_middle);
@@ -217,6 +287,7 @@ function jsonload(x) {
         $('#hd_title .hd_title_ct p').html(data.homepage.headline);
 
         $('#hd_title .hd_title_cta p').html(data.homepage.liste);
+        $('#hd_title .hd_title_cta h2').html(number_startup);
 
 
         $('#hd_bd_bottom p').html(data.homepage.bottom);
@@ -231,9 +302,9 @@ function jsonload(x) {
         $('#aside_header ul li:nth-child(4)').html(data.aside.header.contact);
 
         $('aside #box_stats h3').html(data.aside.statistiques.title);
-        $('aside #box_stats p:nth-child(2)').html(data.aside.statistiques.rise);
-        $('aside #box_stats p:nth-child(3)').html(data.aside.statistiques.award);
-        $('aside #box_stats p:nth-child(4)').html(data.aside.statistiques.listed);
+        $('aside #box_stats p:nth-child(2)').html("<span>"+number_fundraising+"</span>"+data.aside.statistiques.rise);
+        $('aside #box_stats p:nth-child(3)').html("<span>"+number_award+"</span>"+data.aside.statistiques.award);
+        $('aside #box_stats p:nth-child(4)').html("<span>"+number_startup+"</span>"+data.aside.statistiques.listed);
 
         // Clients LOOP
       
@@ -247,9 +318,10 @@ function jsonload(x) {
 
             var clientvalue = value;
             $('#'+clientvalue+' ul').empty();
+             $('.'+clientvalue+' ul').empty();
 
             var clientjson = data.aside[value].loop;
-           
+            var clientjsonh4 = data.aside[value].title;           
            
             var clientsarray = [];
             var clientsmax;
@@ -279,8 +351,12 @@ function jsonload(x) {
                 var calcgood = (5+.45*clientscalc);
                 var calcgoodcircle = (20+.80*clientscalc);
 
+                $('#'+clientvalue+' h4').html(clientjsonh4);
                 $('#'+clientvalue+' ul').append('<li><p>'+value+'</p><span>'+clientslenght+'</span><div data-circle='+calcgoodcircle+' data-wd='+calcgood+' class="histo"></div></li>');
 
+                $('.'+clientvalue+' h4').html(clientjsonh4);
+                $('.'+clientvalue+' ul').append('<li><div class="pastille"></div><span>'+clientslenght+'</span><p>'+value+'</p></li>');
+  
              });
         });
 
@@ -292,7 +368,11 @@ function jsonload(x) {
         });
 
     
-        
+        // OPTION CLICK ON ITEMS
+        $('#option ul li').on('click', function(e) {
+            $(this).toggleClass("selected"); //you can list several class names 
+
+        });
 
 
        
@@ -458,11 +538,7 @@ $("nav button, #strip").on("click", function() {
 
 
 var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e4c0", "#bb7ff3", "#fbc9df"];
-
 var strokew_chart = ["10", "7.5", "6", "5", "4", "3.6", "3.3", "3"];
-
-
-
 
 $(".circle").each(function(i) {
     var count = i + 1;
@@ -528,10 +604,6 @@ $window.trigger('scroll');
 
 // HISTO HORIZONTAL CHART ANIMATED
 
-// OPTION CLICK ON ITEMS
-$('#option ul li').on('click', function(e) {
-    $(this).toggleClass("selected"); //you can list several class names 
 
-});
 
 // SEARCH BAR
