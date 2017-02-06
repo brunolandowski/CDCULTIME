@@ -1,6 +1,199 @@
 console.log('fifty-five');
 
+
+// Count object 
+ function countObjectProperties(obj)
+            {
+            var count = 0;
+            for(var i in obj)
+                if(obj.hasOwnProperty(i))
+                    count++;
+
+            return count;
+}
 //data
+var circlearray = [];
+
+function jsonload(x) {
+    $.getJSON('json/lang_' + x + '.json', function(data) {
+        // END OF JSON FUNCTION
+
+        // MAIN VAR 
+        // Check number of startup listed
+        var number_startup = $('.grid-item').length;
+        var number_fundraising = $('.fundraising1').length;
+        var number_award = $('.award').length;
+
+        // homepage
+        $('#hd_bd_top p:first-of-type').html(data.homepage.top_left);
+        $('#hd_bd_top p:last-of-type').html(data.homepage.top_middle);
+
+
+        $('#main_logo').attr('src', "img/logo_et_" + x + ".svg").attr('alt', data.homepage.main_title);
+
+        // $('#hd_title .hd_title_ct h1').html(data.homepage.main_title);
+        $('#hd_title .hd_title_ct p').html(data.homepage.headline);
+
+        $('#hd_title .hd_title_cta p').html(data.homepage.liste);
+        $('#hd_title .hd_title_cta h2').html(number_startup);
+
+
+        $('#hd_bd_bottom p').html(data.homepage.bottom);
+
+        $('nav h3').html(data.homepage.main_title);
+
+
+        // aside
+        $('#aside_header ul li:nth-child(1)').html(data.aside.header.submit);
+        $('#aside_header ul li:nth-child(2)').html(data.aside.header.share);
+        $('#aside_header ul li:nth-child(3)').html(data.aside.header.download);
+        $('#aside_header ul li:nth-child(4)').html(data.aside.header.contact);
+
+        $('aside #box_stats h3').html(data.aside.statistiques.title);
+        $('aside #box_stats p:nth-child(2)').html("<span>" + number_fundraising + "</span>" + data.aside.statistiques.rise);
+        $('aside #box_stats p:nth-child(3)').html("<span>" + number_award + "</span>" + data.aside.statistiques.award);
+        $('aside #box_stats p:nth-child(4)').html("<span>" + number_startup + "</span>" + data.aside.statistiques.listed);
+
+
+        // Item 
+            // Services
+            var dataservicelooplength = data.aside.services.loop;
+            var counting = countObjectProperties(dataservicelooplength);
+            
+            var step;
+            for (step = 0; step < counting; step++) {
+                var stepgood = step+1;
+                console.log(stepgood);
+                
+                $('p[data-attr="filterservices'+stepgood+'"]').html(data.aside.services.loop['filterservices'+stepgood]);
+                
+               
+            }
+
+            // Clients
+            var dataservicelooplength = data.aside.services.loop;
+            var counting = countObjectProperties(dataservicelooplength);
+            
+            var step;
+            for (step = 0; step < counting; step++) {
+                var stepgood = step+1;
+                console.log(stepgood);
+                
+                $('p[data-attr="filterservices'+stepgood+'"]').html(data.aside.services.loop['filterservices'+stepgood]);
+                
+               
+            }
+
+            // Technologies
+            var dataservicelooplength = data.aside.services.loop;
+            var counting = countObjectProperties(dataservicelooplength);
+            
+            var step;
+            for (step = 0; step < counting; step++) {
+                var stepgood = step+1;
+                console.log(stepgood);
+                
+                $('p[data-attr="filterservices'+stepgood+'"]').html(data.aside.services.loop['filterservices'+stepgood]);
+                
+               
+            }
+
+            
+
+
+        // Clients LOOP
+
+
+        var arraystats = ['services', 'clients', 'technologies'];
+        
+        $.each(arraystats, function(index, value) {
+
+            var clientvalue = value;
+            $('#' + clientvalue + ' ul').empty();
+            $('.' + clientvalue + ' ul').empty();
+
+            var clientjson = data.aside[value].loop;
+            var clientjsonh4 = data.aside[value].title;
+
+            var clientsarray = [];
+            var clientsmax;
+            var clientsmin;
+            // We create a loop to define max and min value
+            $.each(clientjson, function(key, value) {
+                var keyclean = key.replace(/\_/g, "");
+                keycleanforclass = '.' + keyclean;
+                clientslenght = $(keycleanforclass).length;
+                clientsarray.push(clientslenght);
+
+            });
+
+            // here we get the min and max value 
+            clientsmax = Math.max.apply(Math, clientsarray);
+            clientsmin = Math.min.apply(Math, clientsarray);
+
+            // we reloop
+            $.each(clientjson, function(key, value) {
+
+                var keycleanforclass = '.' + key;
+                clientslenght = $(keycleanforclass).length;
+
+                var clientscalc = (((clientslenght - clientsmin) * 100) / (clientsmax - clientsmin));
+
+
+                var calcgood = (5 + .45 * clientscalc);
+                var calcgoodcircle = (20 + .80 * clientscalc);
+
+                $('#' + clientvalue + ' h4').html(clientjsonh4);
+                $('#' + clientvalue + ' ul').append('<li><p>' + value + '</p><span>' + clientslenght + '</span><div data-circle=' + calcgoodcircle + ' data-wd=' + calcgood + ' class="histo"></div></li>');
+
+                $('.' + clientvalue + ' h4').html(clientjsonh4);
+                $('.' + clientvalue + ' ul').append('<li class="filter_btn" data-filter=' + keycleanforclass + '><div class="pastille"></div><span>' + clientslenght + '</span><p>' + value + '</p></li>');
+
+            });
+        });
+
+
+        $("#services ul li .histo").each(function() {
+            var circlevalue = $(this).attr('data-circle');
+
+            circlearray.push(circlevalue);
+        });
+
+
+
+
+        
+
+        // Display Tooltip on over color circles
+        $('.vi_cate div').hover(function() {
+            $(this).children('p').toggleClass('show_me');
+        });
+
+        // Let's add color to filter elements depending on services
+
+        $('.services .filter_btn[data-filter=".filterservices1"] .pastille, .grid-item .filterservices1').css('background', colors_chart[0]);
+        $('.services .filter_btn[data-filter=".filterservices2"] .pastille, .grid-item .filterservices2').css('background', colors_chart[1]);
+        $('.services .filter_btn[data-filter=".filterservices3"] .pastille, .grid-item .filterservices3').css('background', colors_chart[2]);
+        $('.services .filter_btn[data-filter=".filterservices4"] .pastille, .grid-item .filterservices4').css('background', colors_chart[3]);
+        $('.services .filter_btn[data-filter=".filterservices5"] .pastille, .grid-item .filterservices5').css('background', colors_chart[4]);
+        $('.services .filter_btn[data-filter=".filterservices6"] .pastille, .grid-item .filterservices6').css('background', colors_chart[5]);
+        $('.services .filter_btn[data-filter=".filterservices7"] .pastille, .grid-item .filterservices7').css('background', colors_chart[6]);
+        $('.services .filter_btn[data-filter=".filterservices8"] .pastille, .grid-item .filterservices8').css('background', colors_chart[7]);
+
+
+        filterheight();
+        jsonloaded();
+
+
+
+    });
+}
+
+
+
+
+
+
 
 /**
  * @description polyfills
@@ -52,21 +245,30 @@ var template = function(content, params) {
  * @param  {} item
  * @returns {void}
  */
+
 var render = function(item) {
-        var panel = '<div class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span>{{web}}</span><div class="vi_cate"></div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span><div class="row"><div class="left"><p>Description</p></div><div class="right"><p>{{description_fr}}</p></div></div><div class="row"><div class="left"><p>Services</p><div class="vi_serv"></div></div><div class="right">{{services}}</div></div><div class="row"><div class="left"><p>Utilisateurs</p></div><div class="right">{{users}}</div></div><div class="row"><div class="left"><p>Clients</p></div><div class="right">{{clients}}</div></div><div class="row"><div class="left"><p>Technologies</p></div><div class="right">{{tech}}</div></div><div class="row"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row"><div class="left"><p>Basée en</p></div><div class="right"><p>{{zip}}</p></div></div><span class="item_dropdown"><span class="cale"></span><span>Partager cette startup<img class="arrow" src="img/arrow_up.svg"><div class="item_dropdown_content"><p><a href="http://google.fr">Sur Twitter</a></p><p><a href="http://google.fr">Sur Facebook</a></p><p><a href="http://google.fr">Copier le lien</a></p></div></span></div></div>';
-        return template(panel, item);
-    }
-    //get data and generate HTML output
+    var panel = '<div data-employees="{{employeesref}}" data-creation="{{creation}}" class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span>{{web}}</span><img src=""><div class="vi_cate">{{serviceslab}}</div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span><div class="row"><div class="left"><p>Description</p></div><div class="right"><p><div class="fr">{{description_fr}}</div><div class="en">{{description_en}}</div></p></div></div><div class="row services"><div class="left"><p>Services</p></div><div class="right">{{serviceslab}}</div></div><div class="row"><div class="left"><p>Utilisateurs</p></div><div class="right">{{users}}</div></div><div class="row"><div class="left"><p>Clients</p></div><div class="right">{{clients}}</div></div><div class="row"><div class="left"><p>Technologies</p></div><div class="right">{{tech}}</div></div><div class="row"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row"><div class="left"><p>Basée en</p></div><div class="right"><p>{{zip}}</p></div></div><span class="item_dropdown"><span class="cale"></span><span>Partager cette startup<img class="arrow" src="img/arrow_up.svg"><div class="item_dropdown_content"><p><a href="http://google.fr">Sur Twitter</a></p><p><a href="http://google.fr">Sur Facebook</a></p><p><a href="http://google.fr">Copier le lien</a></p></div></span></div></div>';
+    return template(panel, item);
+}
+
+
+//get data and generate HTML output
 getData().then(function(data) {
     //remove loader here
     var self = this;
     var els = data.feed.entry.map(function(item) {
         var filters = [],
             services = [],
+            serviceslab = {},
             tech = [],
             users = [],
             clients = [];
+
+
+
         for (var prop in item) {
+
+
             if (prop.startsWith('gsx$filter') && item[prop].$t.length) {
                 filters.push(prop.substr(4));
             }
@@ -75,16 +277,20 @@ getData().then(function(data) {
             }
 
             if (prop === 'gsx$fundraising' && item[prop].$t.length) {
-                filters.push('fundraising'+item[prop].$t);
+                filters.push('fundraising' + item[prop].$t);
             }
 
             if (prop === 'gsx$awards' && item[prop].$t.length) {
                 filters.push('award');
             }
 
+            // test
             if (prop.startsWith('gsx$filterservices') && item[prop].$t.length) {
-                services.push(item[prop].$t);
+                var propclean = prop.substr(4);
+                serviceslab[propclean] = item[prop].$t;
             }
+            // end test
+
             if (prop.startsWith('gsx$filtertech') && item[prop].$t.length) {
                 tech.push(item[prop].$t);
             }
@@ -94,7 +300,20 @@ getData().then(function(data) {
             if (prop.startsWith('gsx$users') && item[prop].$t.length) {
                 users.push(item[prop].$t);
             }
+
+
         }
+
+        // We create an array to store services values
+        var tableservices = [];
+
+        // We loop through the services values and we add them to the newly created ar
+        for (var propertyName in serviceslab) {
+            tableservices.push('<div><span class=' + propertyName + '></span><p data-attr="'+propertyName+'"></p></div>');
+        }
+
+
+
         return {
             name: item.gsx$startupname.$t,
             web: item.gsx$web.$t,
@@ -104,10 +323,14 @@ getData().then(function(data) {
             filters: filters.join(' '),
             creation: item.gsx$creation.$t,
             employees: item.gsx$employees.$t,
+            employeesref: item.gsx$employeesref.$t,
+            logo: item.gsx$logo.$t,
             zip: item.gsx$zip.$t,
-            services: services.reduce(function(a, b) {
-                return a.concat('<p>', b, '</p>')
-            }, ''),
+
+            // test
+            serviceslab: tableservices.join(''),
+            // end test
+
             tech: tech.reduce(function(a, b) {
                 return a.concat('<p>', b, '</p>')
             }, ''),
@@ -118,6 +341,7 @@ getData().then(function(data) {
                 return a.concat('<p>', b, '</p>')
             }, '')
         }
+
     }).reduce(function(a, b) {
         return a.concat(self.render(b))
     }, '');
@@ -125,78 +349,27 @@ getData().then(function(data) {
     //inject into DOM
     $('#grid-container').html(els);
 
+
+
     // ISOTOPE
-                
+    // init Isotope
+    var $grid = $('#wrap').isotope({
+        itemSelector: '.grid-item',
+        masonry: {
+            gutter: 20
+        }
+    });
 
-            // quick search regex
-            var qsRegex;
-            var buttonFilter;
-
-            // init Isotope
-            var $grid = $('#wrap').isotope({
-              itemSelector: '.grid-item',
-              masonry: {
-                gutter:20
-              },
-            filter: function() {
-                var $this = $(this);
-                var searchResult = qsRegex ? $this.find('h4').text().match( qsRegex ) : true;
-                var buttonResult = buttonFilter ? $this.is( buttonFilter ) : true;
-                return searchResult && buttonResult;
-              }
-            });
-
-            $('#option').on( 'click', '.filter_btn', function() {
-              buttonFilter = $( this ).attr('data-filter');
-              $grid.isotope();
-            });
-
-            // use value of search field to filter
-            var $quicksearch = $('#myInput').keyup( debounce( function() {
-              qsRegex = new RegExp( $quicksearch.val(), 'gi' );
-
-              $grid.isotope();
-            }) );
-
-
-              // change is-checked class on buttons
-            $('#option').each( function( i, buttonGroup ) {
-              var $buttonGroup = $( buttonGroup );
-              $buttonGroup.on( 'click', '.filter_btn', function() {
-                $buttonGroup.find('.is-checked').removeClass('is-checked');
-                $( this ).addClass('is-checked');
-              });
-            });
-              
-
-            // debounce so filtering doesn't happen every millisecond
-            function debounce( fn, threshold ) {
-              var timeout;
-              return function debounced() {
-                if ( timeout ) {
-                  clearTimeout( timeout );
-                }
-                function delayed() {
-                  fn();
-                  timeout = null;
-                }
-                setTimeout( delayed, threshold || 100 );
-              };
-            }
-
-                
-
-
-  $grid.on('click', '.grid-item', function() {
+    $grid.on('click', '.grid-item', function() {
         $('.grid-item').not(this).removeClass('big');
         $(this).addClass('big');
-    $grid.isotope('layout');
-    var that = $(this);
+        $grid.isotope('layout');
+        var that = $(this);
         $grid.one('layoutComplete', function() {
             console.log('loaded');
-      var scrolltopitem = that.offset().top;
+            var scrolltopitem = that.offset().top;
             var calcdiff = scrolltopitem - 100;
-      
+
             $('html, body').animate({
                 scrollTop: calcdiff
             }, 300);
@@ -216,146 +389,37 @@ getData().then(function(data) {
 
     // CALL JSON FR WHEN LIST IS READY
     jsonload('fr');
-
+    $('.whenopen .en').hide();
+    $('.whenopen .fr').show();
     jsonloaded();
-
-
 
 
 });
 
+
+
+
 function jsonloaded() {
     console.log('loaded');
-
 }
 
- 
 
 
 
 // FUNCTION AIMING TO LOAD JSON LANG
-  // Create array for the circle stats
-
-  var circlearray = []; 
-
-function jsonload(x) {
-
-
-    $.getJSON('json/lang_' + x + '.json', function(data) {
-         // END OF JSON FUNCTION
-      
-        // MAIN VAR 
-        // Check number of startup listed
-        var number_startup = $('.grid-item').length;
-        var number_fundraising = $('.fundraising1').length;
-        var number_award = $('.award').length;
-       
-        // homepage
-        $('#hd_bd_top p:first-of-type').html(data.homepage.top_left);
-        $('#hd_bd_top p:last-of-type').html(data.homepage.top_middle);
-
-
-        $('#main_logo').attr('src', "img/logo_et_" + x + ".svg").attr('alt', data.homepage.main_title);
-
-        // $('#hd_title .hd_title_ct h1').html(data.homepage.main_title);
-        $('#hd_title .hd_title_ct p').html(data.homepage.headline);
-
-        $('#hd_title .hd_title_cta p').html(data.homepage.liste);
-        $('#hd_title .hd_title_cta h2').html(number_startup);
-
-
-        $('#hd_bd_bottom p').html(data.homepage.bottom);
-
-        $('nav h3').html(data.homepage.main_title);
-
-
-        // aside
-        $('#aside_header ul li:nth-child(1)').html(data.aside.header.submit);
-        $('#aside_header ul li:nth-child(2)').html(data.aside.header.share);
-        $('#aside_header ul li:nth-child(3)').html(data.aside.header.download);
-        $('#aside_header ul li:nth-child(4)').html(data.aside.header.contact);
-
-        $('aside #box_stats h3').html(data.aside.statistiques.title);
-        $('aside #box_stats p:nth-child(2)').html("<span>"+number_fundraising+"</span>"+data.aside.statistiques.rise);
-        $('aside #box_stats p:nth-child(3)').html("<span>"+number_award+"</span>"+data.aside.statistiques.award);
-        $('aside #box_stats p:nth-child(4)').html("<span>"+number_startup+"</span>"+data.aside.statistiques.listed);
-
-        // Clients LOOP
-      
-
-        var arraystats = ['services','clients','technologies'];
-        
+// Create array for the circle stats
 
 
 
-        $.each(arraystats, function(index, value) {
-
-            var clientvalue = value;
-            $('#'+clientvalue+' ul').empty();
-             $('.'+clientvalue+' ul').empty();
-
-            var clientjson = data.aside[value].loop;
-            var clientjsonh4 = data.aside[value].title;           
-           
-            var clientsarray = [];
-            var clientsmax;
-            var clientsmin;
-            // We create a loop to define max and min value
-            $.each(clientjson, function(key, value) {
-              var keyclean = key.replace(/\_/g,"");
-                  keycleanforclass = '.'+keyclean;
-                  clientslenght = $(keycleanforclass).length;      
-                  clientsarray.push(clientslenght);
-               
-             });
-
-            // here we get the min and max value 
-            clientsmax = Math.max.apply(Math,clientsarray);
-            clientsmin = Math.min.apply(Math,clientsarray); 
-            
-            // we reloop
-             $.each(clientjson, function(key, value) {
-                var keyclean = key.replace(/\_/g,"");
-                  keycleanforclass = '.'+keyclean;
-                  clientslenght = $(keycleanforclass).length; 
-
-                var clientscalc = (((clientslenght - clientsmin ) * 100) / (clientsmax - clientsmin)); 
-                
-
-                var calcgood = (5+.45*clientscalc);
-                var calcgoodcircle = (20+.80*clientscalc);
-
-                $('#'+clientvalue+' h4').html(clientjsonh4);
-                $('#'+clientvalue+' ul').append('<li><p>'+value+'</p><span>'+clientslenght+'</span><div data-circle='+calcgoodcircle+' data-wd='+calcgood+' class="histo"></div></li>');
-
-                $('.'+clientvalue+' h4').html(clientjsonh4);
-                $('.'+clientvalue+' ul').append('<li class="filter_btn" data-filter='+keycleanforclass+'><div class="pastille"></div><span>'+clientslenght+'</span><p>'+value+'</p></li>');
-  
-             });
-        });
-
-
-        $("#services ul li .histo").each(function() {
-          var circlevalue = $(this).attr('data-circle');
-
-          circlearray.push(circlevalue);
-        });
-
-    
-        
-
-        filteropenclose();
-
-       
-
-    });
-}
 
 
 
 // CALL JSON LANG FR WHEN CLICK FR BTN
 $("button#fr").click(function() {
     jsonload('fr');
+    // We hide EN desc
+    $('.whenopen .en').hide();
+    $('.whenopen .fr').show();
     $(this).css('text-decoration', 'underline');
     $("button#en").css('text-decoration', 'none');
 
@@ -363,6 +427,9 @@ $("button#fr").click(function() {
 
 // CALL JSON LANG EN WHEN CLICK EN BTN
 $("button#en").click(function() {
+    // We Hide FR descr
+    $('.whenopen .fr').hide();
+    $('.whenopen .en').show();
     jsonload('en');
     $(this).css('text-decoration', 'underline');
     $("button#fr").css('text-decoration', 'none');
@@ -387,7 +454,7 @@ var doc_height;
 
 $(window).bind("load resize scroll", function(e) {
     doc_height = $(window).height();
-    
+
 });
 
 
@@ -418,26 +485,26 @@ $("#burger").click(function() {
     $("aside").animate({
         left: "0%",
     }, 300, function() {
-        
+
         // Animate Clients histo
-        $( "#clients ul li .histo" ).each(function() {
-          var data_wd = $(this).attr('data-wd');
-          $(this).animate({
-            width: data_wd+"%",
+        $("#clients ul li .histo").each(function() {
+            var data_wd = $(this).attr('data-wd');
+            $(this).animate({
+                width: data_wd + "%",
             }, 1000, "easeOutExpo", function() {
-            // Animation complete.
-          });
+                // Animation complete.
+            });
         });
 
         // Animate Technologies histo
-        $( "#technologies ul li .histo" ).each(function() {
-          var data_wd = $(this).attr('data-wd');
-          $(this).animate({
-            width: data_wd+"%",
+        $("#technologies ul li .histo").each(function() {
+            var data_wd = $(this).attr('data-wd');
+            $(this).animate({
+                width: data_wd + "%",
             }, 1000, "easeOutExpo", function() {
-            // Animation complete.
-          });
-        }); 
+                // Animation complete.
+            });
+        });
 
     });
 
@@ -445,23 +512,23 @@ $("#burger").click(function() {
 
 $("#aside_placeholder, .aside_close").click(function() {
     $('body').css('overflow', 'auto');
-    
-    $( "#clients ul li .histo" ).each(function() {
-          var data_wd = $(this).attr('data-wd');
-          $(this).animate({
+
+    $("#clients ul li .histo").each(function() {
+        var data_wd = $(this).attr('data-wd');
+        $(this).animate({
             width: "0%",
-            }, 100, "easeOutExpo", function() {
+        }, 100, "easeOutExpo", function() {
             // Animation complete.
-          });
+        });
     });
 
-    $( "#technologies ul li .histo" ).each(function() {
-          var data_wd = $(this).attr('data-wd');
-          $(this).animate({
+    $("#technologies ul li .histo").each(function() {
+        var data_wd = $(this).attr('data-wd');
+        $(this).animate({
             width: "0%",
-            }, 100, "easeOutExpo", function() {
+        }, 100, "easeOutExpo", function() {
             // Animation complete.
-          });
+        });
     });
 
 
@@ -474,38 +541,41 @@ $("#aside_placeholder, .aside_close").click(function() {
 
 });
 
-
 // MENU OPEN/CLOSE BUTTON
-function filteropenclose() {
 
-    var opt_height = $('#option').height();
-    opt_height_calc = opt_height - 60;
-    $('#option').css('margin-top', '-' + opt_height_calc + 'px');
+function filterheight() {
+
+var opt_height = $('#option').height();
+        opt_height_calc = opt_height - 60;
+        $('#option').css('margin-top', '-' + opt_height_calc + 'px');
+
+ }
 
 
-    $("nav button, #strip").on("click", function() {
-        if ($("#option").css("marginTop") == "60px") {
-            $('#option').removeClass('rotate');
+    
+        $("nav button, #strip").on("click", function() {
+            if ($("#option").css("marginTop") == "60px") {
+                $('#option').removeClass('rotate');
 
-            $("#option").animate({
-                marginTop: "-" + opt_height_calc + "px",
-            }, 300, "easeInExpo", function() {
-                // Animation complete.
-            });
+                $("#option").animate({
+                    marginTop: "-" + opt_height_calc + "px",
+                }, 300, "easeInExpo", function() {
+                    // Animation complete.
+                });
 
-        } else {
+            } else {
 
-            $('#option').addClass('rotate');
+                $('#option').addClass('rotate');
 
-            $("#option").animate({
-                marginTop: "60px",
-            }, 300, "easeOutExpo", function() {
-                // Animation complete.
-            });
-        }
-    });
-}
-// CHART ELIPSE STATS AND ANIMATE
+                $("#option").animate({
+                    marginTop: "60px",
+                }, 300, "easeOutExpo", function() {
+                    // Animation complete.
+                });
+            }
+        });
+ 
+    // CHART ELIPSE STATS AND ANIMATE
 
 
 
@@ -528,10 +598,10 @@ $(".circle").each(function(i) {
 
 
     $("#burger").click(function() {
-        
-       
-        
-        bar.animate(circlearray[fromzero]/100);
+
+
+
+        bar.animate(circlearray[fromzero] / 100);
 
     });
 
