@@ -5,6 +5,7 @@
         "main_title":"EdTech Observatory",
         "headline":"Fond French EdTech startups",
         "liste":"startups listed",
+        "search":"Search",
         "bottom":"Co-produced with"
     },
      "aside":{
@@ -23,45 +24,63 @@
         "services":{
             "title": "Products",
             "loop":{
-                "filterservices1": "School operations & teaching tools",
-                "filterservices2": "Academic curriculum products",
-                "filterservices3": "Vocational curriculum products",
-                "filterservices4": "Digital skills training",
-                "filterservices5": "Special education",
-                "filterservices6": "Family & student support",
-                "filterservices7": "Personal development & after-school activities",
+                "filterservices1": "filterservices1",
+                "filterservices2": "filterservices2",
+                "filterservices3": "filterservices3",
+                "filterservices4": "filterservices4",
+                "filterservices5": "filterservices5",
+                "filterservices6": "filterservices6",
+                "filterservices7": "filterservices7",
                 "filterservices8": "Other"}
 
         },
         "clients":{
             "title": "Clients",
             "loop":{
-                "filterclients1": "School & universities",
-                "filterclients2": "Training organisations",
-                "filterclients3": "Companies",
-                "filterclients4": "Non-profit & public institutions",
-                "filterclients5": "Individuals",
+                "filterclients1": "filterclients1",
+                "filterclients2": "filterclients2",
+                "filterclients3": "filterclients3",
+                "filterclients4": "filterclients4",
+                "filterclients5": "filterclients5",
                 "filterclients6": "Other"}
 
         },
         "technologies":{
             "title": "Technologies",
             "loop":{
-                "filtertech1": "LMS, CMS etc.",
-                "filtertech2": "Innovative contents",
-                "filtertech3": "Adaptive learning tools",
-                "filtertech4": "Distribution services",
-                "filtertech5": "Games & learning apps",
-                "filtertech6": "IoT & digital school places",
-                "filtertech7": "Blended learning tools & coding schools",
-                "filtertech8": "Services platforms",
-                "filtertech9": "Social tools",
-                "filtertech10": "Virtual & augmented reality",
-                "filtertech11": "Equipment & infrastructures",
-                "filtertech12": "Back/middle technologies",
+                "filtertech1": "filtertech1",
+                "filtertech2": "filtertech2",
+                "filtertech3": "filtertech3",
+                "filtertech4": "filtertech4",
+                "filtertech5": "filtertech5",
+                "filtertech6": "filtertech6",
+                "filtertech7": "filtertech7",
+                "filtertech8": "filtertech8",
+                "filtertech9": "filtertech9",
+                "filtertech10": "filtertech10",
+                "filtertech11": "filtertech11",
+                "filtertech12": "filtertech12",
                 "filtertech13": "Other"}
 
         },
+        "users":{
+            "title": "Users",
+            "loop":{
+                "users1": "users1",
+                "users2": "users2",
+                "users3": "users3",
+                "users4": "users4",
+                "users5": "users5",
+                "users6": "users6",
+                "users7": "users7",
+                "users8": "users8"}
+
+        },
+        "description":"Description",
+        "founders":"Founders",
+        "creation":"Creation date",
+        "employees":"Employees number",
+        "based":"Based in",
         "about":{
             "title": "About",
             "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id lacinia risus. Sed feugiat ultrices porta. Donec at purus rutrum, gravida nisl nec, luctus lorem. Phasellus at auctor libero. Vivamus elementum ex sed elit gravida aliquet. Nullam lobortis lorem a metus tempor commodo. Donec tempor mi eu erat imperdiet auctor."

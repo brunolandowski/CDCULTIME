@@ -31,7 +31,7 @@ function jsonload(x) {
 
         $('#main_logo').attr('src', "img/logo_et_" + x + ".svg").attr('alt', data.homepage.main_title);
 
-        // $('#hd_title .hd_title_ct h1').html(data.homepage.main_title);
+       
         $('#hd_title .hd_title_ct p').html(data.homepage.headline);
 
         $('#hd_title .hd_title_cta p').html(data.homepage.liste);
@@ -41,6 +41,7 @@ function jsonload(x) {
         $('#hd_bd_bottom p').html(data.homepage.bottom);
 
         $('nav h3').html(data.homepage.main_title);
+        $('nav input').attr("placeholder", data.homepage.search);
 
 
         // aside
@@ -57,47 +58,50 @@ function jsonload(x) {
 
         // Item 
             // Services
-            var dataservicelooplength = data.aside.services.loop;
-            var counting = countObjectProperties(dataservicelooplength);
-            
-            var step;
+            var dataservicelooplength = data.aside.services.loop,
+                counting = countObjectProperties(dataservicelooplength),
+                step;
             for (step = 0; step < counting; step++) {
                 var stepgood = step+1;
-                console.log(stepgood);
-                
                 $('p[data-attr="filterservices'+stepgood+'"]').html(data.aside.services.loop['filterservices'+stepgood]);
-                
-               
             }
+            $('.services .left p').html(data.aside.services.title);
 
             // Clients
-            var dataservicelooplength = data.aside.services.loop;
-            var counting = countObjectProperties(dataservicelooplength);
-            
-            var step;
+            var dataclientslooplength = data.aside.clients.loop,
+                counting = countObjectProperties(dataclientslooplength),
+                step;
             for (step = 0; step < counting; step++) {
                 var stepgood = step+1;
-                console.log(stepgood);
-                
-                $('p[data-attr="filterservices'+stepgood+'"]').html(data.aside.services.loop['filterservices'+stepgood]);
-                
-               
+                $('p[data-attr="filterclients'+stepgood+'"]').html(data.aside.clients.loop['filterclients'+stepgood]);
             }
+            $('.clients .left p').html(data.aside.clients.title);
 
             // Technologies
-            var dataservicelooplength = data.aside.services.loop;
-            var counting = countObjectProperties(dataservicelooplength);
-            
-            var step;
+            var datatechlooplength = data.aside.technologies.loop,
+                counting = countObjectProperties(datatechlooplength),
+                step;
             for (step = 0; step < counting; step++) {
                 var stepgood = step+1;
-                console.log(stepgood);
-                
-                $('p[data-attr="filterservices'+stepgood+'"]').html(data.aside.services.loop['filterservices'+stepgood]);
-                
-               
+                $('p[data-attr="filtertech'+stepgood+'"]').html(data.aside.technologies.loop['filtertech'+stepgood]);
             }
+            $('.technologies .left p').html(data.aside.technologies.title);
 
+            // Users
+            var datauserslooplength = data.aside.users.loop,
+                counting = countObjectProperties(datauserslooplength),
+                step;
+            for (step = 0; step < counting; step++) {
+                var stepgood = step+1;
+                $('p[data-attr="users'+stepgood+'"]').html(data.aside.users.loop['users'+stepgood]);
+            }
+            $('.users .left p').html(data.aside.users.title);
+
+            $('.description .left p').html(data.aside.description);
+            $('.founders .left p').html(data.aside.founders);
+            $('.creation .left p').html(data.aside.creation);
+            $('.employees .left p').html(data.aside.employees);
+            $('.based .left p').html(data.aside.based);
             
 
 
@@ -107,6 +111,7 @@ function jsonload(x) {
         var arraystats = ['services', 'clients', 'technologies'];
         
         $.each(arraystats, function(index, value) {
+            console.log(data.aside[value].title);
 
             var clientvalue = value;
             $('#' + clientvalue + ' ul').empty();
@@ -164,10 +169,7 @@ function jsonload(x) {
 
         
 
-        // Display Tooltip on over color circles
-        $('.vi_cate div').hover(function() {
-            $(this).children('p').toggleClass('show_me');
-        });
+       
 
         // Let's add color to filter elements depending on services
 
@@ -247,7 +249,7 @@ var template = function(content, params) {
  */
 
 var render = function(item) {
-    var panel = '<div data-employees="{{employeesref}}" data-creation="{{creation}}" class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span>{{web}}</span><img src=""><div class="vi_cate">{{serviceslab}}</div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span><div class="row"><div class="left"><p>Description</p></div><div class="right"><p><div class="fr">{{description_fr}}</div><div class="en">{{description_en}}</div></p></div></div><div class="row services"><div class="left"><p>Services</p></div><div class="right">{{serviceslab}}</div></div><div class="row"><div class="left"><p>Utilisateurs</p></div><div class="right">{{users}}</div></div><div class="row"><div class="left"><p>Clients</p></div><div class="right">{{clients}}</div></div><div class="row"><div class="left"><p>Technologies</p></div><div class="right">{{tech}}</div></div><div class="row"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row"><div class="left"><p>Basée en</p></div><div class="right"><p>{{zip}}</p></div></div><span class="item_dropdown"><span class="cale"></span><span>Partager cette startup<img class="arrow" src="img/arrow_up.svg"><div class="item_dropdown_content"><p><a href="http://google.fr">Sur Twitter</a></p><p><a href="http://google.fr">Sur Facebook</a></p><p><a href="http://google.fr">Copier le lien</a></p></div></span></div></div>';
+    var panel = '<div data-employees="{{employeesref}}" data-creation="{{creation}}" class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span>{{web}}</span><img src=""><div class="vi_cate">{{serviceslab}}</div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span><div class="row description"><div class="left"><p>Description</p></div><div class="right"><p><div class="fr">{{description_fr}}</div><div class="en">{{description_en}}</div></p></div></div><div class="row services"><div class="left"><p>Services</p></div><div class="right">{{serviceslab}}</div></div><div class="row users"><div class="left"><p>Utilisateurs</p></div><div class="right">{{userslab}}</div></div><div class="row clients"><div class="left"><p>Clients</p></div><div class="right">{{clientslab}}</div></div><div class="row technologies"><div class="left"><p>Technologies</p></div><div class="right">{{techlab}}</div></div><div class="row founders"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row creation"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row employees"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row based"><div class="left"><p>Basée en</p></div><div class="right"><p>{{zip}}</p></div></div><span class="item_dropdown"><span class="cale"></span><span>Partager cette startup<img class="arrow" src="img/arrow_up.svg"><div class="item_dropdown_content"><p><a href="http://google.fr">Sur Twitter</a></p><p><a href="http://google.fr">Sur Facebook</a></p><p><a href="http://google.fr">Copier le lien</a></p></div></span></div></div>';
     return template(panel, item);
 }
 
@@ -259,7 +261,13 @@ getData().then(function(data) {
     var els = data.feed.entry.map(function(item) {
         var filters = [],
             services = [],
+            
             serviceslab = {},
+            clientslab = {},
+            techlab = {},
+            userslab = {},
+           
+
             tech = [],
             users = [],
             clients = [];
@@ -284,19 +292,30 @@ getData().then(function(data) {
                 filters.push('award');
             }
 
-            // test
+            // Services
             if (prop.startsWith('gsx$filterservices') && item[prop].$t.length) {
                 var propclean = prop.substr(4);
                 serviceslab[propclean] = item[prop].$t;
             }
-            // end test
-
-            if (prop.startsWith('gsx$filtertech') && item[prop].$t.length) {
-                tech.push(item[prop].$t);
-            }
+            
+            // Clients
             if (prop.startsWith('gsx$filterclients') && item[prop].$t.length) {
-                clients.push(item[prop].$t);
+                var propclean = prop.substr(4);
+                clientslab[propclean] = item[prop].$t;
             }
+           
+            // Tech
+            if (prop.startsWith('gsx$filtertech') && item[prop].$t.length) {
+                var propclean = prop.substr(4);
+                techlab[propclean] = item[prop].$t;
+            }
+
+            // Users
+            if (prop.startsWith('gsx$users') && item[prop].$t.length) {
+                var propclean = prop.substr(4);
+                userslab[propclean] = item[prop].$t;
+            }
+
             if (prop.startsWith('gsx$users') && item[prop].$t.length) {
                 users.push(item[prop].$t);
             }
@@ -304,16 +323,32 @@ getData().then(function(data) {
 
         }
 
-        // We create an array to store services values
-        var tableservices = [];
 
-        // We loop through the services values and we add them to the newly created ar
+        // We create an array to store services values
+        var tableservices = [],
+            tableclients = [],
+            tabletech = [],
+            tableusers = [];
+
+        // We loop through services, tech, users and tech
         for (var propertyName in serviceslab) {
             tableservices.push('<div><span class=' + propertyName + '></span><p data-attr="'+propertyName+'"></p></div>');
         }
 
+        for (var propertyName in clientslab) {
+            tableclients.push('<div><p data-attr="'+propertyName+'"></p></div>');
+        }
 
+        for (var propertyName in techlab) {
+            tabletech.push('<div><p data-attr="'+propertyName+'"></p></div>');
+        }
 
+        for (var propertyName in userslab) {
+            tableusers.push('<div><p data-attr="'+propertyName+'"></p></div>');
+        }
+
+       
+       
         return {
             name: item.gsx$startupname.$t,
             web: item.gsx$web.$t,
@@ -327,16 +362,16 @@ getData().then(function(data) {
             logo: item.gsx$logo.$t,
             zip: item.gsx$zip.$t,
 
-            // test
+            // Services
             serviceslab: tableservices.join(''),
-            // end test
+            // Clients
+            clientslab: tableclients.join(''),
+            // Tech
+            techlab: tabletech.join(''),
 
-            tech: tech.reduce(function(a, b) {
-                return a.concat('<p>', b, '</p>')
-            }, ''),
-            clients: clients.reduce(function(a, b) {
-                return a.concat('<p>', b, '</p>')
-            }, ''),
+            // Tech
+            userslab: tableusers.join(''),
+            
             users: users.reduce(function(a, b) {
                 return a.concat('<p>', b, '</p>')
             }, '')
@@ -391,9 +426,8 @@ getData().then(function(data) {
     jsonload('fr');
     $('.whenopen .en').hide();
     $('.whenopen .fr').show();
-    jsonloaded();
-
-
+    tooltip();
+    
 });
 
 
@@ -401,10 +435,31 @@ getData().then(function(data) {
 
 function jsonloaded() {
     console.log('loaded');
+
+    $('body').css('overflow','auto');
+    $('#loading').fadeOut();
+   $( "header" ).animate({
+    opacity: 1,
+    
+  }, 500, function() {
+    $("#option").css('opacity','1');
+  });
 }
 
+function tooltip() {
+  // Display Tooltip on over color circles
 
 
+
+$(".vi_cate div").hover(
+  function () {
+    $(this).children('p').addClass('show_me');
+  }, 
+  function () {
+    $(this).children('p').removeClass('show_me');
+  }
+  );
+}
 
 // FUNCTION AIMING TO LOAD JSON LANG
 // Create array for the circle stats
@@ -422,6 +477,7 @@ $("button#fr").click(function() {
     $('.whenopen .fr').show();
     $(this).css('text-decoration', 'underline');
     $("button#en").css('text-decoration', 'none');
+    tooltip();
 
 });
 
@@ -433,6 +489,8 @@ $("button#en").click(function() {
     jsonload('en');
     $(this).css('text-decoration', 'underline');
     $("button#fr").css('text-decoration', 'none');
+    tooltip();
+
 });
 
 
@@ -559,7 +617,7 @@ var opt_height = $('#option').height();
 
                 $("#option").animate({
                     marginTop: "-" + opt_height_calc + "px",
-                }, 300, "easeInExpo", function() {
+                }, 300, function() {
                     // Animation complete.
                 });
 
@@ -569,7 +627,7 @@ var opt_height = $('#option').height();
 
                 $("#option").animate({
                     marginTop: "60px",
-                }, 300, "easeOutExpo", function() {
+                }, 300, function() {
                     // Animation complete.
                 });
             }

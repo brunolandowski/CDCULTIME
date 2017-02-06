@@ -25,6 +25,7 @@ body {
 	height:100%;
 	font-family: 'Raleway', sans-serif;
 	background:#F5F5F5;
+	overflow:hidden;
 }
 
 // DISABLE OUTLINE BLUE FROM BUTTON 
@@ -75,12 +76,28 @@ button {
 	}
 
 
+// Loading 
+
+
 
 // HOMEPAGE
-
+#loading {
+	background:white;
+	height:100%;
+	width:100%;
+	position:fixed;
+	z-index:99;
+	img {
+		position:absolute;
+		width:20px;
+		margin-left:calc(50% - 10px);
+		top:calc(50% - 10px);
+	}
+}
 
 header {
 	height:100%;
+	opacity:0;
 	#hd_bd_top {
 		
 		background:white;
@@ -280,6 +297,7 @@ nav {
 		    font-size: 12px;
 		    padding-bottom: 3px;
 		    vertical-align: super;
+		    font-family: 'Raleway', sans-serif;
 		}
 		h3 {
 			margin-top: 10px;
@@ -543,6 +561,7 @@ nav {
 						background:white;
 						z-index:9;
 						padding:10px;
+						line-height:18px;
 						
 						&.show_me {
 							display:block;
@@ -569,6 +588,7 @@ nav {
 // MAIN MENU
 
 #option {
+	opacity:0;
 	float:left;
 	margin-top:60px;
 	top:0;

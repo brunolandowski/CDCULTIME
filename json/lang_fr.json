@@ -5,6 +5,7 @@
         "main_title":"EdTech Observatory",
         "headline":"Fond French EdTech startups",
         "liste":"startups listed",
+        "search":"Rechercher",
         "bottom":"Co-produced with"
     },
      "aside":{
@@ -21,7 +22,7 @@
             "listed": "startups listed"
         },
         "services":{
-            "title": "Products",
+            "title": "Services",
             "loop":{
                 "filterservices1": "Outils de gestion pour enseigner",
                 "filterservices2": "Enseignement académique",
@@ -36,32 +37,50 @@
         "clients":{
             "title": "Clients",
             "loop":{
-                "filterclients1": "School & universities",
-                "filterclients2": "Training organisations",
-                "filterclients3": "Companies",
-                "filterclients4": "Non-profit & public institutions",
-                "filterclients5": "Individuals",
-                "filterclients6": "Other"}
+                "filterclients1": "Ecole et universite",
+                "filterclients2": "Organisation de lentrainemen",
+                "filterclients3": "Entreprise",
+                "filterclients4": "ONG et organisation non public",
+                "filterclients5": "Indivudi",
+                "filterclients6": "Autre"}
 
         },
         "technologies":{
             "title": "Technologies",
             "loop":{
                 "filtertech1": "LMS, CMS etc.",
-                "filtertech2": "Innovative contents",
-                "filtertech3": "Adaptive learning tools",
-                "filtertech4": "Distribution services",
-                "filtertech5": "Games & learning apps",
-                "filtertech6": "IoT & digital school places",
-                "filtertech7": "Blended learning tools & coding schools",
-                "filtertech8": "Services platforms",
-                "filtertech9": "Social tools",
-                "filtertech10": "Virtual & augmented reality",
-                "filtertech11": "Equipment & infrastructures",
-                "filtertech12": "Back/middle technologies",
-                "filtertech13": "Other"}
+                "filtertech2": "Contenu innovatif",
+                "filtertech3": "Outil dappretissage",
+                "filtertech4": "Service de distribution",
+                "filtertech5": "Jeux dapprentissage",
+                "filtertech6": "IoT & ecole dogitial",
+                "filtertech7": "Ecode de programmation",
+                "filtertech8": "Platefrome de service",
+                "filtertech9": "Outil sociaux",
+                "filtertech10": "Realite virutelle et augmentee",
+                "filtertech11": "Equipements et infrastructures",
+                "filtertech12": "Technologies back middle",
+                "filtertech13": "Autre"}
 
         },
+        "users":{
+            "title": "Utilisateurs",
+            "loop":{
+                "users1": "LMS, CMS etc.",
+                "users2": "Contenu innovatif",
+                "users3": "Outil dappretissage",
+                "users4": "Outil dappretissage",
+                "users5": "Outil dappretissage",
+                "users6": "Outil dappretissage",
+                "users7": "Outil dappretissage",
+                "users8": "Outil dappretissage"}
+
+        },
+        "description":"Description",
+        "founders":"Foundateurs",
+        "creation":"Date de création",
+        "employees":"Nombre de collaborateurs",
+        "based":"Basée en",
         "about":{
             "title": "About",
             "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id lacinia risus. Sed feugiat ultrices porta. Donec at purus rutrum, gravida nisl nec, luctus lorem. Phasellus at auctor libero. Vivamus elementum ex sed elit gravida aliquet. Nullam lobortis lorem a metus tempor commodo. Donec tempor mi eu erat imperdiet auctor."
