@@ -140,7 +140,7 @@ function jsonload(x) {
             $.each(clientjson, function(key, value) {
 
                 var keycleanforclass = '.' + key;
-                clientslenght = $(keycleanforclass).length;
+                clientslenght = $('.grid-item'+keycleanforclass).length;
 
                 var clientscalc = (((clientslenght - clientsmin) * 100) / (clientsmax - clientsmin));
 
@@ -387,14 +387,81 @@ getData().then(function(data) {
 
 
     // ISOTOPE
+    var qsRegex;
+    var buttonFilter;
     // init Isotope
-    var $grid = $('#wrap').isotope({
+   var $grid = $('#wrap').isotope({
         itemSelector: '.grid-item',
         masonry: {
-            gutter: 20
-        }
+            gutter:20
+        },
+       getSortData: {
+            nameA: 'h4',
+            employeesA: '[data-employees]',
+            employeesD: '[data-employees]',
+            creationA: '[data-creation]'
+        },
+        sortAscending: {
+            nameA: true,
+            employeesA: true,
+            employeesD: false,
+            creationA: false
+        },
+       
+        filter: function() {
+            var $this = $(this);
+            var searchResult = qsRegex ? $this.find('h4').text().match( qsRegex ) : true;
+            var buttonResult = buttonFilter ? $this.is( buttonFilter ) : true;
+            return searchResult && buttonResult;
+        },
+        // sort top priority to lowest priority
+        sortBy: ['resortType', 'country', 'state', 'city']
     });
 
+    // -------- Filter FUNCTION ----------//
+    $('#option').on( 'click', '.filter_btn', function() {
+        buttonFilter = $( this ).attr('data-filter');
+        console.log("Filter button click",buttonFilter);
+        $grid.isotope();
+    });
+
+    // ----------- Search FUNCTION --------//
+    // use value of search field to filter
+    var $quicksearch = $('#myInput').keyup( debounce( function() {
+        qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+        console.log("Search input",qsRegex);
+        $grid.isotope();
+    }) );
+
+    // ------------- Sort FUNCTION -------------//
+    // bind sort button click
+    $('.sort').on( 'click', '.sort_btn', function() {
+        var sortValue = $(this).attr('data-sort-by');
+        // make an array of values
+        sortValue = sortValue.split(',');
+        console.log("Sorting button click",sortValue);
+        $grid.isotope({ 
+            sortBy : sortValue,
+        });
+    });
+
+    // debounce so filtering doesn't happen every millisecond
+    function debounce( fn, threshold ) {
+      var timeout;
+      return function debounced() {
+        if ( timeout ) {
+          clearTimeout( timeout );
+        }
+        function delayed() {
+          fn();
+          timeout = null;
+        }
+        setTimeout( delayed, threshold || 100 );
+      };
+    }
+
+
+    // OPEN ITEM
     $grid.on('click', '.grid-item', function() {
         $('.grid-item').not(this).removeClass('big');
         $(this).addClass('big');
@@ -409,9 +476,6 @@ getData().then(function(data) {
                 scrollTop: calcdiff
             }, 300);
         });
-
-
-
     });
 
     // CLOSE ITEM 
@@ -635,7 +699,10 @@ var opt_height = $('#option').height();
  
     // CHART ELIPSE STATS AND ANIMATE
 
-
+// RESIZE EVENT 
+$( window ).resize(function() {
+  filterheight();
+});
 
 
 var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e4c0", "#bb7ff3", "#fbc9df"];

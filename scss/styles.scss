@@ -82,6 +82,7 @@ button {
 
 // HOMEPAGE
 #loading {
+	
 	background:white;
 	height:100%;
 	width:100%;
@@ -381,7 +382,10 @@ nav {
 #wrap {
 	margin:100px 60px 0 60px;
 	z-index:-2;
-	 min-height:calc(100% - 100px);
+	min-height:calc(100% - 100px);
+	@media screen and (max-width: 499px){
+    		margin:100px 20px 0 20px;
+  	}
 	.grid-item { 
 		width: calc(16.666666% - 17px);
 	 	cursor:pointer;
@@ -393,21 +397,40 @@ nav {
     	transition: opacity 0.5s ease-in-out;
 	 	background:white;
 	 	margin-bottom: 20px;
+	 	@media screen and (min-width: 800px) and (max-width: 1200px){
+    		width: calc(25% - 17px);
+  		}
+  		@media screen and (min-width: 500px) and (max-width: 799px){
+    		width: calc(50% - 10px);
+  		}
+  		@media screen and (max-width: 499px){
+    		width: 100%;
+  		}
 	 	
 	 	
 		&.in-view {
-			
-			
-			
 		}
 	 	&.big {
 	 		width: calc(66.666666% - 8px);
 	 		cursor:auto;
+			@media screen and (min-width: 800px) and (max-width: 1200px){
+    			width: calc(75% - 10px);
+  			}
+  			@media screen and (min-width: 500px) and (max-width: 799px){
+    			width: 100%;
+  			}
+  			@media screen and (max-width: 499px){
+    			width: 100%;
+  			}
+
 	 		.vi_cate {
 	 				display: none;
 	 		}
 	 		article {
 	 			margin:30px 20px 20px 210px;
+	 			@media screen and (max-width: 499px){
+    				margin:30px 20px 20px 20px;
+  				}
 	 			h4 {
 	 				font-size:24px;
 	 			}
@@ -438,6 +461,9 @@ nav {
 	 			display: flex; /* or inline-flex */
   				padding-bottom:20px;
   				border-bottom:1px solid #CCCCCC;
+  				@media screen and (max-width: 499px){
+    				display: block; 
+  				}
   				&.services {
   					.right {
   						span {
@@ -551,6 +577,7 @@ nav {
     			text-overflow: ellipsis;
 			}
 			.vi_cate {
+				margin-top:20px;
 				div {
 					display: inline-block;
 					p {
@@ -574,7 +601,7 @@ nav {
 						border-radius:8px;
 						display:inline-block;
 						margin-right:5px;
-						margin-top:20px;
+						
 
 					}
 				}
