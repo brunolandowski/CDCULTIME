@@ -83,7 +83,7 @@ button {
 // HOMEPAGE
 #loading {
 
-	background:white;
+	background:#f9b5a1;
 	height:100%;
 	width:100%;
 	position:fixed;
@@ -173,7 +173,15 @@ header {
 			img {
 				vertical-align: middle;
 				margin-left:20px;
-				height:70px;
+				height:60px;
+				opacity:1;
+				-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    			filter: grayscale(100%);
+    			transition: all .2s ease-in;
+    			&:hover {
+    				-webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+    				filter: grayscale(0%);
+    			}
 				
 			}
 			hr {
@@ -191,8 +199,9 @@ header {
 
 	#hd_title {
 		color:#F5F5F5;
-		height:calc(100% - 200px);
-		background: #f9b5a1 url('https://images.unsplash.com/photo-1485530286208-eaa80a08da0d?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=') no-repeat center center fixed; 
+		height:calc(100% - 160px);
+		background-blend-mode: multiply;
+		background: #f9b5a1 url('https://images.unsplash.com/photo-1442406964439-e46ab8eff7c4?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=') no-repeat center center fixed; 
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
@@ -615,6 +624,8 @@ nav {
 // MAIN MENU
 
 #option {
+	max-height:calc(100% - 60px);
+	overflow-y:scroll;
 	opacity:0;
 	float:left;
 	margin-top:60px;
@@ -630,7 +641,9 @@ nav {
 	&.rotate #strip .arrow {
 		transform: rotate(0deg);
 	}
+	
 	.sort {
+		
 		p {
 			margin-left:36px;
 		}
@@ -714,14 +727,14 @@ nav {
 		margin-left:65px;
 	}
 	#strip {
+		position:absolute;
 		text-align:center;
 		margin-left:calc(50% - 25px);
 		height:15px;
 		display: block;
 		width:44px;
-		margin-top: 110px;
-		margin-bottom:-20px;
 		bottom:-20px;
+		display:none;
 		cursor:pointer;
 		border-radius:0 0 3px 3px;
 		background:rgba(51, 51, 51, 0.97);
@@ -739,7 +752,7 @@ nav {
 			
 			
 		}
-		.geo {
+		.clients {
 			
 			margin-top:40px;
 			
@@ -774,7 +787,8 @@ nav {
 					 font-family: 'bikobold';
 				}
 			}
-			margin-top:40px;
+			position:absolute;
+			bottom:160px;
 			
 		}
 	}

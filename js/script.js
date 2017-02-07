@@ -2,14 +2,13 @@ console.log('fifty-five');
 
 
 // Count object 
- function countObjectProperties(obj)
-            {
-            var count = 0;
-            for(var i in obj)
-                if(obj.hasOwnProperty(i))
-                    count++;
+function countObjectProperties(obj) {
+    var count = 0;
+    for (var i in obj)
+        if (obj.hasOwnProperty(i))
+            count++;
 
-            return count;
+    return count;
 }
 //data
 var circlearray = [];
@@ -33,7 +32,7 @@ function jsonload(x) {
 
         $('#main_logo').attr('src', "img/logo_et_" + x + ".svg").attr('alt', data.homepage.main_title);
 
-       
+
         $('#hd_title .hd_title_ct p').html(data.homepage.headline);
 
         $('#hd_title .hd_title_cta p').html(data.homepage.liste);
@@ -59,61 +58,63 @@ function jsonload(x) {
 
 
         // Item 
-            // Services
-            var dataservicelooplength = data.aside.services.loop,
-                counting = countObjectProperties(dataservicelooplength),
-                step;
-            for (step = 0; step < counting; step++) {
-                var stepgood = step+1;
-                $('p[data-attr="filterservices'+stepgood+'"]').html(data.aside.services.loop['filterservices'+stepgood]);
-            }
-            $('.services .left p').html(data.aside.services.title);
+        // Services
+        var dataservicelooplength = data.aside.services.loop,
+            counting = countObjectProperties(dataservicelooplength),
+            step;
+        for (step = 0; step < counting; step++) {
+            var stepgood = step + 1;
+            $('p[data-attr="filterservices' + stepgood + '"]').html(data.aside.services.loop['filterservices' + stepgood]);
+        }
+        $('.services .left p').html(data.aside.services.title);
 
-            // Clients
-            var dataclientslooplength = data.aside.clients.loop,
-                counting = countObjectProperties(dataclientslooplength),
-                step;
-            for (step = 0; step < counting; step++) {
-                var stepgood = step+1;
-                $('p[data-attr="filterclients'+stepgood+'"]').html(data.aside.clients.loop['filterclients'+stepgood]);
-            }
-            $('.clients .left p').html(data.aside.clients.title);
+        // Clients
+        var dataclientslooplength = data.aside.clients.loop,
+            counting = countObjectProperties(dataclientslooplength),
+            step;
+        for (step = 0; step < counting; step++) {
+            var stepgood = step + 1;
+            $('p[data-attr="filterclients' + stepgood + '"]').html(data.aside.clients.loop['filterclients' + stepgood]);
+        }
+        $('.clients .left p').html(data.aside.clients.title);
 
-            // Technologies
-            var datatechlooplength = data.aside.technologies.loop,
-                counting = countObjectProperties(datatechlooplength),
-                step;
-            for (step = 0; step < counting; step++) {
-                var stepgood = step+1;
-                $('p[data-attr="filtertech'+stepgood+'"]').html(data.aside.technologies.loop['filtertech'+stepgood]);
-            }
-            $('.technologies .left p').html(data.aside.technologies.title);
+        // Technologies
+        var datatechlooplength = data.aside.technologies.loop,
+            counting = countObjectProperties(datatechlooplength),
+            step;
+        for (step = 0; step < counting; step++) {
+            var stepgood = step + 1;
+            $('p[data-attr="filtertech' + stepgood + '"]').html(data.aside.technologies.loop['filtertech' + stepgood]);
+        }
+        $('.technologies .left p').html(data.aside.technologies.title);
 
-            // Users
-            var datauserslooplength = data.aside.users.loop,
-                counting = countObjectProperties(datauserslooplength),
-                step;
-            for (step = 0; step < counting; step++) {
-                var stepgood = step+1;
-                $('p[data-attr="users'+stepgood+'"]').html(data.aside.users.loop['users'+stepgood]);
-            }
-            $('.users .left p').html(data.aside.users.title);
+        // Users
+        var datauserslooplength = data.aside.users.loop,
+            counting = countObjectProperties(datauserslooplength),
+            step;
+        for (step = 0; step < counting; step++) {
+            var stepgood = step + 1;
+            $('p[data-attr="users' + stepgood + '"]').html(data.aside.users.loop['users' + stepgood]);
+        }
+        $('.users .left p').html(data.aside.users.title);
 
-            $('.description .left p').html(data.aside.description);
-            $('.founders .left p').html(data.aside.founders);
-            $('.creation .left p').html(data.aside.creation);
-            $('.employees .left p').html(data.aside.employees);
-            $('.based .left p').html(data.aside.based);
-            
+        // region
+        $('.users .left p').html(data.aside.users.title);
+
+        $('.description .left p').html(data.aside.description);
+        $('.founders .left p').html(data.aside.founders);
+        $('.creation .left p').html(data.aside.creation);
+        $('.employees .left p').html(data.aside.employees);
+        $('.based .left p').html(data.aside.based);
 
 
-       
+
 
         // Clients LOOP
 
 
         var arraystats = ['services', 'clients', 'technologies'];
-        
+
         $.each(arraystats, function(index, value) {
             console.log(data.aside[value].title);
 
@@ -144,7 +145,7 @@ function jsonload(x) {
             $.each(clientjson, function(key, value) {
 
                 var keycleanforclass = '.' + key;
-                clientslenght = $('.grid-item'+keycleanforclass).length;
+                clientslenght = $('.grid-item' + keycleanforclass).length;
                 clientslenght2 = $(keycleanforclass).length;
 
                 var clientscalc = (((clientslenght2 - clientsmin) * 100) / (clientsmax - clientsmin));
@@ -162,13 +163,14 @@ function jsonload(x) {
             });
         });
 
-         // LOOP FOR REGION 
-        console.log(data.region);
-        $.each(data.region, function(idx, obj) {
-            $('.grid-item .'+idx).html(obj);
-            var regionlength = $('.grid-item .'+idx).length;
+        // LOOP FOR REGION 
+        console.log(data.region.loop);
+        $('.region ul').empty();
+        $.each(data.region.loop, function(idx, obj) {
+            $('.grid-item .' + idx).html(obj);
+            var regionlength = $('.grid-item .' + idx).length;
             console.log(regionlength);
-            $('.region ul').append('<li class="filter_btn" data-filter=' + idx + '><div class="pastille"></div><span>' + regionlength + '</span><p>' + obj + '</p></li>');
+            $('.region ul').append('<li class="filter_btn" data-filter=.' + idx + '><div class="pastille"></div><span>' + regionlength + '</span><p>' + obj + '</p></li>');
         });
 
 
@@ -180,10 +182,6 @@ function jsonload(x) {
 
 
 
-
-        
-
-       
 
         // Let's add color to filter elements depending on services
 
@@ -204,9 +202,6 @@ function jsonload(x) {
 
     });
 }
-
-
-
 
 
 
@@ -275,12 +270,12 @@ getData().then(function(data) {
     var els = data.feed.entry.map(function(item) {
         var filters = [],
             services = [],
-            
+
             serviceslab = {},
             clientslab = {},
             techlab = {},
             userslab = {},
-           
+
 
             tech = [],
             users = [],
@@ -311,13 +306,13 @@ getData().then(function(data) {
                 var propclean = prop.substr(4);
                 serviceslab[propclean] = item[prop].$t;
             }
-            
+
             // Clients
             if (prop.startsWith('gsx$filterclients') && item[prop].$t.length) {
                 var propclean = prop.substr(4);
                 clientslab[propclean] = item[prop].$t;
             }
-           
+
             // Tech
             if (prop.startsWith('gsx$filtertech') && item[prop].$t.length) {
                 var propclean = prop.substr(4);
@@ -346,23 +341,23 @@ getData().then(function(data) {
 
         // We loop through services, tech, users and tech
         for (var propertyName in serviceslab) {
-            tableservices.push('<div><span class=' + propertyName + '></span><p data-attr="'+propertyName+'"></p></div>');
+            tableservices.push('<div><span class=' + propertyName + '></span><p data-attr="' + propertyName + '"></p></div>');
         }
 
         for (var propertyName in clientslab) {
-            tableclients.push('<div><p data-attr="'+propertyName+'"></p></div>');
+            tableclients.push('<div><p data-attr="' + propertyName + '"></p></div>');
         }
 
         for (var propertyName in techlab) {
-            tabletech.push('<div><p data-attr="'+propertyName+'"></p></div>');
+            tabletech.push('<div><p data-attr="' + propertyName + '"></p></div>');
         }
 
         for (var propertyName in userslab) {
-            tableusers.push('<div><p data-attr="'+propertyName+'"></p></div>');
+            tableusers.push('<div><p data-attr="' + propertyName + '"></p></div>');
         }
 
-       
-       
+
+
         return {
             name: item.gsx$startupname.$t,
             web: item.gsx$web.$t,
@@ -385,7 +380,7 @@ getData().then(function(data) {
 
             // Tech
             userslab: tableusers.join(''),
-            
+
             users: users.reduce(function(a, b) {
                 return a.concat('<p>', b, '</p>')
             }, '')
@@ -398,18 +393,19 @@ getData().then(function(data) {
     //inject into DOM
     $('#grid-container').html(els);
 
-    
+
 
     // ISOTOPE
     var qsRegex;
     var filterValue;
+    var filterValueR;
     // init Isotope
-   var $grid = $('#wrap').isotope({
+    var $grid = $('#wrap').isotope({
         itemSelector: '.grid-item',
         masonry: {
-            gutter:20
+            gutter: 20
         },
-       getSortData: {
+        getSortData: {
             nameA: 'h4',
             employeesA: '[data-employees]',
             employeesD: '[data-employees]',
@@ -421,102 +417,135 @@ getData().then(function(data) {
             employeesD: false,
             creationA: false
         },
-       
+
         filter: function() {
             var $this = $(this);
-            var searchResult = qsRegex ? $this.find('h4').text().match( qsRegex ) : true;
-            var buttonResult = filterValue ? $this.is( filterValue ) : true;
-            return searchResult && buttonResult;
+            var searchResult = qsRegex ? $this.find('h4').text().match(qsRegex) : true;
+            var buttonResult = filterValue ? $this.is(filterValue) : true;
+            var buttonResultR = filterValueR ? $this.is(filterValueR) : true;
+            return searchResult && buttonResult && buttonResultR;
         },
         // sort top priority to lowest priority
-        sortBy: ['resortType', 'country', 'state', 'city'],
+
 
     });
 
 
-   $grid.isotope( 'on', 'layoutComplete', if_zero ); 
+    $grid.isotope('on', 'layoutComplete', if_zero);
     // -------- Filter FUNCTION ----------//
     // store filters as an array
     var filtersisotope = [];
-    var $filterRow = $('#option');
-    $filterRow.on( 'click', '.filter_btn, .button', function( event ) {
-        
-      // get filter value
-      var $col = $(this);
-      var colFilter = $col.attr('data-filter');
-      $col.toggleClass('is-checked');
-      // add or remove col filter from filters
-      var isSelected = $col.hasClass('is-checked');
-      if ( isSelected ) {
-        filtersisotope.push( colFilter );
-      } else {
-        removeFrom( filtersisotope, colFilter );
-      }
-      // combine filters
-      filterValue = filtersisotope.join('');
-      console.log( filterValue );
-      $grid.isotope();
-      if_zero();
+    var $filterRow = $('#option .services, #option .clients, #option .technologies');
+    $filterRow.on('click', '.filter_btn, .button', function(event) {
+
+        // get filter value
+        var $col = $(this);
+        var colFilter = $col.attr('data-filter');
+        $col.toggleClass('is-checked');
+        // add or remove col filter from filters
+        var isSelected = $col.hasClass('is-checked');
+        if (isSelected) {
+            filtersisotope.push(colFilter);
+        } else {
+            removeFrom(filtersisotope, colFilter);
+        }
+        // combine filters
+        filterValue = filtersisotope.join('');
+        console.log(filterValue);
+        $grid.isotope();
+        if_zero();
     });
 
     // helper function, remove obj from ary
-        function removeFrom( ary, obj ) {
-          var index = ary.indexOf( obj );
-          if ( index != -1 ) {
-            ary.splice( index, 1 );
-          }
+    function removeFrom(ary, obj) {
+        var index = ary.indexOf(obj);
+        if (index != -1) {
+            ary.splice(index, 1);
         }
+    }
 
+
+    // Filter Region
+    var filtersisotopeR = [];
+    var $filterRow = $('#option .region');
+    $filterRow.on('click', '.filter_btn, .button', function(event) {
+
+        // get filter value
+        var $col = $(this);
+        var colFilter = $col.attr('data-filter');
+        $col.toggleClass('is-checked');
+        // add or remove col filter from filters
+        var isSelected = $col.hasClass('is-checked');
+        if (isSelected) {
+            filtersisotopeR.push(colFilter);
+        } else {
+            removeFrom(filtersisotopeR, colFilter);
+        }
+        // combine filters
+        filterValueR = filtersisotopeR.join('');
+        console.log(filterValueR);
+        $grid.isotope();
+        if_zero();
+    });
+
+    // helper function, remove obj from ary
+    function removeFrom(ary, obj) {
+        var index = ary.indexOf(obj);
+        if (index != -1) {
+            ary.splice(index, 1);
+        }
+    }
 
     // ----------- Search FUNCTION --------//
     // use value of search field to filter
-    var $quicksearch = $('#myInput').keyup( debounce( function() {
-        qsRegex = new RegExp( $quicksearch.val(), 'gi' );
-        console.log("Search input",qsRegex);
+    var $quicksearch = $('#myInput').keyup(debounce(function() {
+        qsRegex = new RegExp($quicksearch.val(), 'gi');
+        console.log("Search input", qsRegex);
         $grid.isotope();
-    }) );
+    }));
 
     // ------------- Sort FUNCTION -------------//
     // bind sort button click
-    $('.sort').on( 'click', '.sort_btn', function() {
-       
+    $('.sort').on('click', '.sort_btn', function() {
+
         var sortValue = $(this).attr('data-sort-by');
         $('.sort').find('.is-checked').removeClass('is-checked');
         $(this).addClass('is-checked');
         // make an array of values
         sortValue = sortValue.split(',');
-        console.log("Sorting button click",sortValue);
-        $grid.isotope({ 
-            sortBy : sortValue,
+        console.log("Sorting button click", sortValue);
+        $grid.isotope({
+            sortBy: sortValue,
         });
-       
+
     });
 
 
     // Add class sort 
     $('.sort').each(function(i, buttonGroup) {
-      var $buttonGroup = $(buttonGroup);
-      $buttonGroup.on('.sort_btn', 'button', function() {
-        $buttonGroup.find('.is-checked').removeClass('is-checked');
-        $(this).addClass('is-checked');
-      });
+        var $buttonGroup = $(buttonGroup);
+        $buttonGroup.on('.sort_btn', 'button', function() {
+            $buttonGroup.find('.is-checked').removeClass('is-checked');
+            $(this).addClass('is-checked');
+        });
     });
 
 
 
     // debounce so filtering doesn't happen every millisecond
-    function debounce( fn, threshold ) {
-      var timeout;
-      return function debounced() {
-        if ( timeout ) {
-          clearTimeout( timeout );
-        }
-        function delayed() {
-          fn();
-          timeout = null;
-        }
-        setTimeout( delayed, threshold || 100 );
-      };
+    function debounce(fn, threshold) {
+        var timeout;
+        return function debounced() {
+            if (timeout) {
+                clearTimeout(timeout);
+            }
+
+            function delayed() {
+                fn();
+                timeout = null;
+            }
+            setTimeout(delayed, threshold || 100);
+        };
     }
 
 
@@ -550,7 +579,7 @@ getData().then(function(data) {
     $('.whenopen .en').hide();
     $('.whenopen .fr').show();
     tooltip();
-    
+
 });
 
 
@@ -559,35 +588,33 @@ getData().then(function(data) {
 function jsonloaded() {
     console.log('loaded');
 
-    $('body').css('overflow','auto');
+    $('body').css('overflow', 'auto');
     $('#loading').fadeOut();
-   $( "header" ).animate({
-    opacity: 1,
-    
-  }, 500, function() {
-    $("#option").css('opacity','1');
-  });
+    $("header").animate({
+        opacity: 1,
+
+    }, 500, function() {
+        $("#option").css('opacity', '1');
+    });
 }
 
 function tooltip() {
-  // Display Tooltip on over color circles
+    // Display Tooltip on over color circles
 
 
 
-$(".vi_cate div").hover(
-  function () {
-    $(this).children('p').addClass('show_me');
-  }, 
-  function () {
-    $(this).children('p').removeClass('show_me');
-  }
-  );
+    $(".vi_cate div").hover(
+        function() {
+            $(this).children('p').addClass('show_me');
+        },
+        function() {
+            $(this).children('p').removeClass('show_me');
+        }
+    );
 }
 
 // FUNCTION AIMING TO LOAD JSON LANG
 // Create array for the circle stats
-
-
 
 
 
@@ -726,41 +753,41 @@ $("#aside_placeholder, .aside_close").click(function() {
 
 function filterheight() {
 
-var opt_height = $('#option').height();
-        opt_height_calc = opt_height - 60;
-        $('#option').css('margin-top', '-' + opt_height_calc + 'px');
+    var opt_height = $('#option').height();
+    opt_height_calc = opt_height - 60;
+    $('#option').css('margin-top', '-' + opt_height_calc + 'px');
 
- }
+}
 
 
-    
-        $("nav button, #strip, .opt_footer .item_dropdown").on("click", function() {
-            if ($("#option").css("marginTop") == "60px") {
-                $('#option').removeClass('rotate');
 
-                $("#option").animate({
-                    marginTop: "-" + opt_height_calc + "px",
-                }, 300, function() {
-                    // Animation complete.
-                });
+$("nav button, #strip, .opt_footer .item_dropdown").on("click", function() {
+    if ($("#option").css("marginTop") == "60px") {
+        $('#option').removeClass('rotate');
 
-            } else {
-
-                $('#option').addClass('rotate');
-
-                $("#option").animate({
-                    marginTop: "60px",
-                }, 300, function() {
-                    // Animation complete.
-                });
-            }
+        $("#option").animate({
+            marginTop: "-" + opt_height_calc + "px",
+        }, 300, function() {
+            // Animation complete.
         });
- 
-    // CHART ELIPSE STATS AND ANIMATE
+
+    } else {
+
+        $('#option').addClass('rotate');
+
+        $("#option").animate({
+            marginTop: "60px",
+        }, 300, function() {
+            // Animation complete.
+        });
+    }
+});
+
+// CHART ELIPSE STATS AND ANIMATE
 
 // RESIZE EVENT 
-$( window ).resize(function() {
-  filterheight();
+$(window).resize(function() {
+    filterheight();
 });
 
 
@@ -835,17 +862,17 @@ $window.trigger('scroll');
 
 // FUNCTION TO SET ALL FILTER/SORT ACTIVE
 function if_zero() {
-var zero = $('#option').find('.filter_btn.is-checked').length;
-if (zero == 0) {
-    
-    $('#option').find('.filter_btn .pastille').addClass('opacity');
-    
-    $('.result p  span').html(number_startup);
-} else {
-    $('#option').find('.filter_btn .pastille').removeClass('opacity');
-    var ifzerolenght = $('.grid-item:visible').length;
-    console.log(ifzerolenght);
-     $('.result p  span').html(ifzerolenght);
-    
-}
+    var zero = $('#option').find('.filter_btn.is-checked').length;
+    if (zero == 0) {
+
+        $('#option').find('.filter_btn .pastille').addClass('opacity');
+        console.log('zero');
+        $('.result p  span').html(number_startup);
+    } else {
+        $('#option').find('.filter_btn .pastille').removeClass('opacity');
+        var ifzerolenght = $('.grid-item:visible').length;
+        console.log(ifzerolenght);
+        $('.result p  span').html(ifzerolenght);
+
+    }
 }

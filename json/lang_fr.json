@@ -97,20 +97,22 @@
         "description":"Description"
     },
     "region":{
-        "IDF":"Île-de-France",
-        "HDF":"Hauts-de-France",
-        "GE":"Grand Est",
-        "NO":"Normandie",
-        "BR":"Bretagne",
-        "PDLL":"Pays de la Loire",
-        "CVDL":"Centre Val de Loire",
-        "NA":"Nouvelle Aquitaine",
-        "OCC":"Occitanie",
-        "CO":"Corse",
-        "PACA":"Provence-Alpes-Côte d'Azur",
-        "ARA":"Auvergne-Rhône-Alpes",
-        "BFC":"Bourgogne-Franche-Comté"
-
+        "title":"region",
+        "loop":{
+            "IDF":"Île-de-France",
+            "HDF":"Hauts-de-France",
+            "GE":"Grand Est",
+            "NO":"Normandie",
+            "BR":"Bretagne",
+            "PDLL":"Pays de la Loire",
+            "CVDL":"Centre Val de Loire",
+            "NA":"Nouvelle Aquitaine",
+            "OCC":"Occitanie",
+            "CO":"Corse",
+            "PACA":"Provence-Alpes-Côte d'Azur",
+            "ARA":"Auvergne-Rhône-Alpes",
+            "BFC":"Bourgogne-Franche-Comté"
+        }
     }
 }
 
