@@ -14,13 +14,15 @@ console.log('fifty-five');
 //data
 var circlearray = [];
 
+var number_startup;
+
 function jsonload(x) {
     $.getJSON('json/lang_' + x + '.json', function(data) {
         // END OF JSON FUNCTION
 
         // MAIN VAR 
         // Check number of startup listed
-        var number_startup = $('.grid-item').length;
+        number_startup = $('.grid-item').length;
         var number_fundraising = $('.fundraising1').length;
         var number_award = $('.award').length;
 
@@ -416,9 +418,12 @@ getData().then(function(data) {
             return searchResult && buttonResult;
         },
         // sort top priority to lowest priority
-        sortBy: ['resortType', 'country', 'state', 'city']
+        sortBy: ['resortType', 'country', 'state', 'city'],
+
     });
 
+
+   $grid.isotope( 'on', 'layoutComplete', if_zero ); 
     // -------- Filter FUNCTION ----------//
     // store filters as an array
     var filtersisotope = [];
@@ -473,7 +478,7 @@ getData().then(function(data) {
         $grid.isotope({ 
             sortBy : sortValue,
         });
-         if_zero();
+       
     });
 
 
@@ -823,7 +828,13 @@ var zero = $('#option').find('.filter_btn.is-checked').length;
 if (zero == 0) {
     
     $('#option').find('.filter_btn .pastille').addClass('opacity');
+    
+    $('.result p  span').html(number_startup);
 } else {
     $('#option').find('.filter_btn .pastille').removeClass('opacity');
+    var ifzerolenght = $('.grid-item:visible').length;
+    console.log(ifzerolenght);
+     $('.result p  span').html(ifzerolenght);
+    
 }
 }
