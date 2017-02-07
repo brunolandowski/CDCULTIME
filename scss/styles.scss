@@ -782,7 +782,11 @@ nav {
 		border-top:1px solid #F5F5F5;
 		margin:20px 60px;
 		.item_dropdown {
-
+				&:hover {
+					opacity:.5;
+				}
+				transition: all 0.5s ease;
+				cursor:pointer;
 	 			height:40px;
 	 			padding:0 40px;
 				border-radius: 3px 3px 3px 3px; 
@@ -799,6 +803,7 @@ nav {
 					height:10px;
 					display: block;
 				}
+
 	 			
 	 		}
 	}

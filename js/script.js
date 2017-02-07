@@ -107,6 +107,8 @@ function jsonload(x) {
             
 
 
+       
+
         // Clients LOOP
 
 
@@ -158,6 +160,15 @@ function jsonload(x) {
                 $('.' + clientvalue + ' ul').append('<li class="filter_btn" data-filter=' + keycleanforclass + '><div class="pastille"></div><span>' + clientslenght + '</span><p>' + value + '</p></li>');
 
             });
+        });
+
+         // LOOP FOR REGION 
+        console.log(data.region);
+        $.each(data.region, function(idx, obj) {
+            $('.grid-item .'+idx).html(obj);
+            var regionlength = $('.grid-item .'+idx).length;
+            console.log(regionlength);
+            $('.region ul').append('<li class="filter_btn" data-filter=' + idx + '><div class="pastille"></div><span>' + regionlength + '</span><p>' + obj + '</p></li>');
         });
 
 
@@ -252,7 +263,7 @@ var template = function(content, params) {
  */
 
 var render = function(item) {
-    var panel = '<div data-employees="{{employeesref}}" data-creation="{{creation}}" class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span>{{web}}</span><img src=""><div class="vi_cate">{{serviceslab}}</div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span><div class="row description"><div class="left"><p>Description</p></div><div class="right"><p><div class="fr">{{description_fr}}</div><div class="en">{{description_en}}</div></p></div></div><div class="row services"><div class="left"><p>Services</p></div><div class="right">{{serviceslab}}</div></div><div class="row users"><div class="left"><p>Utilisateurs</p></div><div class="right">{{userslab}}</div></div><div class="row clients"><div class="left"><p>Clients</p></div><div class="right">{{clientslab}}</div></div><div class="row technologies"><div class="left"><p>Technologies</p></div><div class="right">{{techlab}}</div></div><div class="row founders"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row creation"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row employees"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row based"><div class="left"><p>Basée en</p></div><div class="right"><p>{{zip}}</p></div></div><span class="item_dropdown"><span class="cale"></span><span>Partager cette startup<img class="arrow" src="img/arrow_up.svg"><div class="item_dropdown_content"><p><a href="http://google.fr">Sur Twitter</a></p><p><a href="http://google.fr">Sur Facebook</a></p><p><a href="http://google.fr">Copier le lien</a></p></div></span></div></div>';
+    var panel = '<div data-employees="{{employeesref}}" data-creation="{{creation}}" class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span>{{web}}</span><img src=""><div class="vi_cate">{{serviceslab}}</div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span><div class="row description"><div class="left"><p>Description</p></div><div class="right"><p><div class="fr">{{description_fr}}</div><div class="en">{{description_en}}</div></p></div></div><div class="row services"><div class="left"><p>Services</p></div><div class="right">{{serviceslab}}</div></div><div class="row users"><div class="left"><p>Utilisateurs</p></div><div class="right">{{userslab}}</div></div><div class="row clients"><div class="left"><p>Clients</p></div><div class="right">{{clientslab}}</div></div><div class="row technologies"><div class="left"><p>Technologies</p></div><div class="right">{{techlab}}</div></div><div class="row founders"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row creation"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row employees"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row based"><div class="left"><p>Basée en</p></div><div class="right"><p class="{{region}}">{{region}}</p></div></div><span class="item_dropdown"><span class="cale"></span><span>Partager cette startup<img class="arrow" src="img/arrow_up.svg"><div class="item_dropdown_content"><p><a href="http://google.fr">Sur Twitter</a></p><p><a href="http://google.fr">Sur Facebook</a></p><p><a href="http://google.fr">Copier le lien</a></p></div></span></div></div>';
     return template(panel, item);
 }
 
@@ -283,7 +294,7 @@ getData().then(function(data) {
             if (prop.startsWith('gsx$filter') && item[prop].$t.length) {
                 filters.push(prop.substr(4));
             }
-            if (prop === 'gsx$zip' && item[prop].$t.length) {
+            if (prop === 'gsx$region' && item[prop].$t.length) {
                 filters.push(item[prop].$t);
             }
 
@@ -363,7 +374,7 @@ getData().then(function(data) {
             employees: item.gsx$employees.$t,
             employeesref: item.gsx$employeesref.$t,
             logo: item.gsx$logo.$t,
-            zip: item.gsx$zip.$t,
+            region: item.gsx$region.$t,
 
             // Services
             serviceslab: tableservices.join(''),
@@ -723,7 +734,7 @@ var opt_height = $('#option').height();
 
 
     
-        $("nav button, #strip").on("click", function() {
+        $("nav button, #strip, .opt_footer .item_dropdown").on("click", function() {
             if ($("#option").css("marginTop") == "60px") {
                 $('#option').removeClass('rotate');
 
