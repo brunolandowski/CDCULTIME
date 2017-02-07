@@ -186,7 +186,7 @@ function jsonload(x) {
 
         filterheight();
         jsonloaded();
-
+        if_zero();
 
 
     });
@@ -385,7 +385,7 @@ getData().then(function(data) {
     //inject into DOM
     $('#grid-container').html(els);
 
-
+    
 
     // ISOTOPE
     var qsRegex;
@@ -424,6 +424,7 @@ getData().then(function(data) {
     var filtersisotope = [];
     var $filterRow = $('#option');
     $filterRow.on( 'click', '.filter_btn, .button', function( event ) {
+        
       // get filter value
       var $col = $(this);
       var colFilter = $col.attr('data-filter');
@@ -439,15 +440,16 @@ getData().then(function(data) {
       filterValue = filtersisotope.join('');
       console.log( filterValue );
       $grid.isotope();
+      if_zero();
     });
 
     // helper function, remove obj from ary
-function removeFrom( ary, obj ) {
-  var index = ary.indexOf( obj );
-  if ( index != -1 ) {
-    ary.splice( index, 1 );
-  }
-}
+        function removeFrom( ary, obj ) {
+          var index = ary.indexOf( obj );
+          if ( index != -1 ) {
+            ary.splice( index, 1 );
+          }
+        }
 
 
     // ----------- Search FUNCTION --------//
@@ -461,14 +463,30 @@ function removeFrom( ary, obj ) {
     // ------------- Sort FUNCTION -------------//
     // bind sort button click
     $('.sort').on( 'click', '.sort_btn', function() {
+       
         var sortValue = $(this).attr('data-sort-by');
+        $('.sort').find('.is-checked').removeClass('is-checked');
+        $(this).addClass('is-checked');
         // make an array of values
         sortValue = sortValue.split(',');
         console.log("Sorting button click",sortValue);
         $grid.isotope({ 
             sortBy : sortValue,
         });
+         if_zero();
     });
+
+
+    // Add class sort 
+    $('.sort').each(function(i, buttonGroup) {
+      var $buttonGroup = $(buttonGroup);
+      $buttonGroup.on('.sort_btn', 'button', function() {
+        $buttonGroup.find('.is-checked').removeClass('is-checked');
+        $(this).addClass('is-checked');
+      });
+    });
+
+
 
     // debounce so filtering doesn't happen every millisecond
     function debounce( fn, threshold ) {
@@ -800,3 +818,12 @@ $window.trigger('scroll');
 
 
 // FUNCTION TO SET ALL FILTER/SORT ACTIVE
+function if_zero() {
+var zero = $('#option').find('.filter_btn.is-checked').length;
+if (zero == 0) {
+    
+    $('#option').find('.filter_btn .pastille').addClass('opacity');
+} else {
+    $('#option').find('.filter_btn .pastille').removeClass('opacity');
+}
+}
