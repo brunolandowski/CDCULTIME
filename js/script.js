@@ -141,8 +141,9 @@ function jsonload(x) {
 
                 var keycleanforclass = '.' + key;
                 clientslenght = $('.grid-item'+keycleanforclass).length;
+                clientslenght2 = $(keycleanforclass).length;
 
-                var clientscalc = (((clientslenght - clientsmin) * 100) / (clientsmax - clientsmin));
+                var clientscalc = (((clientslenght2 - clientsmin) * 100) / (clientsmax - clientsmin));
 
 
                 var calcgood = (5 + .45 * clientscalc);
@@ -388,7 +389,7 @@ getData().then(function(data) {
 
     // ISOTOPE
     var qsRegex;
-    var buttonFilter;
+    var filterValue;
     // init Isotope
    var $grid = $('#wrap').isotope({
         itemSelector: '.grid-item',
@@ -411,7 +412,7 @@ getData().then(function(data) {
         filter: function() {
             var $this = $(this);
             var searchResult = qsRegex ? $this.find('h4').text().match( qsRegex ) : true;
-            var buttonResult = buttonFilter ? $this.is( buttonFilter ) : true;
+            var buttonResult = filterValue ? $this.is( filterValue ) : true;
             return searchResult && buttonResult;
         },
         // sort top priority to lowest priority
@@ -419,11 +420,35 @@ getData().then(function(data) {
     });
 
     // -------- Filter FUNCTION ----------//
-    $('#option').on( 'click', '.filter_btn', function() {
-        buttonFilter = $( this ).attr('data-filter');
-        console.log("Filter button click",buttonFilter);
-        $grid.isotope();
+    // store filters as an array
+    var filtersisotope = [];
+    var $filterRow = $('#option');
+    $filterRow.on( 'click', '.filter_btn, .button', function( event ) {
+      // get filter value
+      var $col = $(this);
+      var colFilter = $col.attr('data-filter');
+      $col.toggleClass('is-checked');
+      // add or remove col filter from filters
+      var isSelected = $col.hasClass('is-checked');
+      if ( isSelected ) {
+        filtersisotope.push( colFilter );
+      } else {
+        removeFrom( filtersisotope, colFilter );
+      }
+      // combine filters
+      filterValue = filtersisotope.join('');
+      console.log( filterValue );
+      $grid.isotope();
     });
+
+    // helper function, remove obj from ary
+function removeFrom( ary, obj ) {
+  var index = ary.indexOf( obj );
+  if ( index != -1 ) {
+    ary.splice( index, 1 );
+  }
+}
+
 
     // ----------- Search FUNCTION --------//
     // use value of search field to filter
@@ -774,4 +799,4 @@ $window.trigger('scroll');
 
 
 
-// SEARCH BAR
+// FUNCTION TO SET ALL FILTER/SORT ACTIVE
