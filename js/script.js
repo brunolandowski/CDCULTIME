@@ -1,63 +1,48 @@
-console.log('fifty-five');
-
-
-// Count object 
+// -------- Filter FUNCTION ----------//
 function countObjectProperties(obj) {
     var count = 0;
     for (var i in obj)
         if (obj.hasOwnProperty(i))
             count++;
-
     return count;
 }
-//data
+
+// -------- Var and Array need to be declared before exectuting Statistics ----------//
 var circlearray = [];
-
 var number_startup;
+var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e4c0", "#bb7ff3", "#fbc9df"];
 
+// -------- Function needed to load EN & FR json ----------//
 function jsonload(x) {
     $.getJSON('json/lang_' + x + '.json', function(data) {
-        // END OF JSON FUNCTION
-
-        // MAIN VAR 
-        // Check number of startup listed
+        // For statistic page
         number_startup = $('.grid-item').length;
         var number_fundraising = $('.fundraising1').length;
         var number_award = $('.award').length;
 
-        // homepage
+        // Homepage json call
         $('#hd_bd_top p:first-of-type').html(data.homepage.top_left);
         $('#hd_bd_top p:last-of-type').html(data.homepage.top_middle);
-
-
         $('#main_logo').attr('src', "img/logo_et_" + x + ".svg").attr('alt', data.homepage.main_title);
-
-
         $('#hd_title .hd_title_ct p').html(data.homepage.headline);
-
         $('#hd_title .hd_title_cta p').html(data.homepage.liste);
         $('#hd_title .hd_title_cta h2').html(number_startup);
-
-
         $('#hd_bd_bottom p').html(data.homepage.bottom);
-
         $('nav h3').html(data.homepage.main_title);
         $('nav input').attr("placeholder", data.homepage.search);
 
-
-        // aside
+        // Statistic page json call
         $('#aside_header ul li:nth-child(1)').html(data.aside.header.submit);
         $('#aside_header ul li:nth-child(2)').html(data.aside.header.share);
         $('#aside_header ul li:nth-child(3)').html(data.aside.header.download);
         $('#aside_header ul li:nth-child(4)').html(data.aside.header.contact);
-
         $('aside #box_stats h3').html(data.aside.statistiques.title);
         $('aside #box_stats p:nth-child(2)').html("<span>" + number_fundraising + "</span>" + data.aside.statistiques.rise);
         $('aside #box_stats p:nth-child(3)').html("<span>" + number_award + "</span>" + data.aside.statistiques.award);
         $('aside #box_stats p:nth-child(4)').html("<span>" + number_startup + "</span>" + data.aside.statistiques.listed);
 
 
-        // Item 
+        // Startup page calls
         // Services
         var dataservicelooplength = data.aside.services.loop,
             counting = countObjectProperties(dataservicelooplength),
@@ -98,93 +83,62 @@ function jsonload(x) {
         }
         $('.users .left p').html(data.aside.users.title);
 
-        // region
+        // Asided
         $('.users .left p').html(data.aside.users.title);
-
-        
         $('.founders .left p').html(data.aside.founders);
         $('.creation .left p').html(data.aside.creation);
         $('.employees .left p').html(data.aside.employees);
         $('.based .left p').html(data.aside.based);
 
-
-
-
-        // Clients LOOP
-
-
-        var arraystats = ['services', 'clients', 'technologies'];
-
+        // Statistiques page call
+        var arraystats = ['services', 'clients', 'technologies', 'regions'];
         $.each(arraystats, function(index, value) {
-            console.log(data.aside[value].title);
-
-            var clientvalue = value;
+           
+            var clientvalue = value,
+                clientjson = data.aside[value].loop,
+                clientjsonh4 = data.aside[value].title,
+                clientsarray = [],
+                clientsmax,
+                clientsmin;
+            // We empty the ul before to avoid multiadding    
             $('#' + clientvalue + ' ul').empty();
             $('.' + clientvalue + ' ul').empty();
-
-            var clientjson = data.aside[value].loop;
-            var clientjsonh4 = data.aside[value].title;
-
-            var clientsarray = [];
-            var clientsmax;
-            var clientsmin;
-            // We create a loop to define max and min value
+            // We create a loop to define max and min value for histograms and circles
             $.each(clientjson, function(key, value) {
                 var keyclean = key.replace(/\_/g, "");
-                keycleanforclass = '.' + keyclean;
-                clientslenght = $(keycleanforclass).length;
-                clientsarray.push(clientslenght);
-
+                    keycleanforclass = '.' + keyclean;
+                    clientslenght = $(keycleanforclass).length;
+                    clientsarray.push(clientslenght);
             });
 
-            // here we get the min and max value 
+            // We get the two variables for max and min
             clientsmax = Math.max.apply(Math, clientsarray);
             clientsmin = Math.min.apply(Math, clientsarray);
 
-            // we reloop
+            // We reloop
             $.each(clientjson, function(key, value) {
-
                 var keycleanforclass = '.' + key;
-                clientslenght = $('.grid-item' + keycleanforclass).length;
-                clientslenght2 = $(keycleanforclass).length;
-
-                var clientscalc = (((clientslenght2 - clientsmin) * 100) / (clientsmax - clientsmin));
-
-
-                var calcgood = (5 + .45 * clientscalc);
-                var calcgoodcircle = (20 + .80 * clientscalc);
-
+                    clientslenght = $('.grid-item' + keycleanforclass).length;
+                    clientslenght2 = $(keycleanforclass).length,
+                    clientscalc = (((clientslenght2 - clientsmin) * 100) / (clientsmax - clientsmin)),
+                    calcgood = (5 + .45 * clientscalc),
+                    calcgoodcircle = (20 + .80 * clientscalc);
                 $('#' + clientvalue + ' h4').html(clientjsonh4);
                 $('#' + clientvalue + ' ul').append('<li><p>' + value + '</p><span>' + clientslenght + '</span><div data-circle=' + calcgoodcircle + ' data-wd=' + calcgood + ' class="histo"></div></li>');
-
                 $('.' + clientvalue + ' h4').html(clientjsonh4);
                 $('.' + clientvalue + ' ul').append('<li class="filter_btn" data-filter=' + keycleanforclass + '><div class="pastille"></div><span>' + clientslenght + '</span><p>' + value + '</p></li>');
-
             });
         });
 
-        // LOOP FOR REGION 
-        console.log(data.region.loop);
-        $('.region ul').empty();
-        $.each(data.region.loop, function(idx, obj) {
-            $('.grid-item .' + idx).html(obj);
-            var regionlength = $('.grid-item .' + idx).length;
-            console.log(regionlength);
-            $('.region ul').append('<li class="filter_btn" data-filter=.' + idx + '><div class="pastille"></div><span>' + regionlength + '</span><p>' + obj + '</p></li>');
-        });
-
-
+       
+        // We push the data attr previously added to circlearray
         $("#services ul li .histo").each(function() {
             var circlevalue = $(this).attr('data-circle');
-
             circlearray.push(circlevalue);
         });
 
-
-
-
         // Let's add color to filter elements depending on services
-
+        // The array for the color is below
         $('.services .filter_btn[data-filter=".filterservices1"] .pastille, .grid-item .filterservices1').css('background', colors_chart[0]);
         $('.services .filter_btn[data-filter=".filterservices2"] .pastille, .grid-item .filterservices2').css('background', colors_chart[1]);
         $('.services .filter_btn[data-filter=".filterservices3"] .pastille, .grid-item .filterservices3').css('background', colors_chart[2]);
@@ -193,18 +147,11 @@ function jsonload(x) {
         $('.services .filter_btn[data-filter=".filterservices6"] .pastille, .grid-item .filterservices6').css('background', colors_chart[5]);
         $('.services .filter_btn[data-filter=".filterservices7"] .pastille, .grid-item .filterservices7').css('background', colors_chart[6]);
         $('.services .filter_btn[data-filter=".filterservices8"] .pastille, .grid-item .filterservices8').css('background', colors_chart[7]);
-
-
         filterheight();
         jsonloaded();
         if_zero();
-
-
     });
 }
-
-
-
 
 /**
  * @description polyfills
@@ -263,101 +210,75 @@ var render = function(item) {
 }
 
 
-//get data and generate HTML output
+// -------- Get data and generate HTML output ----------//
 getData().then(function(data) {
-    //remove loader here
     var self = this;
     var els = data.feed.entry.map(function(item) {
+        // Tables
         var filters = [],
             services = [],
-
+            tech = [],
+            users = [],
+            clients = [],
+        // Objects
             serviceslab = {},
             clientslab = {},
             techlab = {},
-            userslab = {},
-
-
-            tech = [],
-            users = [],
-            clients = [];
-
-
-
+            userslab = {};
         for (var prop in item) {
-
-
             if (prop.startsWith('gsx$filter') && item[prop].$t.length) {
                 filters.push(prop.substr(4));
             }
             if (prop === 'gsx$region' && item[prop].$t.length) {
                 filters.push(item[prop].$t);
             }
-
             if (prop === 'gsx$fundraising' && item[prop].$t.length) {
                 filters.push('fundraising' + item[prop].$t);
             }
-
             if (prop === 'gsx$awards' && item[prop].$t.length) {
                 filters.push('award');
             }
-
-            // Services
             if (prop.startsWith('gsx$filterservices') && item[prop].$t.length) {
                 var propclean = prop.substr(4);
                 serviceslab[propclean] = item[prop].$t;
             }
-
-            // Clients
             if (prop.startsWith('gsx$filterclients') && item[prop].$t.length) {
                 var propclean = prop.substr(4);
                 clientslab[propclean] = item[prop].$t;
             }
-
-            // Tech
             if (prop.startsWith('gsx$filtertech') && item[prop].$t.length) {
                 var propclean = prop.substr(4);
                 techlab[propclean] = item[prop].$t;
             }
-
-            // Users
             if (prop.startsWith('gsx$users') && item[prop].$t.length) {
                 var propclean = prop.substr(4);
                 userslab[propclean] = item[prop].$t;
             }
-
             if (prop.startsWith('gsx$users') && item[prop].$t.length) {
                 users.push(item[prop].$t);
             }
-
-
         }
 
-
-        // We create an array to store services values
+        // Arrays needed to store values
         var tableservices = [],
             tableclients = [],
             tabletech = [],
             tableusers = [];
 
-        // We loop through services, tech, users and tech
+        // We loop through services, tech, users and tech and push values into their tables
         for (var propertyName in serviceslab) {
             tableservices.push('<div><span class=' + propertyName + '></span><p data-attr="' + propertyName + '"></p></div>');
         }
-
         for (var propertyName in clientslab) {
             tableclients.push('<div><p data-attr="' + propertyName + '"></p></div>');
         }
-
         for (var propertyName in techlab) {
             tabletech.push('<div><p data-attr="' + propertyName + '"></p></div>');
         }
-
         for (var propertyName in userslab) {
             tableusers.push('<div><p data-attr="' + propertyName + '"></p></div>');
         }
-
-
-
+        
         return {
             name: item.gsx$startupname.$t,
             web: item.gsx$web.$t,
@@ -370,17 +291,10 @@ getData().then(function(data) {
             employeesref: item.gsx$employeesref.$t,
             logo: item.gsx$logorenamed.$t,
             region: item.gsx$region.$t,
-
-            // Services
             serviceslab: tableservices.join(''),
-            // Clients
             clientslab: tableclients.join(''),
-            // Tech
             techlab: tabletech.join(''),
-
-            // Tech
             userslab: tableusers.join(''),
-
             users: users.reduce(function(a, b) {
                 return a.concat('<p>', b, '</p>')
             }, '')
@@ -390,18 +304,16 @@ getData().then(function(data) {
         return a.concat(self.render(b))
     }, '');
 
-    //inject into DOM
+    //Inject into DOM
     $('#grid-container').html(els);
 
-
-
-    // ISOTOPE
+    // Isotope plugin
     var qsRegex;
     var filterValue;
     var filterValueR;
+    
     // init Isotope
     var $grid = $('#wrap').isotope({
-        
         itemSelector: '.grid-item',
         masonry: {
             gutter: 20
@@ -418,46 +330,41 @@ getData().then(function(data) {
             employeesD: false,
             creationA: false
         },
-
         filter: function() {
-            var $this = $(this);
-            var searchResult = qsRegex ? $this.find('h4').text().match(qsRegex) : true;
-            var buttonResult = filterValue ? $this.is(filterValue) : true;
-            var buttonResultR = filterValueR ? $this.is(filterValueR) : true;
+            var $this = $(this),
+                searchResult = qsRegex ? $this.find('h4').text().match(qsRegex) : true,
+                buttonResult = filterValue ? $this.is(filterValue) : true,
+                buttonResultR = filterValueR ? $this.is(filterValueR) : true;
             return searchResult && buttonResult && buttonResultR;
         },
-        // sort top priority to lowest priority
-
-
     });
 
-
+    // Execute function when istope is done
     $grid.isotope('on', 'layoutComplete', if_zero);
-    // -------- Filter FUNCTION ----------//
-    // store filters as an array
-    var filtersisotope = [];
-    var $filterRow = $('#option .services, #option .clients, #option .technologies');
+    
+    // -------- Filter FUNCTION (services, clients, technologies) ----------//
+    // Store filters as an array
+    var filtersisotope = [],
+    $filterRow = $('#option .services, #option .clients, #option .technologies');
     $filterRow.on('click', '.filter_btn, .button', function(event) {
-
-        // get filter value
-        var $col = $(this);
-        var colFilter = $col.attr('data-filter');
+        // Display loader 
+        $('#internalloader').css('display','inline-block');
+        // Get attr value
+        var $col = $(this),
+            colFilter = $col.attr('data-filter');
         $col.toggleClass('is-checked');
-        // add or remove col filter from filters
         var isSelected = $col.hasClass('is-checked');
         if (isSelected) {
             filtersisotope.push(colFilter);
         } else {
             removeFrom(filtersisotope, colFilter);
         }
-        // combine filters
+        // Combine filters
         filterValue = filtersisotope.join('');
-        console.log(filterValue);
         $grid.isotope();
-      
     });
 
-    // helper function, remove obj from ary
+    // Remove Obj from an array (helper function)
     function removeFrom(ary, obj) {
         var index = ary.indexOf(obj);
         if (index != -1) {
@@ -465,13 +372,13 @@ getData().then(function(data) {
         }
     }
 
-
-    // Filter Region
-    var filtersisotopeR = [];
-    var $filterRow = $('#option .region');
+    // -------- Filter FUNCTION (regions) ----------//
+    // Store filters as an array
+    var filtersisotopeR = [],
+        $filterRow = $('#option .regions');
     $filterRow.on('click', '.filter_btn, .button', function(event) {
-
-        // get filter value
+        // Display loader
+        $('#internalloader').css('display','inline-block');
         var $col = $(this);
         var colFilter = $col.attr('data-filter');
         $col.toggleClass('is-checked');
@@ -484,32 +391,22 @@ getData().then(function(data) {
         }
         // combine filters
         filterValueR = filtersisotopeR.join('');
-        console.log(filterValueR);
         $grid.isotope();
-       
     });
 
-    // helper function, remove obj from ary
-    function removeFrom(ary, obj) {
-        var index = ary.indexOf(obj);
-        if (index != -1) {
-            ary.splice(index, 1);
-        }
-    }
-
     // ----------- Search FUNCTION --------//
-    // use value of search field to filter
+    // Use value of search field to filter
     var $quicksearch = $('#myInput').keyup(debounce(function() {
+        $('#internalloader').css('display','inline-block');
         qsRegex = new RegExp($quicksearch.val(), 'gi');
         console.log("Search input", qsRegex);
         $grid.isotope();
-
     }));
 
     // ------------- Sort FUNCTION -------------//
-    // bind sort button click
+    // Bind sort button click
     $('.sort').on('click', '.sort_btn', function() {
-
+        $('#internalloader').css('display','inline-block');
         var sortValue = $(this).attr('data-sort-by');
         $('.sort').find('.is-checked').removeClass('is-checked');
         $(this).addClass('is-checked');
@@ -519,30 +416,15 @@ getData().then(function(data) {
         $grid.isotope({
             sortBy: sortValue,
         });
-          if_zero();
-
     });
 
-
-    // Add class sort 
-    $('.sort').each(function(i, buttonGroup) {
-        var $buttonGroup = $(buttonGroup);
-        $buttonGroup.on('.sort_btn', 'button', function() {
-            $buttonGroup.find('.is-checked').removeClass('is-checked');
-            $(this).addClass('is-checked');
-        });
-    });
-
-
-
-    // debounce so filtering doesn't happen every millisecond
+    // Debounce so filtering doesn't happen every millisecond
     function debounce(fn, threshold) {
         var timeout;
         return function debounced() {
             if (timeout) {
                 clearTimeout(timeout);
             }
-
             function delayed() {
                 fn();
                 timeout = null;
@@ -551,61 +433,49 @@ getData().then(function(data) {
         };
     }
 
-
-    // OPEN ITEM
+    // ------------- Toggle startup -------------//
+    // Open startup page
     $grid.on('click', '.grid-item', function() {
         $('.grid-item').not(this).removeClass('big');
         $(this).addClass('big');
-        $grid.isotope('layout');
-        var that = $(this);
+        $grid.isotope('layout'),
+            that = $(this);
         $grid.one('layoutComplete', function() {
-            console.log('loaded');
-            var scrolltopitem = that.offset().top;
-            var calcdiff = scrolltopitem - 100;
-
+            var scrolltopitem = that.offset().top,
+                calcdiff = scrolltopitem - 100;
             $('html, body').animate({
                 scrollTop: calcdiff
             }, 300);
         });
     });
 
-    // CLOSE ITEM 
+    // Close startup page 
     $(".item_close").click(function() {
         $(this).parent('.whenopen').parent().removeClass("big");
         $grid.isotope('layout');
         return false;
-
     });
 
-    // CALL JSON FR WHEN LIST IS READY
+    // Call json FR when json spreadsheet is ready
     jsonload('fr');
     $('.whenopen .en').hide();
     $('.whenopen .fr').show();
     tooltip();
-
 });
 
-
-
-
 function jsonloaded() {
-    console.log('loaded');
-
+    console.log('chargé');
     $('body').css('overflow', 'auto');
     $('#loading').fadeOut();
     $("header").animate({
         opacity: 1,
-
     }, 500, function() {
         $("#option").css('opacity', '1');
     });
 }
 
+// ------------- Display Tooltip hover -------------//
 function tooltip() {
-    // Display Tooltip on over color circles
-
-
-
     $(".vi_cate div").hover(
         function() {
             $(this).children('p').addClass('show_me');
@@ -616,13 +486,7 @@ function tooltip() {
     );
 }
 
-// FUNCTION AIMING TO LOAD JSON LANG
-// Create array for the circle stats
-
-
-
-
-// CALL JSON LANG FR WHEN CLICK FR BTN
+// Call FR json when click button
 $("button#fr").click(function() {
     jsonload('fr');
     // We hide EN desc
@@ -630,29 +494,26 @@ $("button#fr").click(function() {
     $('.whenopen .fr').show();
     $(this).css('text-decoration', 'underline');
     $("button#en").css('text-decoration', 'none');
+    // We restart Tooltip
     tooltip();
-
 });
 
-// CALL JSON LANG EN WHEN CLICK EN BTN
+// Call EN json when click button
 $("button#en").click(function() {
-    // We Hide FR descr
+    jsonload('en');
+    // We hide FR descr
     $('.whenopen .fr').hide();
     $('.whenopen .en').show();
-    jsonload('en');
     $(this).css('text-decoration', 'underline');
     $("button#fr").css('text-decoration', 'none');
+    // We restart Tooltip
     tooltip();
-
 });
 
 
-
-// PARALAXE HOMEPAGE
+// ------------- Paralaxing Hero Image -------------//
 $(window).bind("load resize scroll", function(e) {
     var y = $(window).scrollTop();
-
-
     $("#hd_title").filter(function() {
         return $(this).offset().top < (y + 450) &&
             $(this).offset().top + $(this).height() > y;
@@ -660,17 +521,13 @@ $(window).bind("load resize scroll", function(e) {
 });
 
 
-// FIXED NAV SCROLLING 
+// ------------- Fixed Nav while scrolling -------------//
 var doc_height;
-
 $(window).bind("load resize scroll", function(e) {
     doc_height = $(window).height();
-
 });
 
-
 $(window).on("scroll", function(e) {
-
     if ($(window).scrollTop() > doc_height) {
         $('nav').addClass('fixed');
         $('#option').addClass('fixed');
@@ -678,10 +535,9 @@ $(window).on("scroll", function(e) {
         $('nav').removeClass('fixed');
         $('#option').removeClass('fixed');
     }
-
 });
 
-// SCROLL TO BOTTOM 
+// ------------- Scroll to Next (CTA Home Page) -------------//
 $(".hd_title_cta").on("click", function() {
     $("html, body").animate({
         scrollTop: doc_height
@@ -689,22 +545,29 @@ $(".hd_title_cta").on("click", function() {
     return false;
 });
 
-// STATISTIQUES OPEN/CLOSE
+// ------------- Open/Close statistics page -------------//
+// Open button
 $("#burger").click(function() {
     $('body').css('overflow', 'hidden');
     $('#aside_placeholder').fadeIn(300);
+    // Statistic page slide from left
     $("aside").animate({
         left: "0%",
     }, 300, function() {
-
         // Animate Clients histo
         $("#clients ul li .histo").each(function() {
             var data_wd = $(this).attr('data-wd');
             $(this).animate({
                 width: data_wd + "%",
-            }, 1000, "easeOutExpo", function() {
-                // Animation complete.
-            });
+            }, 1000, "easeOutExpo");
+        });
+
+        // Animate Regions histo
+        $("#regions ul li .histo").each(function() {
+            var data_wd = $(this).attr('data-wd');
+            $(this).animate({
+                width: data_wd + "%",
+            }, 1000, "easeOutExpo");
         });
 
         // Animate Technologies histo
@@ -712,97 +575,74 @@ $("#burger").click(function() {
             var data_wd = $(this).attr('data-wd');
             $(this).animate({
                 width: data_wd + "%",
-            }, 1000, "easeOutExpo", function() {
-                // Animation complete.
-            });
+            }, 1000, "easeOutExpo");
         });
-
     });
-
 });
-
+// Close button
 $("#aside_placeholder, .aside_close").click(function() {
     $('body').css('overflow', 'auto');
-
     $("#clients ul li .histo").each(function() {
         var data_wd = $(this).attr('data-wd');
         $(this).animate({
             width: "0%",
-        }, 100, "easeOutExpo", function() {
-            // Animation complete.
-        });
+        }, 100, "easeOutExpo");
     });
-
+    $("#regions ul li .histo").each(function() {
+        var data_wd = $(this).attr('data-wd');
+        $(this).animate({
+            width: "0%",
+        }, 100, "easeOutExpo");
+    });
     $("#technologies ul li .histo").each(function() {
         var data_wd = $(this).attr('data-wd');
         $(this).animate({
             width: "0%",
-        }, 100, "easeOutExpo", function() {
-            // Animation complete.
-        });
+        }, 100, "easeOutExpo");
     });
-
-
     $('#aside_placeholder').fadeOut(300);
+    // Satistic page unslide from left
     $("aside").animate({
         left: "-100%",
-    }, 300, function() {
-        // Animation complete.
-    });
-
+    }, 300);
 });
 
-// MENU OPEN/CLOSE BUTTON
-
+// ------------- Open/Close Settings Menu -------------//
+// Function to set the height of the 
 function filterheight() {
-
     var opt_height = $('#option').height();
     opt_height_calc = opt_height - 60;
     $('#option').css('margin-top', '-' + opt_height_calc + 'px');
-
 }
-
-
-
+// Open/Close settings menu
 $("nav button, #strip, .opt_footer .item_dropdown").on("click", function() {
     if ($("#option").css("marginTop") == "60px") {
         $('#option').removeClass('rotate');
-
         $("#option").animate({
             marginTop: "-" + opt_height_calc + "px",
-        }, 300, function() {
-            // Animation complete.
-        });
-
+        }, 300);
     } else {
-
         $('#option').addClass('rotate');
-
         $("#option").animate({
             marginTop: "60px",
-        }, 300, function() {
-            // Animation complete.
-        });
+        }, 300);
     }
 });
-
-// CHART ELIPSE STATS AND ANIMATE
-
-// RESIZE EVENT 
+// Reset seetings menu height on resize window
 $(window).resize(function() {
     filterheight();
 });
 
-
-var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e4c0", "#bb7ff3", "#fbc9df"];
+// ------------- Chart Circle Function -------------//
+// As the canvas is zoomed by the progress plugin, we try to have a homogeneous stroke with for each elements
 var strokew_chart = ["10", "7.5", "6", "5", "4", "3.6", "3.3", "3"];
 
 $(".circle").each(function(i) {
-    var count = i + 1;
-    var idcircle = "#circle_" + count;
-    var fromzero = count - 1;
-    var numberposition = 60 + (count * 40);
-    var bar = new ProgressBar.SemiCircle(idcircle, {
+    var count = i + 1,
+        idcircle = "#circle_" + count,
+        fromzero = count - 1,
+        numberposition = 60 + (count * 40),
+        bar = new ProgressBar.SemiCircle(idcircle, {
         strokeWidth: strokew_chart[fromzero],
         easing: 'easeInOut',
         duration: 1000,
@@ -810,13 +650,8 @@ $(".circle").each(function(i) {
         color: colors_chart[fromzero],
     });
 
-
     $("#burger").click(function() {
-
-
-
         bar.animate(circlearray[fromzero] / 100);
-
     });
 
     $("#aside_placeholder,  .aside_close").click(function() {
@@ -831,51 +666,17 @@ $(".circle").each(function(i) {
     })
 });
 
-// SCROLLING EFFECT PARAL
-var $animation_elements = $('.grid-item');
-var $window = $(window);
-
-function check_if_in_view() {
-    var window_height = $window.height();
-    var window_top_position = $window.scrollTop();
-    var window_bottom_position = (window_top_position + window_height);
-
-    $.each($animation_elements, function() {
-        var $element = $(this);
-        var element_height = $element.outerHeight();
-        var element_top_position = $element.offset().top;
-        var element_bottom_position = (element_top_position + element_height);
-
-        //check to see if this current container is within viewport
-        if ((element_bottom_position >= window_top_position) &&
-            (element_top_position <= window_bottom_position)) {
-            $element.addClass('in-view');
-        } else {
-            $element.removeClass('in-view');
-        }
-    });
-}
-
-$window.on('scroll resize', check_if_in_view);
-$window.trigger('scroll');
-
-// HISTO HORIZONTAL CHART ANIMATED
-
-
-
-// FUNCTION TO SET ALL FILTER/SORT ACTIVE
+// ------------- Function to sort all filter/sort active when unselect all -------------//
 function if_zero() {
+    $('#internalloader').css('display','none');
     var zero = $('#option').find('.filter_btn.is-checked').length;
     if (zero == 0) {
-
         $('#option').find('.filter_btn .pastille').addClass('opacity');
-        console.log('zero');
         $('.result p  span').html(number_startup);
     } else {
         $('#option').find('.filter_btn .pastille').removeClass('opacity');
         var ifzerolenght = $('.grid-item:visible').length;
-        console.log(ifzerolenght);
+        $('#internalloader').css('display','none');
         $('.result p  span').html(ifzerolenght);
-
     }
 }
