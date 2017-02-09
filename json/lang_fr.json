@@ -1,25 +1,34 @@
 {
     "homepage":{
-        "top_left":"Initiated by",
-        "top_middle":"Supported by",
-        "main_title":"EdTech Observatory",
-        "headline":"Fond French EdTech startups",
-        "liste":"startups listed",
+        "top_left":"Une démarche initiée par",
+        "top_middle":"Avec le soutien de",
+        "main_title":"EdTech Observatoire",
+        "headline":"Découvrez les acteurs de l'EdTech française",
+        "liste":"startups listées",
         "search":"Rechercher",
-        "bottom":"Co-produced with"
+        "bottom":"Co-réalisé avec"
+    },
+    "option":{
+        "selected":"startups selectionnées",
+        "sortby":"Classer par",
+        "random":"Aléatoire",
+        "alpha":"Ordre Alphabétique",
+        "asc":"Nombre d'employées croissant",
+        "desc":"Nombre d'employées décroissant",
+        "creation":"Date de création"
     },
      "aside":{
         "header": {
             "submit": "Postuler",
-            "share": "Share",
-            "download": "Download",
-            "contact": "Contact"
+            "share": "Partager",
+            "download": "Télécharger",
+            "contact": "Contacter"
         },
         "statistiques":{
-            "title": "Statistics",
-            "rise": "foundraising",
-            "award": "startups awarded",
-            "listed": "startups listed"
+            "title": "Statistiques",
+            "rise": "levées de fonds",
+            "award": "startups récompensées",
+            "listed": "startups listées"
         },
         "services":{
             "title": "Services",
@@ -77,24 +86,19 @@
 
         },
         "description":"Description",
-        "founders":"Foundateurs",
+        "founders":"Équipe",
         "creation":"Date de création",
         "employees":"Nombre de collaborateurs",
         "based":"Basée en",
-        "about":{
-            "title": "About",
-            "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id lacinia risus. Sed feugiat ultrices porta. Donec at purus rutrum, gravida nisl nec, luctus lorem. Phasellus at auctor libero. Vivamus elementum ex sed elit gravida aliquet. Nullam lobortis lorem a metus tempor commodo. Donec tempor mi eu erat imperdiet auctor."
-        },
-        "contact":{
-            "title": "Contact",
-            "label": "fifty-five",
-            "street": "7 rue d'Athènes",
-            "city": "fifty-five",
-            "tel":"0123456789"
-        }
+        "sharethis":"Partager cette startups",
+        "twitter":"Sur Twitter",
+        "facebook":"Sur Facebook",
+        "copylink":"Copier le lien"
     },
-    "product":{
-        "description":"Description"
+    "about":{
+        "title":"À propos",
+        "content":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus arcu sapien, sagittis et nibh at, porta vulputate leo. Nam felis turpis, euismod quis sollicitudin id, posuere ac nunc.",
+        "contact":"fifty-five 75009 Paris"
     },
     "region":{
         "title":"region",
