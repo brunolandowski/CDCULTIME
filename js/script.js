@@ -466,12 +466,9 @@ getData().then(function(data) {
 function jsonloaded() {
     console.log('chargé');
     $('body').css('overflow', 'auto');
-    $('#loading').fadeOut();
-    $("header").animate({
-        opacity: 1,
-    }, 500, function() {
-        $("#option").css('opacity', '1');
-    });
+    $('#loading').hide();
+    $("header").css('opacity','1');
+    $("#option").css('opacity','1');
 }
 
 // ------------- Display Tooltip hover -------------//
@@ -512,6 +509,7 @@ $("button#en").click(function() {
 
 
 // ------------- Paralaxing Hero Image -------------//
+/*
 $(window).bind("load resize scroll", function(e) {
     var y = $(window).scrollTop();
     $("#hd_title").filter(function() {
@@ -519,7 +517,7 @@ $(window).bind("load resize scroll", function(e) {
             $(this).offset().top + $(this).height() > y;
     }).css('background-position', '50% calc(25% - ' + parseInt(y / 2) + 'px');
 });
-
+*/
 
 // ------------- Fixed Nav while scrolling -------------//
 var doc_height;
