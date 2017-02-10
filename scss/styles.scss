@@ -26,6 +26,9 @@ body {
 	font-family: 'Raleway', sans-serif;
 	background:#F5F5F5;
 	overflow:hidden;
+	@media screen and (max-width: 499px){
+    	overflow-y:hidden;
+  	}
 }
 
 // DISABLE OUTLINE BLUE FROM BUTTON 
@@ -130,12 +133,23 @@ header {
 			margin:0 60px;
 			padding-top:10px;
 			height:65px;
+			@media screen and (max-width: 499px){
+    			margin:0 20px;
+    			height:130px;
+
+  			}
+
 			.hd_right {
 				display: inline-block;
 				position:fixed;
 				margin-top:10px;
 				right:60px;
 				z-index:9;
+				@media screen and (max-width: 499px){
+    				right:20px;
+    				top:20px;
+
+  				}
 				button {
 					cursor:pointer;
 					background:transparent;
@@ -203,6 +217,13 @@ header {
 				display: inline-block;
 				vertical-align: top;
 				margin-top:10px;
+				@media screen and (max-width: 499px){
+    				display:block;
+    				margin-bottom: 10px;
+    				&:first-of-type {
+    					margin-top:0;
+    				}
+  				}
 			}
 
 			img {
@@ -213,6 +234,11 @@ header {
 				-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     			filter: grayscale(100%);
     			transition: all .2s ease-in;
+    			@media screen and (max-width: 499px){
+    				height: 30px;
+    				margin-right:20px;
+    				margin-left:0;
+  				}
     			&:hover {
     				-webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
     				filter: grayscale(0%);
@@ -227,6 +253,9 @@ header {
 				border:none;
 				width:1px;
 				background:#ccc;
+				@media screen and (max-width: 499px){
+    				display:none;
+  				}
 			}
 		}
 		
@@ -250,8 +279,17 @@ header {
 			width:500px;
 			margin:auto;
 			text-align: center;
+			@media screen and (max-width: 499px){
+    				width:200px;
+    				padding-top:30px;
+  			}
+
 			img {
 				width:290px;
+				@media screen and (max-width: 499px){
+    				width:200px;
+  				}
+
 			}
 			h1 {
 				font-size: 80px;
@@ -261,6 +299,10 @@ header {
 			p {
 				margin-top:10px;
 				font-size:14px;
+				@media screen and (max-width: 499px){
+    				margin-top:0;
+    				font-size:12px;
+  				}
 			}
 		}
 		.hd_title_cta {
@@ -270,12 +312,19 @@ header {
 			transform: translateX(-50%);
    			margin-left: 50%;
 			bottom:70px;
+			@media screen and (max-width: 499px){
+    				bottom:20px;
+  			}
 			h2 {
 				font-weight: 800;
 				font-size:80px;
 				cursor:pointer;
 				font-family: 'bikobold';
 				height:85px;
+				@media screen and (max-width: 499px){
+    				font-size:40px;
+    				height:40px;
+  				}
 			}
 			p {
 				font-size: 14px;
@@ -330,10 +379,14 @@ header {
 nav {
 	z-index:1;
 	height:60px;
-	
 	width:100%;
 	background:white;
 	margin-bottom:-60px;
+	@media screen and (max-width: 499px){
+    	position:fixed;
+    	top:0;
+  	}
+
 	&.fixed {
 		position:fixed;
 		top:0;
@@ -342,6 +395,9 @@ nav {
 		padding:10px 60px 10px 60px;
 		height:40px;
 		box-shadow: 0px 0px 15px 0px rgba(204, 204, 204, 0.2);
+		@media screen and (max-width: 499px){
+    		padding:10px 20px 10px 20px;
+  		}
 		input {
 			outline:none;
 			width: 180px;
@@ -360,6 +416,10 @@ nav {
 			height:40px;
 			font-size: 18px;
 			font-weight:500;
+			@media screen and (max-width: 499px){
+    			display:none;
+  			}
+
 
 		}
 		button {
@@ -370,6 +430,9 @@ nav {
 			&:hover {
 				div {
 					span {
+						@media screen and (max-width: 499px){
+    						animation-duration: 0s; 
+  						}
 						animation-name: opt_btn_2; 
 						animation-duration: .5s; 
 						animation-iteration-count: infinite;
@@ -377,6 +440,9 @@ nav {
 					}
 					&:first-child {
 						span {
+							@media screen and (max-width: 499px){
+    							animation-duration: 0s; 
+  							}
 							animation-name: opt_btn_1-3; 
 							animation-duration: .75s; 
 							animation-iteration-count: infinite;
@@ -385,6 +451,9 @@ nav {
 					} 
 					&:last-child {
 						span {
+							@media screen and (max-width: 499px){
+    							animation-duration: 0s; 
+  							}
 							animation-name: opt_btn_1-3; 
 							animation-duration: 1s; 
 							animation-iteration-count: infinite;
@@ -443,7 +512,7 @@ nav {
 	.grid-item { 
 		width: calc(16.666666% - 17px);
 	 	cursor:pointer;
-	 
+	 	
 		-webkit-box-shadow: 0px 0px 15px 0px rgba(204,204,204,.2);
 		-moz-box-shadow: 0px 0px 15px 0px rgba(204,204,204,.2);
 		box-shadow: 0px 0px 15px 0px rgba(204,204,204,.2);
@@ -697,6 +766,7 @@ nav {
 #option {
 	max-height:calc(100% - 60px);
 	overflow-y:scroll;
+	-webkit-overflow-scrolling: touch;
 	opacity:0;
 	float:left;
 	margin-top:60px;
@@ -709,6 +779,7 @@ nav {
 	color:#CCCCCC;
 	position:relative;
 	z-index:-1;
+	
 	&.rotate #strip .arrow {
 		transform: rotate(0deg);
 	}
@@ -780,7 +851,11 @@ nav {
 	}
 	.opt_wrap {
 		margin:50px 60px;
+		@media screen and (max-width: 499px){
+    		margin:20px;
+  		}
 	}
+	
 	&.option_show {
 		
 	}
@@ -790,6 +865,9 @@ nav {
 	}
 	.opt_wrap {
 		display:flex;
+		@media screen and (max-width: 499px){
+    		flex-wrap: wrap;
+  		}
 	}
 	h4 {
 		font-size:14px;
@@ -819,6 +897,10 @@ nav {
 	}
 	.opt_left_col {
 		width:33.333333%;
+		@media screen and (max-width: 499px){
+    		width:100%;
+    		order:2;
+  		}
 		.services {
 			
 			
@@ -831,6 +913,10 @@ nav {
 	}
 	.opt_middle_col {
 		width:33.333333%;
+		@media screen and (max-width: 499px){
+    		width:100%;
+    		order:3;
+  		}
 		
 		.sort {
 			
@@ -843,12 +929,18 @@ nav {
 	}
 	.opt_right_col {
 		width:33.333333%;
+		@media screen and (max-width: 499px){
+    		width:100%;
+    		order:1;
+  		}
 		.technologies {
 
 			
 			
 		}
 		.result {
+			@media screen and (max-width: 499px){
+    			display:none;  			}
 			p {
 				span {
 					font-size:40px;
@@ -866,7 +958,11 @@ nav {
 	.opt_footer {
 		border-top:1px solid #F5F5F5;
 		margin:20px 60px;
+		@media screen and (max-width: 499px){
+    		margin:20px;
+  		}
 		.item_dropdown {
+
 				&:hover {
 					opacity:.5;
 				}
@@ -913,9 +1009,13 @@ aside  {
 	position:fixed;
 	top:0;
 	width:66.666666%;
+	@media screen and (max-width: 499px){
+    		width: 100%;
+  	}
 	height:100%;
 	background:rgba(51, 51, 51, 0.97);
 	overflow:scroll;
+	-webkit-overflow-scrolling: touch;
 	color:#cccccc;
 	font-size:12px;
 	z-index:999;
@@ -934,7 +1034,9 @@ aside  {
 	}
 	.inner {
 		margin:30px 60px;
-		
+		@media screen and (max-width: 499px){
+    		margin:20px;
+  		}
 		.wrapper {
 			 display: flex; /* or inline-flex */
 			
@@ -975,6 +1077,9 @@ aside  {
 
 			}
 			ul {
+				@media screen and (max-width: 499px){
+    				display:none;
+  				}
 				li {
 					list-style:none;
 					line-height:20px;
@@ -1001,6 +1106,8 @@ aside  {
 			border-bottom:1px solid #F5F5F5;
 			padding-bottom:30px;
 			ul {
+				
+
 				li {
 					display:inline-block;
 					font-size:14px;

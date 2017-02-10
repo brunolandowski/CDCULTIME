@@ -31,7 +31,7 @@
             "listed": "startups listées"
         },
         "services":{
-            "title": "Services",
+            "title": "Produits",
             "loop":{
                 "filterservices1": "Outils de gestion pour enseigner",
                 "filterservices2": "Enseignement académique",
@@ -46,11 +46,11 @@
         "clients":{
             "title": "Clients",
             "loop":{
-                "filterclients1": "Ecole et universite",
-                "filterclients2": "Organisation de lentrainemen",
-                "filterclients3": "Entreprise",
-                "filterclients4": "ONG et organisation non public",
-                "filterclients5": "Indivudi",
+                "filterclients1": "Établissements d'enseignement",
+                "filterclients2": "Organismes de formation",
+                "filterclients3": "Entreprises",
+                "filterclients4": "Services publics / associations",
+                "filterclients5": "Particuliers",
                 "filterclients6": "Autre"}
 
         },
@@ -59,21 +59,21 @@
             "loop":{
                 "filtertech1": "LMS, CMS etc.",
                 "filtertech2": "Contenu innovatif",
-                "filtertech3": "Outil dappretissage",
-                "filtertech4": "Service de distribution",
-                "filtertech5": "Jeux dapprentissage",
-                "filtertech6": "IoT & ecole dogitial",
-                "filtertech7": "Ecode de programmation",
-                "filtertech8": "Platefrome de service",
-                "filtertech9": "Outil sociaux",
-                "filtertech10": "Realite virutelle et augmentee",
-                "filtertech11": "Equipements et infrastructures",
-                "filtertech12": "Technologies back middle",
+                "filtertech3": "Adaptative learning",
+                "filtertech4": "Solutions de distribution",
+                "filtertech5": "Games & learning apps",
+                "filtertech6": "IoT & digital school places",
+                "filtertech7": "Blended learning",
+                "filtertech8": "Plateforme d'agrégation et distribution de services",
+                "filtertech9": "Social media / outils de collaboration",
+                "filtertech10": "Réalite virtuelle ou augmentée",
+                "filtertech11": "Supports, équipements",
+                "filtertech12": "Technologies de back/middle office, connections",
                 "filtertech13": "Autre"}
 
         },
         "regions":{
-            "title":"Region",
+            "title":"Regions",
             "loop":{
                 "IDF":"Île-de-France",
                 "HDF":"Hauts-de-France",
@@ -93,14 +93,14 @@
         "users":{
             "title": "Utilisateurs",
             "loop":{
-                "users1": "LMS, CMS etc.",
-                "users2": "Contenu innovatif",
-                "users3": "Outil dappretissage",
-                "users4": "Outil dappretissage",
-                "users5": "Outil dappretissage",
-                "users6": "Outil dappretissage",
-                "users7": "Outil dappretissage",
-                "users8": "Outil dappretissage"}
+                "users1": "Élèves de maternelle",
+                "users2": "Élèves du CP à la terminales",
+                "users3": "Étudiants",
+                "users4": "Apprentis et étudiants en voie professionnelle",
+                "users5": "Établissement et professionnels de l'enseignement",
+                "users6": "Particuliers",
+                "users7": "Individus en emploi",
+                "users8": "Individus en reconversion ou sans emploi"}
 
         },
         "description":"Description",
@@ -115,8 +115,8 @@
     },
     "about":{
         "title":"À propos",
-        "content":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus arcu sapien, sagittis et nibh at, porta vulputate leo. Nam felis turpis, euismod quis sollicitudin id, posuere ac nunc.",
-        "contact":"fifty-five 75009 Paris"
+        "content":"L’observatoire de la EdTech rassemble les acteurs du numérique pour l'éducation et la formation en France. </p><p>Plus de 250 organisations innovantes (startup, pme, et associations) dessinent l'école de demain, l'université du futur et la révolution de l'apprentissage tout au long de la vie. </p><p>Pour quels apprenants ? Pour quels acheteurs ? Grâce à quelles technologies ? Leurs produits et leurs services sont présentés dans ce premier observatoire interactif de la EdTech française. Conçu, dans un mode collaboratif et crowdsourcé, par et pour l'écosystème numérique de l'éducation et de la formation, l'Observatoire a pour objectif de valoriser la scène EdTech française et de montrer les grandes tendances de ce secteur. Mis à jour régulièrement, il a été conçu pour être un outil permettant d’identifier les solutions et de faciliter les choix des décideurs en matière de services numériques innovants. L'observatoire est le fruit de la collaboration de la CDC et Cap Digital et sa structure EdFab dédiée à l’éducation, la formation et l’emploi. Il a été réalisé avec le soutien de la Maif et de la région Île-de-France. Il est coréalisé avec des acteurs clés de l’écosystème : OpenClassRooms, 360Learning, LearnAssembly, Appscho, MyBlee Math, Ed21, Educpros , la fondation HEC, le fonds EduCapital, l’initiative EdTechWorldTour, les clusters EducAzur et le SPN Poitou Charentes membre du réseau thématique FrenchTech Edutainment. ",
+        "contact":"fifty-five </p><p>7 rue d'Athènes</p><p>75009 Paris"
     }
 }
 

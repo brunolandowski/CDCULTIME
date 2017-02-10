@@ -40,6 +40,7 @@ function jsonload(x) {
         $('aside #box_stats p:nth-child(2)').html("<span>" + number_fundraising + "</span>" + data.aside.statistiques.rise);
         $('aside #box_stats p:nth-child(3)').html("<span>" + number_award + "</span>" + data.aside.statistiques.award);
         $('aside #box_stats p:nth-child(4)').html("<span>" + number_startup + "</span>" + data.aside.statistiques.listed);
+         $('aside #box_about p').html(data.about.content);
 
 
         // Startup page calls
@@ -83,12 +84,20 @@ function jsonload(x) {
         }
         $('.users .left p').html(data.aside.users.title);
 
+        // Regions
+        $.each(data.aside.regions.loop, function(index, element) {
+             $('p.'+index).html(element);  
+        });
+        
+
         // Asided
         $('.users .left p').html(data.aside.users.title);
         $('.founders .left p').html(data.aside.founders);
         $('.creation .left p').html(data.aside.creation);
         $('.employees .left p').html(data.aside.employees);
         $('.based .left p').html(data.aside.based);
+
+       
 
         // Statistiques page call
         var arraystats = ['services', 'clients', 'technologies', 'regions'];
