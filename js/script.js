@@ -214,7 +214,7 @@ var template = function(content, params) {
  */
 
 var render = function(item) {
-    var panel = '<div data-employees="{{employeesref}}" data-creation="{{creation}}" class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span><a target="_blank" href="{{web}}">{{web}}</a></span><div class="vi_cate">{{serviceslab}}</div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span><img class="logostartup" src="img/logos/{{logo}}.jpg"><div class="row description"><div class="left"><p></p></div><div class="right"><p><div class="fr">{{description_fr}}</div><div class="en">{{description_en}}</div></p></div></div><div class="row services"><div class="left"><p></p></div><div class="right">{{serviceslab}}</div></div><div class="row users"><div class="left"><p>Utilisateurs</p></div><div class="right">{{userslab}}</div></div><div class="row clients"><div class="left"><p>Clients</p></div><div class="right">{{clientslab}}</div></div><div class="row technologies"><div class="left"><p>Technologies</p></div><div class="right">{{techlab}}</div></div><div class="row founders"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row creation"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row employees"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row based"><div class="left"><p>Basée en</p></div><div class="right"><p class="{{region}}">{{region}}</p></div></div><span class="item_dropdown"><span class="cale"></span><span>Partager cette startup<img class="arrow" src="img/arrow_up.svg"><div class="item_dropdown_content"><p><a href="http://google.fr">Sur Twitter</a></p><p><a href="http://google.fr">Sur Facebook</a></p><p><a href="http://google.fr">Copier le lien</a></p></div></span></div></div>';
+    var panel = '<div data-employees="{{employeesref}}" data-creation="{{creation}}" class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span><a target="_blank" href="http://{{web}}">{{web}}</a></span><div class="vi_cate">{{serviceslab}}</div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span>{{logo}}<div class="row description"><div class="left"><p></p></div><div class="right"><p><div class="fr">{{description_fr}}</div><div class="en">{{description_en}}</div></p></div></div><div class="row services"><div class="left"><p></p></div><div class="right">{{serviceslab}}</div></div><div class="row users"><div class="left"><p>Utilisateurs</p></div><div class="right">{{userslab}}</div></div><div class="row clients"><div class="left"><p>Clients</p></div><div class="right">{{clientslab}}</div></div><div class="row technologies"><div class="left"><p>Technologies</p></div><div class="right">{{techlab}}</div></div><div class="row founders"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row creation"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row employees"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row based"><div class="left"><p>Basée en</p></div><div class="right"><p class="{{region}}">{{region}}</p></div></div><span class="item_dropdown"><span class="cale"></span><span>Partager cette startup<img class="arrow" src="img/arrow_up.svg"><div class="item_dropdown_content"><p><a href="http://google.fr">Sur Twitter</a></p><p><a href="http://google.fr">Sur Facebook</a></p><p><a href="http://google.fr">Copier le lien</a></p></div></span></div></div>';
     return template(panel, item);
 }
 
@@ -287,7 +287,14 @@ getData().then(function(data) {
         for (var propertyName in userslab) {
             tableusers.push('<div><p data-attr="' + propertyName + '"></p></div>');
         }
+
+        if (item.gsx$logorenamed.$t) {
+            var logos = '<img class="logostartup" src="img/logos/'+item.gsx$logorenamed.$t+'.jpg">';
+        } else {
+            var logos = "";
+        }
         
+
         return {
             name: item.gsx$startupname.$t,
             web: item.gsx$web.$t,
@@ -298,7 +305,7 @@ getData().then(function(data) {
             creation: item.gsx$creation.$t,
             employees: item.gsx$employees.$t,
             employeesref: item.gsx$employeesref.$t,
-            logo: item.gsx$logorenamed.$t,
+            logo: logos,
             region: item.gsx$region.$t,
             serviceslab: tableservices.join(''),
             clientslab: tableclients.join(''),
@@ -324,6 +331,7 @@ getData().then(function(data) {
     // init Isotope
     var $grid = $('#wrap').isotope({
         itemSelector: '.grid-item',
+        // transitionDuration: 0,
         masonry: {
             gutter: 20
         },
@@ -635,11 +643,11 @@ $("nav button, #strip, .opt_footer .item_dropdown").on("click", function() {
         }, 300);
     }
 });
+
 // Reset seetings menu height on resize window
 $(window).resize(function() {
     filterheight();
 });
-
 // ------------- Chart Circle Function -------------//
 // As the canvas is zoomed by the progress plugin, we try to have a homogeneous stroke with for each elements
 var strokew_chart = ["10", "7.5", "6", "5", "4", "3.6", "3.3", "3"];
