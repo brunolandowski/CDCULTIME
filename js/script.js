@@ -40,7 +40,9 @@ function jsonload(x) {
         $('aside #box_stats p:nth-child(2)').html("<span>" + number_fundraising + "</span>" + data.aside.statistiques.rise);
         $('aside #box_stats p:nth-child(3)').html("<span>" + number_award + "</span>" + data.aside.statistiques.award);
         $('aside #box_stats p:nth-child(4)').html("<span>" + number_startup + "</span>" + data.aside.statistiques.listed);
-         $('aside #box_about p').html(data.about.content);
+        $('aside #box_about h3').html(data.about.title);
+        $('aside #box_about p').html(data.about.content);
+        $('.wrapperpart p').html(data.about.produced);
 
 
         // Startup page calls
@@ -89,6 +91,17 @@ function jsonload(x) {
              $('p.'+index).html(element);  
         });
         
+        // Fitler Sort 
+        $('.sort h4').html(data.option.sortby);
+        $('.sort ul li:nth-child(1) p').html(data.option.random);
+        $('.sort ul li:nth-child(2) p').html(data.option.alpha);
+        $('.sort ul li:nth-child(3) p').html(data.option.asc);
+        $('.sort ul li:nth-child(4) p').html(data.option.desc);
+        $('.sort ul li:nth-child(5) p').html(data.option.creation);
+
+        // Result
+        $('.result .resultnumber').html(data.option.selected);
+        $('.opt_footer .item_dropdown span:last-of-type').html(data.option.validate);
 
         // Asided
         $('.users .left p').html(data.aside.users.title);
@@ -327,11 +340,15 @@ getData().then(function(data) {
     var qsRegex;
     var filterValue;
     var filterValueR;
+
+    Isotope.prototype._positionItem = function( item, x, y ) {
+        item.goTo( x, y );
+    };
     
     // init Isotope
     var $grid = $('#wrap').isotope({
+        transitionDuration: 0,
         itemSelector: '.grid-item',
-        // transitionDuration: 0,
         masonry: {
             gutter: 20
         },
@@ -393,7 +410,7 @@ getData().then(function(data) {
     // Store filters as an array
     var filtersisotopeR = [],
         $filterRow = $('#option .regions');
-    $filterRow.on('click', '.filter_btn, .button', function(event) {
+    $filterRow.on('click', '.filter_btn', function(event) {
         // Display loader
         $('#internalloader').css('display','inline-block');
         var $col = $(this);
@@ -457,13 +474,15 @@ getData().then(function(data) {
         $(this).addClass('big');
         $grid.isotope('layout'),
             that = $(this);
-        $grid.one('layoutComplete', function() {
+        
+        
             var scrolltopitem = that.offset().top,
                 calcdiff = scrolltopitem - 100;
-            $('html, body').animate({
+            $('html, body').delay(10).animate({
                 scrollTop: calcdiff
             }, 300);
-        });
+        
+        
     });
 
     // Close startup page 
@@ -626,7 +645,8 @@ $("#aside_placeholder, .aside_close").click(function() {
 // Function to set the height of the 
 function filterheight() {
     var opt_height = $('#option').height();
-    opt_height_calc = opt_height - 60;
+    // Make sure ption will be above window, even on mobile
+    opt_height_calc = opt_height + 60;
     $('#option').css('margin-top', '-' + opt_height_calc + 'px');
 }
 // Open/Close settings menu
@@ -649,7 +669,7 @@ $(window).resize(function() {
     filterheight();
 });
 // ------------- Chart Circle Function -------------//
-// As the canvas is zoomed by the progress plugin, we try to have a homogeneous stroke with for each elements
+// As the canvas is zoomed by the progress plugin, we try to have a homogeneous stroke with for each element
 var strokew_chart = ["10", "7.5", "6", "5", "4", "3.6", "3.3", "3"];
 
 $(".circle").each(function(i) {
@@ -687,11 +707,11 @@ function if_zero() {
     var zero = $('#option').find('.filter_btn.is-checked').length;
     if (zero == 0) {
         $('#option').find('.filter_btn .pastille').addClass('opacity');
-        $('.result p  span').html(number_startup);
+        $('.result p span').html(number_startup);
     } else {
         $('#option').find('.filter_btn .pastille').removeClass('opacity');
         var ifzerolenght = $('.grid-item:visible').length;
         $('#internalloader').css('display','none');
-        $('.result p  span').html(ifzerolenght);
+        $('.result p span').html(ifzerolenght);
     }
 }

@@ -108,6 +108,7 @@ button {
 	z-index:99;
 	@media screen and (max-width: 499px){
     	z-index:999;
+    	top:0;
 
   	}
 	#ball {
@@ -143,8 +144,11 @@ header {
 			height:65px;
 			@media screen and (max-width: 499px){
     			margin:0 20px;
-    			height:170px;
+    			height:150px;
 
+  			}
+  			@media screen and (min-width: 500px) and (max-width: 1000px){
+    			height:110px;
   			}
 
 			.hd_right {
@@ -157,6 +161,9 @@ header {
     				right:20px;
     				top:10px;
 
+  				}
+  				@media screen and (min-width: 500px) and (max-width: 1000px){
+    				top:10px;
   				}
 				button {
 					cursor:pointer;
@@ -231,6 +238,7 @@ header {
 				@media screen and (max-width: 499px){
     				display: block;
     				margin-bottom:10px;
+    				font-size: 10px;
     				&:first-of-type {
     					margin-top:0;
     				}
@@ -246,7 +254,7 @@ header {
     			filter: grayscale(100%);
     			transition: all .2s ease-in;
     			@media screen and (max-width: 499px){
-    				height: 50px;
+    				height: 40px;
     				margin-right:20px;
     				margin-left:0;
   				}
@@ -267,6 +275,12 @@ header {
 				@media screen and (max-width: 499px){
     				display:none;
   				}
+  				@media screen and (min-width: 500px) and (max-width: 1000px){
+    				display: block;
+    				background:transparent;
+    				height:0;
+  				}
+
 			}
 		}
 		
@@ -284,9 +298,11 @@ header {
 		-moz-background-size: cover;
 		-o-background-size: cover;
 		@media screen and (max-width: 499px){
-    		height:calc(100% - 240px);
+    		height:calc(100% - 180px);
   		}
-		
+		@media screen and (min-width: 500px) and (max-width: 1000px){
+    		height:calc(100% - 120px);
+  		}
 		.hd_title_ct {
 			padding-top:100px;
 			width:500px;
@@ -300,7 +316,7 @@ header {
 			img {
 				width:290px;
 				@media screen and (max-width: 499px){
-    				width:200px;
+    				width:150px;
   				}
 
 			}
@@ -326,7 +342,7 @@ header {
    			margin-left: 50%;
 			bottom:70px;
 			@media screen and (max-width: 499px){
-    				bottom:20px;
+    				bottom:10px;
   			}
 			h2 {
 				font-weight: 800;
@@ -351,6 +367,9 @@ header {
 				animation-duration: .75s; 
 				animation-iteration-count: infinite;
 				animation-timing-function: ease-in-out;
+				@media screen and (max-width: 499px){
+    				margin-top:0;
+  				}
 			}
 		}
 	}
@@ -436,6 +455,9 @@ nav {
 			@media screen and (max-width: 499px){
     			display:none;
   			}
+  			@media screen and (min-width: 500px) and (max-width: 1000px){
+    			display:none;
+  			}
 
 
 		}
@@ -448,6 +470,10 @@ nav {
     			margin-left:0px;
     			margin-top:10px;
 
+  			}
+  			@media screen and (min-width: 500px) and (max-width: 1000px){
+    			margin-left:0px;
+    			margin-top:10px;
   			}
 			&:hover {
 				div {
@@ -535,12 +561,10 @@ nav {
 		width: calc(16.666666% - 17px);
 	 	cursor:pointer;
 	 	
-		-webkit-box-shadow: 0px 0px 15px 0px rgba(204,204,204,.2);
+	 	-webkit-box-shadow: 0px 0px 15px 0px rgba(204,204,204,.2);
 		-moz-box-shadow: 0px 0px 15px 0px rgba(204,204,204,.2);
 		box-shadow: 0px 0px 15px 0px rgba(204,204,204,.2);
-		 -webkit-transition: opacity 0.5s ease-in-out;
-    	-moz-transition: opacity 0.5s ease-in-out;
-    	transition: opacity 0.5s ease-in-out;
+		
 	 	background:white;
 	 	margin-bottom: 20px;
 	 	@media screen and (min-width: 800px) and (max-width: 1200px){
@@ -584,6 +608,11 @@ nav {
 	 			h4 {
 	 				font-size:24px;
 	 				height: 30px;
+	 				@media screen and (max-width: 499px){
+    					height: auto;
+    					line-height:1.4;
+    					width:calc(100% - 40px);
+  					}
 	 			}
 	 		}
 	 		.whenopen {
@@ -619,6 +648,9 @@ nav {
     			transform-origin: 8px 8px;
           		transition: transform .3s ease-in-out;
           		cursor:pointer;
+          		@media screen and (max-width: 499px){
+    				right: 20px;
+  				}
           		&:hover {
           			transform: rotate(180deg);
           		}
@@ -699,7 +731,7 @@ nav {
 				z-index:2;
 				@media screen and (max-width: 499px){
     				float:none;
-    				width:100%;
+    				width:calc(100% - 40px);
     				background:transparent;
     				color:#333;
     				display: block;
@@ -727,7 +759,7 @@ nav {
     					left:0;
     					padding:0;
     					box-shadow:none;
-
+						width:100%;
     					
 					}
 					a {
@@ -735,7 +767,7 @@ nav {
 						text-decoration: none;
 						@media screen and (max-width: 499px){
 	    					background:#333;
-	    					width:calc(100% - 40px);
+	    					
 	    					padding-top:7px;
 	    					padding-bottom:7px;
 	    					margin-top: 10px;
@@ -808,6 +840,9 @@ nav {
 						
 						&.show_me {
 							display:block;
+							@media screen and (max-width: 499px){
+    							display: none;
+  							}
 						}
 					}
 					
@@ -939,6 +974,9 @@ nav {
 		@media screen and (max-width: 499px){
     		flex-wrap: wrap;
   		}
+  		@media screen and (min-width: 500px) and (max-width: 1000px){
+    		flex-wrap: wrap;
+  		}
 	}
 	h4 {
 		font-size:14px;
@@ -971,7 +1009,13 @@ nav {
 		@media screen and (max-width: 499px){
 			margin-top:20px;
     		width:100%;
+    		order:3;
+  		}
+  		@media screen and (min-width: 500px) and (max-width: 1000px){
+    		margin-top:20px;
+    		width:50%;
     		order:2;
+    		
   		}
 		.services {
 			
@@ -988,9 +1032,14 @@ nav {
 		@media screen and (max-width: 499px){
 			margin-top:20px;
     		width:100%;
-    		order:3;
+    		order:2;
+    		
   		}
-		
+		@media screen and (min-width: 500px) and (max-width: 1000px){
+    		margin-top:20px;
+    		width:50%;
+    		order:2;
+  		}
 		.sort {
 			
 			margin-top:20px;
@@ -1006,6 +1055,11 @@ nav {
     		width:100%;
     		order:1;
   		}
+  		@media screen and (min-width: 500px) and (max-width: 1000px){
+    		width:50%;
+    		order:3;
+    		margin-top:20px;
+  		}
 		.technologies {
 
 			
@@ -1013,8 +1067,15 @@ nav {
 		}
 		.result {
 			@media screen and (max-width: 499px){
-    			display:none;  			}
+    			display:none;  		
+    		}
+    		@media screen and (min-width: 500px) and (max-width: 1000px){
+    			position:absolute;
+    			left:50%;
+
+  			}
 			p {
+				display: inline-block;
 				span {
 					font-size:40px;
 					margin-right:10px;
@@ -1025,7 +1086,9 @@ nav {
 			}
 			position:absolute;
 			bottom:160px;
-			
+			.resultnumber {
+				display: inline-block;
+			}
 		}
 	}
 	.opt_footer {
@@ -1067,13 +1130,14 @@ nav {
 // MENU STAT BURGER
 aside  {
 	.wrapperpart {
-		width:100%;
+		width:calc(100% - 120px);
 		padding: 30px 60px;
 		
 		@media screen and (max-width: 499px){
     		padding: 30px 20px;
     		width:calc(100% - 40px);
   		}
+
 		p {
 				
 			margin-bottom: 20px; 
@@ -1090,9 +1154,13 @@ aside  {
 	position:fixed;
 	top:0;
 	width:66.666666%;
-	@media screen and (max-width: 499px){
-    		width: 100%;
+	@media screen and (max-width: 1000px){
+    	width: 100%;
   	}
+  	@media screen and (min-width: 1001px) and (max-width: 1280px){
+    	width: 80%;
+  	}
+  	
 	height:100%;
 	background:rgba(51, 51, 51, 0.97);
 	overflow:scroll;
@@ -1148,7 +1216,7 @@ aside  {
 				
 				span {
 					font-size: 20px;
-					margin-right:10px;
+					margin-right:5px;
 					font-family: bikobold;
 					color:white;
 				}
@@ -1260,6 +1328,7 @@ aside  {
 	@media screen and (max-width: 499px){
     	display:none;
   	}
+  	
 	.circle {
 		transform: scale(1, -1) rotate(90deg);
 		transform-origin: 0 100%;
