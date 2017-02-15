@@ -1,3 +1,6 @@
+console.log("%cMade by fifty-five the data company", "background: #B61924; color: #F5F5F5; padding: 5px 10px;");
+console.log("%chttp://fifty-five.com", "color:#333");
+
 // -------- Filter FUNCTION ----------//
 function countObjectProperties(obj) {
     var count = 0;
@@ -32,10 +35,18 @@ function jsonload(x) {
         $('nav input').attr("placeholder", data.homepage.search);
 
         // Statistic page json call
-        $('#aside_header ul li:nth-child(1)').html(data.aside.header.submit);
-        $('#aside_header ul li:nth-child(2)').html(data.aside.header.share);
-        $('#aside_header ul li:nth-child(3)').html(data.aside.header.download);
-        $('#aside_header ul li:nth-child(4)').html(data.aside.header.contact);
+        $('#aside_header ul li:nth-child(1) a').html(data.aside.header.submit);
+        $('#aside_header ul li:nth-child(2) .sharethis').html(data.aside.header.share);
+        $('#aside_header .item_dropdown_content p:nth-child(1) a').html(data.aside.twitter);
+        $('#aside_header .item_dropdown_content p:nth-child(2) a').html(data.aside.facebook);
+        $('#aside_header .item_dropdown_content p:nth-child(3) a').html(data.aside.copylink);
+        $('#aside_header .item_dropdown_content p:nth-child(3) span').html(data.aside.copylinkcopied);
+
+        $('#aside_header ul li:nth-child(3) a').html(data.aside.header.download);
+        $('#aside_header ul li:nth-child(4) a').html(data.aside.header.contact);
+        $('#aside_header ul li:nth-child(5)').html(data.about.title);
+
+
         $('aside #box_stats h3').html(data.aside.statistiques.title);
         $('aside #box_stats p:nth-child(2)').html("<span>" + number_fundraising + "</span>" + data.aside.statistiques.rise);
         $('aside #box_stats p:nth-child(3)').html("<span>" + number_award + "</span>" + data.aside.statistiques.award);
@@ -177,6 +188,7 @@ function jsonload(x) {
         filterheight();
         jsonloaded();
         if_zero();
+        socialandcopy();
     });
 }
 
@@ -231,7 +243,7 @@ var template = function (content, params) {
  * @returns {void}
  */
 var render = function (item) {
-    var panel = '<div data-employees="{{employeesref}}" data-creation="{{creation}}" class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span><a target="_blank" href="http://{{web}}">{{web}}</a></span><div class="vi_cate">{{serviceslab}}</div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span>{{logo}}<div class="row description"><div class="left"><p></p></div><div class="right"><p><div class="fr">{{description_fr}}</div><div class="en">{{description_en}}</div></p></div></div><div class="row services"><div class="left"><p></p></div><div class="right">{{serviceslab}}</div></div><div class="row users"><div class="left"><p>Utilisateurs</p></div><div class="right">{{userslab}}</div></div><div class="row clients"><div class="left"><p>Clients</p></div><div class="right">{{clientslab}}</div></div><div class="row technologies"><div class="left"><p>Technologies</p></div><div class="right">{{techlab}}</div></div><div class="row founders"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row creation"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row employees"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row based"><div class="left"><p>Basée en</p></div><div class="right"><p class="{{region}}">{{region}}</p></div></div><span class="item_dropdown"><span class="cale"></span><span><p class="sharethis">Partager cette startup</p><img class="arrow" src="img/arrow_up.svg"><div class="item_dropdown_content"><p><a href="http://google.fr">Sur Twitter</a></p><p><a href="http://google.fr">Sur Facebook</a></p><p><a href="http://google.fr">Copier le lien</a></p></div></span></div></div>';
+    var panel = '<div data-employees="{{employeesref}}" data-creation="{{creation}}" class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span><a target="_blank" href="http://{{web}}">{{web}}</a></span><div class="vi_cate">{{serviceslab}}</div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span>{{logo}}<div class="row description"><div class="left"><p></p></div><div class="right"><p><div class="fr">{{description_fr}}</div><div class="en">{{description_en}}</div></p></div></div><div class="row services"><div class="left"><p></p></div><div class="right">{{serviceslab}}</div></div><div class="row users"><div class="left"><p>Utilisateurs</p></div><div class="right">{{userslab}}</div></div><div class="row clients"><div class="left"><p>Clients</p></div><div class="right">{{clientslab}}</div></div><div class="row technologies"><div class="left"><p>Technologies</p></div><div class="right">{{techlab}}</div></div><div class="row founders"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row creation"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row employees"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row based"><div class="left"><p>Basée en</p></div><div class="right"><p class="{{region}}">{{region}}</p></div></div><span class="item_dropdown"><span class="cale"></span><span><p class="sharethis">Partager cette startup</p><img class="arrow" src="img/arrow_up.svg"><div class="item_dropdown_content"><p><a target="_blank" class="twitter">Sur Twitter</a></p><p><a target="_blank" class="facebook">Sur Facebook</a></p><p><a onclick="CopyLinkitem()">Copier le lien</a><span class="copieditem">copié</span></p></div></span></div></div>';
     return template(panel, item);
 }
 
@@ -449,7 +461,7 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_
     var $quicksearch = $('#myInput').keyup(debounce(function () {
         $('#internalloader').css('display', 'inline-block');
         qsRegex = new RegExp($quicksearch.val(), 'gi');
-        console.log("Search input", qsRegex);
+       
         $grid.isotope();
     }));
 
@@ -462,7 +474,7 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_
         $(this).addClass('is-checked');
         // make an array of values
         sortValue = sortValue.split(',');
-        console.log("Sorting button click", sortValue);
+        
         $grid.isotope({
             sortBy: sortValue,
         });
@@ -486,7 +498,10 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_
     // ------------- Toggle startup -------------//
     // Open startup page
     $grid.on('click', '.grid-item', function () {
-        //update hash url
+        if ($(this).hasClass("big")) {
+            
+        } else {
+            //update hash url
         var hash = '#'.concat(encodeURIComponent($('article h4', this).text()));
         if (window.history.pushState)
             window.history.pushState(null, null, hash);
@@ -499,9 +514,12 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_
 
         var scrolltopitem = that.offset().top,
             calcdiff = scrolltopitem - 100;
+
         $('html, body').delay(10).animate({
             scrollTop: calcdiff
         }, 300);
+        }    
+        
 
     });
 
@@ -524,7 +542,7 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_
 });
 
 function jsonloaded() {
-    console.log('chargé');
+   
     $('body').css('overflow', 'auto');
     $('#loading').hide();
     $("header").css('opacity', '1');
@@ -747,4 +765,67 @@ function if_zero() {
         $('#internalloader').css('display', 'none');
         $('.result p span').html(ifzerolenght);
     }
+}
+
+
+// ------------- Aside scroll to about section -------------//
+$("#scrollabout").click(function() {
+    $('aside').animate({
+        scrollTop: $("#box_about").offset().top
+    }, 500);
+});
+
+// ------------- Set href Social link -------------//
+function socialandcopy() {
+    var hostname = location.hostname;
+    var cururl = window.location.href;
+  
+    // Facebook
+    $('aside .facebook').attr("href", "https://www.facebook.com/sharer/sharer.php?u=http%3A//"+hostname);
+    $('.grid-item .item_dropdown_content .facebook').attr("href", "https://www.facebook.com/sharer/sharer.php?u="+cururl);
+    // Twitter
+    $('aside .twitter').attr("href", "https://twitter.com/home?status=http%3A//"+hostname);
+    $('.grid-item .item_dropdown_content .twitter').attr("href", "https://twitter.com/home?status=http%3A//"+cururl);
+    // Copy Link
+}
+
+// ------------- Copy current link to Clipboard -------------//
+function copyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+  textArea.style.position = 'fixed';
+  textArea.style.top = 0;
+  textArea.style.left = 0;
+  textArea.style.width = '2em';
+  textArea.style.height = '2em';
+  textArea.style.padding = 0;
+  textArea.style.border = 'none';
+  textArea.style.outline = 'none';
+  textArea.style.boxShadow = 'none';
+  textArea.style.background = 'transparent';
+  textArea.value = text;
+  document.body.appendChild(textArea);
+  textArea.select();
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+   
+    $("#copylink span").css('opacity','1');
+     $(".copieditem").css('opacity','1');
+    setTimeout(function() { $("#copylink span").css('opacity','0'); }, 2000);
+     setTimeout(function() { $(".copieditem").css('opacity','0'); }, 2000);
+    
+  } catch (err) {
+  
+
+  }
+
+  document.body.removeChild(textArea);
+}
+
+function CopyLink() {
+  copyTextToClipboard(location.hostname);
+}
+
+function CopyLinkitem() {
+  copyTextToClipboard(window.location.href);
 }
