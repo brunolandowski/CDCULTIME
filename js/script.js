@@ -111,7 +111,7 @@ function jsonload(x) {
         $('.based .left p').html(data.aside.based);
 
         $('.whenopen .sharethis').html(data.aside.sharethis);
-         
+
         $('.whenopen .item_dropdown_content p:nth-child(1) a').html(data.aside.twitter);
         $('.whenopen .item_dropdown_content p:nth-child(2) a').html(data.aside.facebook);
         $('.whenopen .item_dropdown_content p:nth-child(3) a').html(data.aside.copylink);
@@ -230,7 +230,7 @@ var template = function (content, params) {
  * @param  {} item
  * @returns {void}
  */
-var render = function(item) {
+var render = function (item) {
     var panel = '<div data-employees="{{employeesref}}" data-creation="{{creation}}" class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span><a target="_blank" href="http://{{web}}">{{web}}</a></span><div class="vi_cate">{{serviceslab}}</div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span>{{logo}}<div class="row description"><div class="left"><p></p></div><div class="right"><p><div class="fr">{{description_fr}}</div><div class="en">{{description_en}}</div></p></div></div><div class="row services"><div class="left"><p></p></div><div class="right">{{serviceslab}}</div></div><div class="row users"><div class="left"><p>Utilisateurs</p></div><div class="right">{{userslab}}</div></div><div class="row clients"><div class="left"><p>Clients</p></div><div class="right">{{clientslab}}</div></div><div class="row technologies"><div class="left"><p>Technologies</p></div><div class="right">{{techlab}}</div></div><div class="row founders"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row creation"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row employees"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row based"><div class="left"><p>Basée en</p></div><div class="right"><p class="{{region}}">{{region}}</p></div></div><span class="item_dropdown"><span class="cale"></span><span><p class="sharethis">Partager cette startup</p><img class="arrow" src="img/arrow_up.svg"><div class="item_dropdown_content"><p><a href="http://google.fr">Sur Twitter</a></p><p><a href="http://google.fr">Sur Facebook</a></p><p><a href="http://google.fr">Copier le lien</a></p></div></span></div></div>';
     return template(panel, item);
 }
@@ -412,36 +412,36 @@ getData().then(function (data) {
 
     // -------- Filter FUNCTION (regions) ----------//
     // Store filters as an array
-    /*
     var filtersisotopeR = [],
         $filterRow = $('#option .regions');
     $filterRow.on('click', '.filter_btn', function (event) {
+        $('#option .regions li').not(this).removeClass('is-checked')
         // Display loader
         $('#internalloader').css('display', 'inline-block');
         var $col = $(this);
         var colFilter = $col.attr('data-filter');
-        filterValueR = colFilter;
-        console.log(filterValueR);
+        $(this).toggleClass('is-checked');
+        if (!$(this).hasClass('is-checked')) filterValueR = '';
+        else filterValueR = colFilter;
         $grid.isotope();
     });
-    */
 
-    $filters = $('#option .regions').on( 'click', '.filter_btn', function() {
-    var $this = $( this );
-    var filterValue;
-    if ( $this.is('.is-checked') ) {
-    // uncheck
-    filterValue = '*';
-    } else {
-    filterValue = $this.attr('data-filter');
-    $filters.find('.is-checked').removeClass('is-checked');
-    }
-    $this.toggleClass('is-checked');
-
-    // use filterFn if matches value
-    filterValue = filterFns[ filterValue ] || filterValue;
-    $grid.isotope({ filter: filterValue });
-    });
+    /*    $filters = $('#option .regions').on('click', '.filter_btn', function () {
+            var $this = $(this);
+            var filterValue;
+            if ($this.is('.is-checked')) {
+                // uncheck
+                filterValue = '*';
+            } else {
+                filterValue = $this.attr('data-filter');
+                $filters.find('.is-checked').removeClass('is-checked');
+            }
+            $this.toggleClass('is-checked');
+    
+            // use filterFn if matches value
+            filterValue = filterFns[filterValue] || filterValue;
+            $grid.isotope({ filter: filterValue });
+        });*/
 
     // ----------- Search FUNCTION --------//
     // Use value of search field to filter
@@ -495,13 +495,13 @@ getData().then(function (data) {
         $(this).addClass('big');
         $grid.isotope('layout'),
             that = $(this);
-            
-            var scrolltopitem = that.offset().top,
-                calcdiff = scrolltopitem - 100;
-            $('html, body').delay(10).animate({
-                scrollTop: calcdiff
-            }, 300);
-        
+
+        var scrolltopitem = that.offset().top,
+            calcdiff = scrolltopitem - 100;
+        $('html, body').delay(10).animate({
+            scrollTop: calcdiff
+        }, 300);
+
     });
 
     // Close startup page 
