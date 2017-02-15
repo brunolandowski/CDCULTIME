@@ -412,19 +412,28 @@ getData().then(function (data) {
 
     // -------- Filter FUNCTION (regions) ----------//
     // Store filters as an array
-    /*
     var filtersisotopeR = [],
-        $filterRow = $('#option .regions');
-    $filterRow.on('click', '.filter_btn', function (event) {
+    $filterRow = $('#option .regions');
+    $filterRow.on('click', '.filter_btn', function(event) {
         // Display loader
-        $('#internalloader').css('display', 'inline-block');
+        $('#internalloader').css('display','inline-block');
+
         var $col = $(this);
         var colFilter = $col.attr('data-filter');
-        filterValueR = colFilter;
-        console.log(filterValueR);
+        $col.toggleClass.('is-checked');
+        // add or remove col filter from filters
+        var isSelected = $col.hasClass('is-checked');
+        if (isSelected) {
+            filtersisotopeR.push(colFilter);
+        } else {
+            removeFrom(filtersisotopeR, colFilter);
+        }
+        // combine filters
+        filterValueR = filtersisotopeR.join('');
         $grid.isotope();
     });
-    */
+
+    
 
     $filters = $('#option .regions').on( 'click', '.filter_btn', function() {
     var $this = $( this );
