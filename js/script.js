@@ -14,7 +14,7 @@ var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e
 
 // -------- Function needed to load EN & FR json ----------//
 function jsonload(x) {
-    $.getJSON('json/lang_' + x + '.json', function(data) {
+    $.getJSON('json/lang_' + x + '.json', function (data) {
         // For statistic page
         number_startup = $('.grid-item').length;
         var number_fundraising = $('.fundraising1').length;
@@ -87,10 +87,10 @@ function jsonload(x) {
         $('.users .left p').html(data.aside.users.title);
 
         // Regions
-        $.each(data.aside.regions.loop, function(index, element) {
-             $('p.'+index).html(element);  
+        $.each(data.aside.regions.loop, function (index, element) {
+            $('p.' + index).html(element);
         });
-        
+
         // Fitler Sort 
         $('.sort h4').html(data.option.sortby);
         $('.sort ul li:nth-child(1) p').html(data.option.random);
@@ -112,16 +112,15 @@ function jsonload(x) {
 
         $('.whenopen .sharethis').html(data.aside.sharethis);
          
-         $('.whenopen .item_dropdown_content p:nth-child(1) a').html(data.aside.twitter);
-          $('.whenopen .item_dropdown_content p:nth-child(2) a').html(data.aside.facebook);
-           $('.whenopen .item_dropdown_content p:nth-child(3) a').html(data.aside.copylink);
+        $('.whenopen .item_dropdown_content p:nth-child(1) a').html(data.aside.twitter);
+        $('.whenopen .item_dropdown_content p:nth-child(2) a').html(data.aside.facebook);
+        $('.whenopen .item_dropdown_content p:nth-child(3) a').html(data.aside.copylink);
 
-       
 
         // Statistiques page call
         var arraystats = ['services', 'clients', 'technologies', 'regions'];
-        $.each(arraystats, function(index, value) {
-           
+        $.each(arraystats, function (index, value) {
+
             var clientvalue = value,
                 clientjson = data.aside[value].loop,
                 clientjsonh4 = data.aside[value].title,
@@ -132,11 +131,11 @@ function jsonload(x) {
             $('#' + clientvalue + ' ul').empty();
             $('.' + clientvalue + ' ul').empty();
             // We create a loop to define max and min value for histograms and circles
-            $.each(clientjson, function(key, value) {
+            $.each(clientjson, function (key, value) {
                 var keyclean = key.replace(/\_/g, "");
-                    keycleanforclass = '.' + keyclean;
-                    clientslenght = $(keycleanforclass).length;
-                    clientsarray.push(clientslenght);
+                keycleanforclass = '.' + keyclean;
+                clientslenght = $(keycleanforclass).length;
+                clientsarray.push(clientslenght);
             });
 
             // We get the two variables for max and min
@@ -144,10 +143,10 @@ function jsonload(x) {
             clientsmin = Math.min.apply(Math, clientsarray);
 
             // We reloop
-            $.each(clientjson, function(key, value) {
+            $.each(clientjson, function (key, value) {
                 var keycleanforclass = '.' + key;
-                    clientslenght = $('.grid-item' + keycleanforclass).length;
-                    clientslenght2 = $(keycleanforclass).length,
+                clientslenght = $('.grid-item' + keycleanforclass).length;
+                clientslenght2 = $(keycleanforclass).length,
                     clientscalc = (((clientslenght2 - clientsmin) * 100) / (clientsmax - clientsmin)),
                     calcgood = (5 + .45 * clientscalc),
                     calcgoodcircle = (20 + .80 * clientscalc);
@@ -158,9 +157,9 @@ function jsonload(x) {
             });
         });
 
-       
+
         // We push the data attr previously added to circlearray
-        $("#services ul li .histo").each(function() {
+        $("#services ul li .histo").each(function () {
             var circlevalue = $(this).attr('data-circle');
             circlearray.push(circlevalue);
         });
@@ -185,9 +184,9 @@ function jsonload(x) {
  * @description polyfills
  * @returns {void}
  */
-(function() {
+(function () {
     if (!String.prototype.startsWith) {
-        String.prototype.startsWith = function(searchString, position) {
+        String.prototype.startsWith = function (searchString, position) {
             position = position || 0;
             return this.substr(position, searchString.length) === searchString;
         };
@@ -198,13 +197,13 @@ function jsonload(x) {
  * @description get data from spreadsheets
  * @returns {void}
  */
-var getData = function() {
+var getData = function () {
     return fetch('https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_pyZFF1V6k5rjiD7UFU/default/public/values?alt=json')
-        .then(function(response) {
-            return response.json().then(function(json) {
+        .then(function (response) {
+            return response.json().then(function (json) {
                 return json;
             });
-        }, function(error) {
+        }, function (error) {
             return error;
         });
 }
@@ -215,7 +214,7 @@ var getData = function() {
  * @param  {} params obj to iterate over
  * @returns {void}
  */
-var template = function(content, params) {
+var template = function (content, params) {
     for (var key in params) {
         if (params.hasOwnProperty(key)) {
             const value = params[key];
@@ -231,7 +230,6 @@ var template = function(content, params) {
  * @param  {} item
  * @returns {void}
  */
-
 var render = function(item) {
     var panel = '<div data-employees="{{employeesref}}" data-creation="{{creation}}" class="grid-item {{filters}}"><div class="vi_bd"></div><article><h4>{{name}}</h4><span><a target="_blank" href="http://{{web}}">{{web}}</a></span><div class="vi_cate">{{serviceslab}}</div></article><div class="whenopen"><span class="item_close"><img src="img/cross_black.svg"></span>{{logo}}<div class="row description"><div class="left"><p></p></div><div class="right"><p><div class="fr">{{description_fr}}</div><div class="en">{{description_en}}</div></p></div></div><div class="row services"><div class="left"><p></p></div><div class="right">{{serviceslab}}</div></div><div class="row users"><div class="left"><p>Utilisateurs</p></div><div class="right">{{userslab}}</div></div><div class="row clients"><div class="left"><p>Clients</p></div><div class="right">{{clientslab}}</div></div><div class="row technologies"><div class="left"><p>Technologies</p></div><div class="right">{{techlab}}</div></div><div class="row founders"><div class="left"><p>Foundateurs</p></div><div class="right"><p>{{founders}}</p></div></div><div class="row creation"><div class="left"><p>Date de création</p></div><div class="right"><p>{{creation}}</p></div></div><div class="row employees"><div class="left"><p>Nombre de collaborateurs</p></div><div class="right"><p>{{employees}}</p></div></div><div class="row based"><div class="left"><p>Basée en</p></div><div class="right"><p class="{{region}}">{{region}}</p></div></div><span class="item_dropdown"><span class="cale"></span><span><p class="sharethis">Partager cette startup</p><img class="arrow" src="img/arrow_up.svg"><div class="item_dropdown_content"><p><a href="http://google.fr">Sur Twitter</a></p><p><a href="http://google.fr">Sur Facebook</a></p><p><a href="http://google.fr">Copier le lien</a></p></div></span></div></div>';
     return template(panel, item);
@@ -239,16 +237,16 @@ var render = function(item) {
 
 
 // -------- Get data and generate HTML output ----------//
-getData().then(function(data) {
+getData().then(function (data) {
     var self = this;
-    var els = data.feed.entry.map(function(item) {
+    var els = data.feed.entry.map(function (item) {
         // Tables
         var filters = [],
             services = [],
             tech = [],
             users = [],
             clients = [],
-        // Objects
+            // Objects
             serviceslab = {},
             clientslab = {},
             techlab = {},
@@ -308,11 +306,11 @@ getData().then(function(data) {
         }
 
         if (item.gsx$logorenamed.$t) {
-            var logos = '<img class="logostartup" src="img/logos/'+item.gsx$logorenamed.$t+'.jpg">';
+            var logos = '<img class="logostartup" src="img/logos/' + item.gsx$logorenamed.$t + '.jpg">';
         } else {
             var logos = "";
         }
-        
+
 
         return {
             name: item.gsx$startupname.$t,
@@ -330,12 +328,12 @@ getData().then(function(data) {
             clientslab: tableclients.join(''),
             techlab: tabletech.join(''),
             userslab: tableusers.join(''),
-            users: users.reduce(function(a, b) {
+            users: users.reduce(function (a, b) {
                 return a.concat('<p>', b, '</p>')
             }, '')
         }
 
-    }).reduce(function(a, b) {
+    }).reduce(function (a, b) {
         return a.concat(self.render(b))
     }, '');
 
@@ -347,10 +345,10 @@ getData().then(function(data) {
     var filterValue;
     var filterValueR;
 
-    Isotope.prototype._positionItem = function( item, x, y ) {
-        item.goTo( x, y );
+    Isotope.prototype._positionItem = function (item, x, y) {
+        item.goTo(x, y);
     };
-    
+
     // init Isotope
     var $grid = $('#wrap').isotope({
         transitionDuration: 0,
@@ -370,7 +368,7 @@ getData().then(function(data) {
             employeesD: false,
             creationA: false
         },
-        filter: function() {
+        filter: function () {
             var $this = $(this),
                 searchResult = qsRegex ? $this.find('h4').text().match(qsRegex) : true,
                 buttonResult = filterValue ? $this.is(filterValue) : true,
@@ -381,14 +379,14 @@ getData().then(function(data) {
 
     // Execute function when istope is done
     $grid.isotope('on', 'layoutComplete', if_zero);
-    
+
     // -------- Filter FUNCTION (services, clients, technologies) ----------//
     // Store filters as an array
     var filtersisotope = [],
-    $filterRow = $('#option .services, #option .clients, #option .technologies');
-    $filterRow.on('click', '.filter_btn, .button', function(event) {
+        $filterRow = $('#option .services, #option .clients, #option .technologies');
+    $filterRow.on('click', '.filter_btn, .button', function (event) {
         // Display loader 
-        $('#internalloader').css('display','inline-block');
+        $('#internalloader').css('display', 'inline-block');
         // Get attr value
         var $col = $(this),
             colFilter = $col.attr('data-filter');
@@ -415,11 +413,11 @@ getData().then(function(data) {
     // -------- Filter FUNCTION (regions) ----------//
     // Store filters as an array
     /*
-    $filterRow = $('#option .regions');
-    $filterRow.on('click', '.filter_btn', function(event) {
-        $('#option .regions ul li').not($(this)).removeClass('is-checked');
+    var filtersisotopeR = [],
+        $filterRow = $('#option .regions');
+    $filterRow.on('click', '.filter_btn', function (event) {
         // Display loader
-        $('#internalloader').css('display','inline-block');
+        $('#internalloader').css('display', 'inline-block');
         var $col = $(this);
         var colFilter = $col.attr('data-filter');
         filterValueR = colFilter;
@@ -447,8 +445,8 @@ getData().then(function(data) {
 
     // ----------- Search FUNCTION --------//
     // Use value of search field to filter
-    var $quicksearch = $('#myInput').keyup(debounce(function() {
-        $('#internalloader').css('display','inline-block');
+    var $quicksearch = $('#myInput').keyup(debounce(function () {
+        $('#internalloader').css('display', 'inline-block');
         qsRegex = new RegExp($quicksearch.val(), 'gi');
         console.log("Search input", qsRegex);
         $grid.isotope();
@@ -456,8 +454,8 @@ getData().then(function(data) {
 
     // ------------- Sort FUNCTION -------------//
     // Bind sort button click
-    $('.sort').on('click', '.sort_btn', function() {
-        $('#internalloader').css('display','inline-block');
+    $('.sort').on('click', '.sort_btn', function () {
+        $('#internalloader').css('display', 'inline-block');
         var sortValue = $(this).attr('data-sort-by');
         $('.sort').find('.is-checked').removeClass('is-checked');
         $(this).addClass('is-checked');
@@ -486,7 +484,13 @@ getData().then(function(data) {
 
     // ------------- Toggle startup -------------//
     // Open startup page
-    $grid.on('click', '.grid-item', function() {
+    $grid.on('click', '.grid-item', function () {
+        //update hash url
+        var hash = '#'.concat(encodeURIComponent($('article h4', this).text()));
+        if (window.history.pushState)
+            window.history.pushState(null, null, hash);
+        else window.location.hash = hash;
+
         $('.grid-item').not(this).removeClass('big');
         $(this).addClass('big');
         $grid.isotope('layout'),
@@ -498,11 +502,14 @@ getData().then(function(data) {
                 scrollTop: calcdiff
             }, 300);
         
-        
     });
 
     // Close startup page 
-    $(".item_close").click(function() {
+    $(".item_close").click(function () {
+        //update url
+        if (window.history.pushState)
+            window.history.pushState('', '/', window.location.pathname)
+        else window.location.hash = '';
         $(this).parent('.whenopen').parent().removeClass("big");
         $grid.isotope('layout');
         return false;
@@ -519,24 +526,33 @@ function jsonloaded() {
     console.log('chargé');
     $('body').css('overflow', 'auto');
     $('#loading').hide();
-    $("header").css('opacity','1');
-    $("#option").css('opacity','1');
+    $("header").css('opacity', '1');
+    $("#option").css('opacity', '1');
+
+    //if url hash, trigger click detail
+    if (window.location.hash.length) {
+        var el = null;
+        $('#grid-container article h4').each(function (item) {
+            if ($(this).text() === decodeURIComponent(window.location.hash).substr(1))
+                $(this).closest('div').trigger('click');
+        });
+    }
 }
 
 // ------------- Display Tooltip hover -------------//
 function tooltip() {
     $(".vi_cate div").hover(
-        function() {
+        function () {
             $(this).children('p').addClass('show_me');
         },
-        function() {
+        function () {
             $(this).children('p').removeClass('show_me');
         }
     );
 }
 
 // Call FR json when click button
-$("button#fr").click(function() {
+$("button#fr").click(function () {
     jsonload('fr');
     // We hide EN desc
     $('.whenopen .en').hide();
@@ -548,7 +564,7 @@ $("button#fr").click(function() {
 });
 
 // Call EN json when click button
-$("button#en").click(function() {
+$("button#en").click(function () {
     jsonload('en');
     // We hide FR descr
     $('.whenopen .fr').hide();
@@ -573,11 +589,11 @@ $(window).bind("load resize scroll", function(e) {
 
 // ------------- Fixed Nav while scrolling -------------//
 var doc_height;
-$(window).bind("load resize scroll", function(e) {
+$(window).bind("load resize scroll", function (e) {
     doc_height = $(window).height();
 });
 
-$(window).on("scroll", function(e) {
+$(window).on("scroll", function (e) {
     if ($(window).scrollTop() > doc_height) {
         $('nav').addClass('fixed');
         $('#option').addClass('fixed');
@@ -588,7 +604,7 @@ $(window).on("scroll", function(e) {
 });
 
 // ------------- Scroll to Next (CTA Home Page) -------------//
-$(".hd_title_cta").on("click", function() {
+$(".hd_title_cta").on("click", function () {
     $("html, body").animate({
         scrollTop: doc_height
     }, 600);
@@ -597,15 +613,15 @@ $(".hd_title_cta").on("click", function() {
 
 // ------------- Open/Close statistics page -------------//
 // Open button
-$("#burger").click(function() {
+$("#burger").click(function () {
     $('body').css('overflow', 'hidden');
     $('#aside_placeholder').fadeIn(300);
     // Statistic page slide from left
     $("aside").animate({
         left: "0%",
-    }, 300, function() {
+    }, 300, function () {
         // Animate Clients histo
-        $("#clients ul li .histo").each(function() {
+        $("#clients ul li .histo").each(function () {
             var data_wd = $(this).attr('data-wd');
             $(this).animate({
                 width: data_wd + "%",
@@ -613,7 +629,7 @@ $("#burger").click(function() {
         });
 
         // Animate Regions histo
-        $("#regions ul li .histo").each(function() {
+        $("#regions ul li .histo").each(function () {
             var data_wd = $(this).attr('data-wd');
             $(this).animate({
                 width: data_wd + "%",
@@ -621,7 +637,7 @@ $("#burger").click(function() {
         });
 
         // Animate Technologies histo
-        $("#technologies ul li .histo").each(function() {
+        $("#technologies ul li .histo").each(function () {
             var data_wd = $(this).attr('data-wd');
             $(this).animate({
                 width: data_wd + "%",
@@ -630,21 +646,21 @@ $("#burger").click(function() {
     });
 });
 // Close button
-$("#aside_placeholder, .aside_close").click(function() {
+$("#aside_placeholder, .aside_close").click(function () {
     $('body').css('overflow', 'auto');
-    $("#clients ul li .histo").each(function() {
+    $("#clients ul li .histo").each(function () {
         var data_wd = $(this).attr('data-wd');
         $(this).animate({
             width: "0%",
         }, 100, "easeOutExpo");
     });
-    $("#regions ul li .histo").each(function() {
+    $("#regions ul li .histo").each(function () {
         var data_wd = $(this).attr('data-wd');
         $(this).animate({
             width: "0%",
         }, 100, "easeOutExpo");
     });
-    $("#technologies ul li .histo").each(function() {
+    $("#technologies ul li .histo").each(function () {
         var data_wd = $(this).attr('data-wd');
         $(this).animate({
             width: "0%",
@@ -666,7 +682,7 @@ function filterheight() {
     $('#option').css('margin-top', '-' + opt_height_calc + 'px');
 }
 // Open/Close settings menu
-$("nav button, #strip, .opt_footer .item_dropdown").on("click", function() {
+$("nav button, #strip, .opt_footer .item_dropdown").on("click", function () {
     if ($("#option").css("marginTop") == "60px") {
         $('#option').removeClass('rotate');
         $("#option").animate({
@@ -681,31 +697,31 @@ $("nav button, #strip, .opt_footer .item_dropdown").on("click", function() {
 });
 
 // Reset seetings menu height on resize window
-$(window).resize(function() {
+$(window).resize(function () {
     filterheight();
 });
 // ------------- Chart Circle Function -------------//
 // As the canvas is zoomed by the progress plugin, we try to have a homogeneous stroke with for each element
 var strokew_chart = ["10", "7.5", "6", "5", "4", "3.6", "3.3", "3"];
 
-$(".circle").each(function(i) {
+$(".circle").each(function (i) {
     var count = i + 1,
         idcircle = "#circle_" + count,
         fromzero = count - 1,
         numberposition = 60 + (count * 40),
         bar = new ProgressBar.SemiCircle(idcircle, {
-        strokeWidth: strokew_chart[fromzero],
-        easing: 'easeInOut',
-        duration: 1000,
-        svgStyle: null,
-        color: colors_chart[fromzero],
-    });
+            strokeWidth: strokew_chart[fromzero],
+            easing: 'easeInOut',
+            duration: 1000,
+            svgStyle: null,
+            color: colors_chart[fromzero],
+        });
 
-    $("#burger").click(function() {
+    $("#burger").click(function () {
         bar.animate(circlearray[fromzero] / 100);
     });
 
-    $("#aside_placeholder,  .aside_close").click(function() {
+    $("#aside_placeholder,  .aside_close").click(function () {
         bar.animate(.0, {
             duration: 80
         });
@@ -719,7 +735,7 @@ $(".circle").each(function(i) {
 
 // ------------- Function to sort all filter/sort active when unselect all -------------//
 function if_zero() {
-    $('#internalloader').css('display','none');
+    $('#internalloader').css('display', 'none');
     var zero = $('#option').find('.filter_btn.is-checked').length;
     if (zero == 0) {
         $('#option').find('.filter_btn .pastille').addClass('opacity');
@@ -727,7 +743,7 @@ function if_zero() {
     } else {
         $('#option').find('.filter_btn .pastille').removeClass('opacity');
         var ifzerolenght = $('.grid-item:visible').length;
-        $('#internalloader').css('display','none');
+        $('#internalloader').css('display', 'none');
         $('.result p span').html(ifzerolenght);
     }
 }
