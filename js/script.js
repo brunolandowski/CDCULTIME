@@ -237,8 +237,9 @@ var render = function (item) {
 
 
 // -------- Get data and generate HTML output ----------//
-getData().then(function (data) {
-    var self = this;
+// getData().then(function (data) {
+var self = this;
+$.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_pyZFF1V6k5rjiD7UFU/default/public/values?alt=json", function (data) {
     var els = data.feed.entry.map(function (item) {
         // Tables
         var filters = [],
