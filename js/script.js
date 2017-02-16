@@ -18,6 +18,7 @@ var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e
 // -------- Function needed to load EN & FR json ----------//
 function jsonload(x) {
     $.getJSON('json/lang_' + x + '.json', function (data) {
+         document.title = data.homepage.main_title;
         // For statistic page
         number_startup = $('.grid-item').length;
         var number_fundraising = $('.fundraising1').length;
@@ -128,6 +129,8 @@ function jsonload(x) {
         $('.whenopen .item_dropdown_content p:nth-child(2) a').html(data.aside.facebook);
         $('.whenopen .item_dropdown_content p:nth-child(3) a').html(data.aside.copylink);
 
+        // If nothing 
+         $('#nothing').html(data.nothing.title);
 
         // Statistiques page call
         var arraystats = ['services', 'clients', 'technologies', 'regions'];
@@ -190,6 +193,8 @@ function jsonload(x) {
         jsonloaded();
         if_zero();
         socialandcopy();
+      
+        
     });
 }
 
@@ -499,9 +504,11 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_
     // ------------- Toggle startup -------------//
     // Open startup page
     $grid.on('click', '.grid-item', function () {
+
         if ($(this).hasClass("big")) {
             
         } else {
+
             //update hash url
         var hash = '#'.concat(encodeURIComponent($('article h4', this).text()));
         if (window.history.pushState)
@@ -515,6 +522,8 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_
 
         var scrolltopitem = that.offset().top,
             calcdiff = scrolltopitem - 100;
+
+             socialandcopy();
 
         $('html, body').delay(10).animate({
             scrollTop: calcdiff
@@ -577,6 +586,7 @@ $("button#fr").click(function () {
     // We hide EN desc
     $('.whenopen .en').hide();
     $('.whenopen .fr').show();
+
 
     $('.ffen').css('display','none');
     $('.fffr').css('display','block');
@@ -761,6 +771,16 @@ $(".circle").each(function (i) {
 
 // ------------- Function to sort all filter/sort active when unselect all -------------//
 function if_zero() {
+
+     var startupvisible = $('.grid-item:visible').length;
+    console.log(startupvisible);
+
+    if (startupvisible == 0) {
+        $('#nothing').css('display','block');
+    } else {
+        $('#nothing').css('display','none');
+    }
+
     $('#internalloader').css('display', 'none');
     var zero = $('#option').find('.filter_btn.is-checked').length;
     if (zero == 0) {
@@ -786,13 +806,15 @@ $("#scrollabout").click(function() {
 function socialandcopy() {
     var hostname = location.hostname;
     var cururl = window.location.href;
+    var urlencoded = encodeURIComponent(cururl);
+
   
     // Facebook
     $('aside .facebook').attr("href", "https://www.facebook.com/sharer/sharer.php?u=http%3A//"+hostname);
-    $('.grid-item .item_dropdown_content .facebook').attr("href", "https://www.facebook.com/sharer/sharer.php?u="+cururl);
+    $('.grid-item .item_dropdown_content .facebook').attr("href", "https://www.facebook.com/sharer/sharer.php?u="+urlencoded);
     // Twitter
     $('aside .twitter').attr("href", "https://twitter.com/home?status=http%3A//"+hostname);
-    $('.grid-item .item_dropdown_content .twitter').attr("href", "https://twitter.com/home?status=http%3A//"+cururl);
+    $('.grid-item .item_dropdown_content .twitter').attr("href", "https://twitter.com/home?status="+urlencoded);
     // Copy Link
 }
 

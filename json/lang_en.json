@@ -34,8 +34,8 @@
         "services":{
             "title": "Products",
             "loop":{
-                "filterservices1": "Digital skills training",
-                "filterservices2": "School operations & teaching tools",
+                "filterservices1": "School operations & teaching tools",
+                "filterservices2": "Digital skills training",
                 "filterservices3": "Vocational curriculum products",
                 "filterservices4": "Academic curriculum products",
                 "filterservices5": "Family & student support",
@@ -80,8 +80,8 @@
                 "ARA":"Auvergne-Rhône-Alpes",
                 "NA":"Nouvelle Aquitaine",
                 "PACA":"Provence-Alpes-Côte d'Azur",
-                "OCC":"Occitanie",
                 "HDF":"Hauts-de-France",
+                "OCC":"Occitanie",
                 "BR":"Bretagne",
                 "PDLL":"Pays de la Loire",
                 "CVDL":"Centre Val de Loire",
@@ -117,10 +117,13 @@
     },
     "about":{
         "title":"About",
-        "content":"The EdTech Observatory brings together the French providers of educational and training technology services.</p><p>More than 250 innovative organizations such as startups, SME and nonprofits EdTech Observatory helps building schools and universities of the future and disrupting lifelong learning experiences. Who are the learners? Who are the customers? Which technologies are used? Their products and services are all described here in this interactive dashboard, the first of its kind.</p><p>Built in a collaborative and crowdsourced mode by and for the digital education and training community, the Observatory showcases the French EdTech players and delivers majors trends. Regular updates make it a valuable tool for institutions looking for innovative digital learning services.</p><p>Launched by the public group CDC and the innovation cluster Cap Digital and its dedicated department, EdFab, the Observatory is supported by Maif and the Île de France Region. Startups like OpenClassRooms, 360Learning, LearnAssembly, Appscho, MyBlee Math, organization like Ed21, Educpros , fondation HEC, EduCapital fund, EdTechWorldTour initiative, and EducAzur & SPN Poitou Charentes clusters (members or FrenchTech thematic network about Edutainement took part in the development of the tool.",
+        "content":"The EdTech Observatory brings together the French providers of educational and training technology services.</p><p>More than 240 innovative organizations such as startups, SME and nonprofits EdTech Observatory helps building schools and universities of the future and disrupting lifelong learning experiences. Who are the learners? Who are the customers? Which technologies are used? Their products and services are all described here in this interactive dashboard, the first of its kind.</p><p>Built in a collaborative and crowdsourced mode by and for the digital education and training community, the Observatory showcases the French EdTech players and delivers majors trends. Regular updates make it a valuable tool for institutions looking for innovative digital learning services.</p><p>Launched by the public group CDC and the innovation cluster Cap Digital and its dedicated department, EdFab, the Observatory is supported by Maif and the Île de France Region. Startups like OpenClassRooms, 360Learning, LearnAssembly, Appscho, MyBlee Math, organization like Ed21, Educpros , fondation HEC, EduCapital fund, EdTechWorldTour initiative, and EducAzur & SPN Poitou Charentes clusters (members or FrenchTech thematic network about Edutainement took part in the development of the tool.",
         "contact":"fifty-five </p><p>7 rue d'Athènes</p><p>75009 Paris",
         "produced":"Launched in collaboration with",
         "realised":"Created by"
+    },
+    "nothing":{
+        "title":"There is nothing with these filters…"
     }
 }
 

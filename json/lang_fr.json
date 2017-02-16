@@ -34,8 +34,8 @@
         "services":{
             "title": "Produits",
             "loop":{
-                "filterservices1": "Compétences numériques",
-                "filterservices2": "Outils de gestion pour enseigner",
+                "filterservices1": "Outils de gestion pour enseigner",
+                "filterservices2": "Compétences numériques",
                 "filterservices3": "Enseignement technique et professionnel",
                 "filterservices4": "Enseignement académique",
                 "filterservices5": "Services aux familles & étudiants",
@@ -80,8 +80,8 @@
                 "ARA":"Auvergne-Rhône-Alpes",
                 "NA":"Nouvelle Aquitaine",
                 "PACA":"Provence-Alpes-Côte d'Azur",
-                "OCC":"Occitanie",
                 "HDF":"Hauts-de-France",
+                "OCC":"Occitanie",
                 "BR":"Bretagne",
                 "PDLL":"Pays de la Loire",
                 "CVDL":"Centre Val de Loire",
@@ -117,10 +117,13 @@
     },
     "about":{
         "title":"À propos",
-        "content":"L’observatoire de la EdTech rassemble les acteurs du numérique pour l'éducation et la formation en France. </p><p>Plus de 250 organisations innovantes (startup, pme, et associations) dessinent l'école de demain, l'université du futur et la révolution de l'apprentissage tout au long de la vie. </p><p>Pour quels apprenants ? Pour quels acheteurs ? Grâce à quelles technologies ? Leurs produits et leurs services sont présentés dans ce premier observatoire interactif de la EdTech française. Conçu, dans un mode collaboratif et crowdsourcé, par et pour l'écosystème numérique de l'éducation et de la formation, l'Observatoire a pour objectif de valoriser la scène EdTech française et de montrer les grandes tendances de ce secteur. Mis à jour régulièrement, il a été conçu pour être un outil permettant d’identifier les solutions et de faciliter les choix des décideurs en matière de services numériques innovants. L'observatoire est le fruit de la collaboration de la CDC et Cap Digital et sa structure EdFab dédiée à l’éducation, la formation et l’emploi. Il a été réalisé avec le soutien de la Maif et de la région Île-de-France. Il est coréalisé avec des acteurs clés de l’écosystème : OpenClassRooms, 360Learning, LearnAssembly, Appscho, MyBlee Math, Ed21, Educpros , la fondation HEC, le fonds EduCapital, l’initiative EdTechWorldTour, les clusters EducAzur et le SPN Poitou Charentes membre du réseau thématique FrenchTech Edutainment. ",
+        "content":"L’observatoire de la EdTech rassemble les acteurs du numérique pour l'éducation et la formation en France. </p><p>Plus de 240 organisations innovantes (startup, pme, et associations) dessinent l'école de demain, l'université du futur et la révolution de l'apprentissage tout au long de la vie. </p><p>Pour quels apprenants ? Pour quels acheteurs ? Grâce à quelles technologies ? Leurs produits et leurs services sont présentés dans ce premier observatoire interactif de la EdTech française. Conçu, dans un mode collaboratif et crowdsourcé, par et pour l'écosystème numérique de l'éducation et de la formation, l'Observatoire a pour objectif de valoriser la scène EdTech française et de montrer les grandes tendances de ce secteur. Mis à jour régulièrement, il a été conçu pour être un outil permettant d’identifier les solutions et de faciliter les choix des décideurs en matière de services numériques innovants. L'observatoire est le fruit de la collaboration de la CDC et Cap Digital et sa structure EdFab dédiée à l’éducation, la formation et l’emploi. Il a été réalisé avec le soutien de la Maif et de la région Île-de-France. Il est coréalisé avec des acteurs clés de l’écosystème : OpenClassRooms, 360Learning, LearnAssembly, Appscho, MyBlee Math, Ed21, Educpros , la fondation HEC, le fonds EduCapital, l’initiative EdTechWorldTour, les clusters EducAzur et le SPN Poitou Charentes membre du réseau thématique FrenchTech Edutainment. ",
         "contact":"fifty-five </p><p>7 rue d'Athènes</p><p>75009 Paris",
         "produced":"Co-réalisé avec",
         "realised":"Réalisé par"
+    },
+     "nothing":{
+        "title":"Il n'y a pas de startup correspondante…"
     }
 }
 
