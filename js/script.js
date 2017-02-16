@@ -54,6 +54,7 @@ function jsonload(x) {
         $('aside #box_about h3').html(data.about.title);
         $('aside #box_about p').html(data.about.content);
         $('.wrapperpart p').html(data.about.produced);
+        $('.wrapperfifty p').html(data.about.realised);
 
 
         // Startup page calls
@@ -576,6 +577,9 @@ $("button#fr").click(function () {
     // We hide EN desc
     $('.whenopen .en').hide();
     $('.whenopen .fr').show();
+
+    $('.ffen').css('display','none');
+    $('.fffr').css('display','block');
     $(this).css('text-decoration', 'underline');
     $("button#en").css('text-decoration', 'none');
     // We restart Tooltip
@@ -588,6 +592,9 @@ $("button#en").click(function () {
     // We hide FR descr
     $('.whenopen .fr').hide();
     $('.whenopen .en').show();
+
+     $('.fffr').css('display','none');
+    $('.ffen').css('display','block');
     $(this).css('text-decoration', 'underline');
     $("button#fr").css('text-decoration', 'none');
     // We restart Tooltip
@@ -771,7 +778,7 @@ function if_zero() {
 // ------------- Aside scroll to about section -------------//
 $("#scrollabout").click(function() {
     $('aside').animate({
-        scrollTop: $("#box_about").offset().top
+        scrollTop: $(".wrapper").offset().top
     }, 500);
 });
 
