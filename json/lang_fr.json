@@ -9,18 +9,18 @@
         "bottom":"Co-réalisé avec"
     },
     "option":{
-        "selected":"startups selectionnées",
+        "selected":"startups sélectionnées",
         "sortby":"Classer par",
         "random":"Aléatoire",
         "alpha":"Ordre Alphabétique",
-        "asc":"Nombre d'employées croissant",
-        "desc":"Nombre d'employées décroissant",
+        "asc":"Nombre d'employés croissant",
+        "desc":"Nombre d'employés décroissant",
         "creation":"Date de création",
         "validate":"Valider"
     },
      "aside":{
         "header": {
-            "submit": "Postuler",
+            "submit": "Rejoindre",
             "share": "Partager",
             "download": "Télécharger",
             "contact": "Contacter"
@@ -34,13 +34,13 @@
         "services":{
             "title": "Produits",
             "loop":{
-                "filterservices1": "Outils de gestion pour enseigner",
-                "filterservices2": "Enseignement académique",
+                "filterservices1": "Compétences numériques",
+                "filterservices2": "Outils de gestion pour enseigner",
                 "filterservices3": "Enseignement technique et professionnel",
-                "filterservices4": "Compétences numériques",
-                "filterservices5": "Services pour publics à besoins éducatifs particuliers",
-                "filterservices6": "Services aux familles & étudiants",
-                "filterservices7": "Activités extra-scolaires et développement personnel",
+                "filterservices4": "Enseignement académique",
+                "filterservices5": "Services aux familles & étudiants",
+                "filterservices6": "Activités extra-scolaires et développement personnel",
+                "filterservices7": "Services pour publics à besoins éducatifs particuliers",
                 "filterservices8": "Autre"}
 
         },
@@ -58,18 +58,18 @@
         "technologies":{
             "title": "Technologies",
             "loop":{
-                "filtertech1": "LMS, CMS etc.",
-                "filtertech2": "Contenu innovatif",
-                "filtertech3": "Adaptative learning",
-                "filtertech4": "Solutions de distribution",
-                "filtertech5": "Games & learning apps",
-                "filtertech6": "IoT & digital school places",
-                "filtertech7": "Blended learning",
-                "filtertech8": "Plateforme d'agrégation et distribution de services",
-                "filtertech9": "Social media / outils de collaboration",
-                "filtertech10": "Réalite virtuelle ou augmentée",
-                "filtertech11": "Supports, équipements",
-                "filtertech12": "Technologies de back/middle office, connections",
+                "filtertech1": "Contenu innovatif",
+                "filtertech2": "Games & learning apps",
+                "filtertech3": "Solutions de distribution",
+                "filtertech4": "Adaptative learning",
+                "filtertech5": "LMS, CMS etc.",
+                "filtertech6": "Social media / outils de collaboration",
+                "filtertech7": "Plateforme d'agrégation et distribution de services",
+                "filtertech8": "Technologies de back/middle office, connections",
+                "filtertech9": "Blended learning",
+                "filtertech10": "Supports, équipements",
+                "filtertech11": "Réalite virtuelle ou augmentée",
+                "filtertech12": "IoT & digital school places",
                 "filtertech13": "Autre"}
 
         },
@@ -77,25 +77,25 @@
             "title":"Regions",
             "loop":{
                 "IDF":"Île-de-France",
+                "ARA":"Auvergne-Rhône-Alpes",
+                "NA":"Nouvelle Aquitaine",
+                "PACA":"Provence-Alpes-Côte d'Azur",
+                "OCC":"Occitanie",
                 "HDF":"Hauts-de-France",
-                "GE":"Grand Est",
-                "NO":"Normandie",
                 "BR":"Bretagne",
                 "PDLL":"Pays de la Loire",
                 "CVDL":"Centre Val de Loire",
-                "NA":"Nouvelle Aquitaine",
-                "OCC":"Occitanie",
-                "CO":"Corse",
-                "PACA":"Provence-Alpes-Côte d'Azur",
-                "ARA":"Auvergne-Rhône-Alpes",
-                "BFC":"Bourgogne-Franche-Comté"
-                }
+                "GE":"Grand Est",
+                "NO":"Normandie",
+                "BFC":"Bourgogne-Franche-Comté",
+                "CO":"Corse"
+            }
         },
         "users":{
             "title": "Utilisateurs",
             "loop":{
                 "users1": "Élèves de maternelle",
-                "users2": "Élèves du CP à la terminales",
+                "users2": "Élèves du CP à la terminale",
                 "users3": "Étudiants",
                 "users4": "Apprentis et étudiants en voie professionnelle",
                 "users5": "Établissement et professionnels de l'enseignement",
@@ -109,16 +109,18 @@
         "creation":"Date de création",
         "employees":"Nombre de collaborateurs",
         "based":"Basée en",
-        "sharethis":"Partager cette startups",
+        "sharethis":"Partager cette startup",
         "twitter":"Sur Twitter",
         "facebook":"Sur Facebook",
-        "copylink":"Copier le lien"
+        "copylink":"Copier le lien",
+        "copylinkcopied":"copié"
     },
     "about":{
         "title":"À propos",
         "content":"L’observatoire de la EdTech rassemble les acteurs du numérique pour l'éducation et la formation en France. </p><p>Plus de 250 organisations innovantes (startup, pme, et associations) dessinent l'école de demain, l'université du futur et la révolution de l'apprentissage tout au long de la vie. </p><p>Pour quels apprenants ? Pour quels acheteurs ? Grâce à quelles technologies ? Leurs produits et leurs services sont présentés dans ce premier observatoire interactif de la EdTech française. Conçu, dans un mode collaboratif et crowdsourcé, par et pour l'écosystème numérique de l'éducation et de la formation, l'Observatoire a pour objectif de valoriser la scène EdTech française et de montrer les grandes tendances de ce secteur. Mis à jour régulièrement, il a été conçu pour être un outil permettant d’identifier les solutions et de faciliter les choix des décideurs en matière de services numériques innovants. L'observatoire est le fruit de la collaboration de la CDC et Cap Digital et sa structure EdFab dédiée à l’éducation, la formation et l’emploi. Il a été réalisé avec le soutien de la Maif et de la région Île-de-France. Il est coréalisé avec des acteurs clés de l’écosystème : OpenClassRooms, 360Learning, LearnAssembly, Appscho, MyBlee Math, Ed21, Educpros , la fondation HEC, le fonds EduCapital, l’initiative EdTechWorldTour, les clusters EducAzur et le SPN Poitou Charentes membre du réseau thématique FrenchTech Edutainment. ",
         "contact":"fifty-five </p><p>7 rue d'Athènes</p><p>75009 Paris",
-        "produced":"Co-réalisé avec"
+        "produced":"Co-réalisé avec",
+        "realised":"Réalisé par"
     }
 }
 
