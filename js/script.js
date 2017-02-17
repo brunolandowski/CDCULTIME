@@ -57,6 +57,7 @@ function jsonload(x) {
         $('.wrapperpart p').html(data.about.produced);
         $('.wrapperfifty p').html(data.about.realised);
 
+        $('#box_contact p').html(data.about.contact);
 
         // Startup page calls
         // Services
@@ -114,7 +115,7 @@ function jsonload(x) {
 
         // Result
         $('.result .resultnumber').html(data.option.selected);
-        $('.opt_footer .item_dropdown span:last-of-type').html(data.option.validate);
+        $('.opt_footer .item_dropdown span:last-of-type p.valid').html(data.option.validate);
 
         // Asided
         $('.users .left p').html(data.aside.users.title);
@@ -392,7 +393,9 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_
                 searchResult = qsRegex ? $this.find('h4').text().match(qsRegex) : true,
                 buttonResult = filterValue ? $this.is(filterValue) : true,
                 buttonResultR = filterValueR ? $this.is(filterValueR) : true;
+       
             return searchResult && buttonResult && buttonResultR;
+
         },
     });
 
@@ -419,6 +422,7 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_
         // Combine filters
         filterValue = filtersisotope.join('');
         $grid.isotope();
+        
     });
 
     // Remove Obj from an array (helper function)
@@ -484,6 +488,17 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_
         $grid.isotope({
             sortBy: sortValue,
         });
+    });
+
+     // ------------- Reset Button -------------//
+    $('.reset').on( 'click', function() {
+    // reset buttons
+    filterValue = '';
+    filterValueR = '';
+    console.log(filterValueR, filterValue);
+    $('.filter_btn').removeClass('is-checked');
+    $grid.isotope();
+      
     });
 
     // Debounce so filtering doesn't happen every millisecond
@@ -718,7 +733,7 @@ function filterheight() {
     $('#option').css('margin-top', '-' + opt_height_calc + 'px');
 }
 // Open/Close settings menu
-$("nav button, #strip, .opt_footer .item_dropdown").on("click", function () {
+$("nav button, #strip, .opt_footer .valid").on("click", function () {
     if ($("#option").css("marginTop") == "60px") {
         $('#option').removeClass('rotate');
         $("#option").animate({
@@ -798,9 +813,17 @@ function if_zero() {
 // ------------- Aside scroll to about section -------------//
 $("#scrollabout").click(function() {
     $('aside').animate({
-        scrollTop: $(".wrapper").offset().top
+        scrollTop: $(".wrapper").position().top - 40
     }, 500);
 });
+
+$('aside').scroll(function (event) {
+    var scroll = $('aside').scrollTop();
+    var sidess = $('#technologies').position().top;
+    console.log(scroll+' / '+sidess);
+});
+
+
 
 // ------------- Set href Social link -------------//
 function socialandcopy() {
@@ -858,3 +881,21 @@ function CopyLink() {
 function CopyLinkitem() {
   copyTextToClipboard(window.location.href);
 }
+
+// ------------- Scroll to top -------------//
+$( "#scrolltop" ).click(function() {
+    $('html, body').animate({scrollTop: '0px'}, 300);
+});
+
+
+$(document).scroll(function () {
+    var y = $(this).scrollTop();
+    var winheight = $(window).height();
+    console.log(y);
+    if (y > winheight) {
+        $('#scrolltop').addClass('sticky');
+    } else {
+        $('#scrolltop').removeClass('sticky');
+    }
+});
+
