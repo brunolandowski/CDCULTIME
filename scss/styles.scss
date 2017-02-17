@@ -368,7 +368,7 @@ header {
 			@media screen and (max-width: 499px){
     				bottom:10px;
   			}
-  			@media screen and (max-height: 600px){
+  			@media screen and (max-height: 300px){
     				display:none;
   			}
 			h2 {
@@ -500,7 +500,7 @@ nav {
 			padding:8px 6px 8px 0;
 			@media screen and (max-width: 499px){
     			margin-left:0px;
-    			margin-top:10px;
+    			
 
   			}
   			@media screen and (min-width: 500px) and (max-width: 1000px){
@@ -1624,6 +1624,7 @@ aside  {
   	top: 150%;
   	left: 50%;
   	transform: translate(-50%, -50%);
+  	text-align:center;
 }
 
 
@@ -1641,6 +1642,10 @@ aside  {
 	right:60px;
 	cursor:pointer;
 	display:none;
+	@media screen and (max-width: 499px){
+    	bottom:20px;
+		right:20px;
+  	}
 	&.sticky {
 		display:block;
 	}

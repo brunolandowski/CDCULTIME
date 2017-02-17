@@ -195,7 +195,9 @@ function jsonload(x) {
         if_zero();
         socialandcopy();
       
-        
+      
+
+
     });
 }
 
