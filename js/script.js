@@ -362,8 +362,8 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_
 
     // Isotope plugin
     var qsRegex;
-    var filterValue;
-    var filterValueR;
+    var filterValue = '';
+    var filterValueR = '';
 
     Isotope.prototype._positionItem = function (item, x, y) {
         item.goTo(x, y);
@@ -390,10 +390,10 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_
         },
         filter: function () {
             var $this = $(this),
-                searchResult = qsRegex ? $this.find('h4').text().match(qsRegex) : true,
-                buttonResult = filterValue ? $this.is(filterValue) : true,
-                buttonResultR = filterValueR ? $this.is(filterValueR) : true;
-       
+                searchResult = qsRegex ? $this.find('h4').text().match(qsRegex) : true ,
+                buttonResult = filterValue.length ? $this.is(filterValue) : true,
+                buttonResultR = filterValueR.length ? $this.is(filterValueR) : true;
+             
             return searchResult && buttonResult && buttonResultR;
 
         },
@@ -492,13 +492,13 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_
 
      // ------------- Reset Button -------------//
     $('.reset').on( 'click', function() {
-    // reset buttons
-    filterValue = '';
-    filterValueR = '';
-    console.log(filterValueR, filterValue);
-    $('.filter_btn').removeClass('is-checked');
-    $grid.isotope();
-      
+        // reset buttons
+        filterValue = '';
+        filterValueR = '';
+        filtersisotope = [];
+        filtersisotopeR = [];
+        $('.filter_btn').removeClass('is-checked');
+        $grid.isotope();
     });
 
     // Debounce so filtering doesn't happen every millisecond
@@ -788,7 +788,7 @@ $(".circle").each(function (i) {
 function if_zero() {
 
      var startupvisible = $('.grid-item:visible').length;
-    console.log(startupvisible);
+   
 
     if (startupvisible == 0) {
         $('#nothing').css('display','block');
@@ -815,12 +815,6 @@ $("#scrollabout").click(function() {
     $('aside').animate({
         scrollTop: $(".wrapper").position().top - 40
     }, 500);
-});
-
-$('aside').scroll(function (event) {
-    var scroll = $('aside').scrollTop();
-    var sidess = $('#technologies').position().top;
-    console.log(scroll+' / '+sidess);
 });
 
 
@@ -891,7 +885,7 @@ $( "#scrolltop" ).click(function() {
 $(document).scroll(function () {
     var y = $(this).scrollTop();
     var winheight = $(window).height();
-    console.log(y);
+    
     if (y > winheight) {
         $('#scrolltop').addClass('sticky');
     } else {
