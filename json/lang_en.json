@@ -16,7 +16,12 @@
         "asc":"Team size low to high",
         "desc":"Team size low to high",
         "creation":"Date of establishment",
-        "validate":"Validate"
+        "validate":"Validate",
+        "other":"Other",
+        "fundraising16":"Fundraising before 2017",
+        "fundraisin17":"Plans to raise funds from 2017",
+        "awarded":"Awarded"
+
     },
      "aside":{
         "header": {

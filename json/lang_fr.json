@@ -16,7 +16,11 @@
         "asc":"Nombre d'employés croissant",
         "desc":"Nombre d'employés décroissant",
         "creation":"Date de création",
-        "validate":"Valider"
+        "validate":"Valider",
+        "other":"Autre",
+        "fundraising16":"Levée de fonds avant 2017",
+        "fundraising17":"Levée de fonds à partir de 2017",
+        "awarded":"Récompensée"
     },
      "aside":{
         "header": {

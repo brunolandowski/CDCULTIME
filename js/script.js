@@ -22,6 +22,7 @@ function jsonload(x) {
         // For statistic page
         number_startup = $('.grid-item').length;
         var number_fundraising = $('.fundraising1').length;
+        var number_fundraising17 = $('.fund17-1').length;
         var number_award = $('.award').length;
 
         // Homepage json call
@@ -113,6 +114,20 @@ function jsonload(x) {
         $('.sort ul li:nth-child(4) p').html(data.option.desc);
         $('.sort ul li:nth-child(5) p').html(data.option.creation);
 
+        // Let's set the 'other' section in filter now
+        $('.others h4').html(data.option.other);
+        $('.others ul li:nth-child(1) p').html(data.option.fundraising16);
+        $('.others ul li:nth-child(1) span').html(number_fundraising);
+
+        $('.others ul li:nth-child(2) p').html(data.option.fundraising17);
+        $('.others ul li:nth-child(2) spam').html(number_fundraising17);
+
+
+        $('.others ul li:nth-child(3) p').html(data.option.awarded);
+        $('.others ul li:nth-child(3) span').html(number_award);
+
+
+
         // Result
         $('.result .resultnumber').html(data.option.selected);
         $('.opt_footer .item_dropdown span:last-of-type p.valid').html(data.option.validate);
@@ -174,6 +189,9 @@ function jsonload(x) {
         });
 
 
+
+
+
         // We push the data attr previously added to circlearray
         $("#services ul li .histo").each(function () {
             var circlevalue = $(this).attr('data-circle');
@@ -194,7 +212,7 @@ function jsonload(x) {
         jsonloaded();
         if_zero();
         socialandcopy();
-      
+        
       
 
 
@@ -236,7 +254,9 @@ var getData = function () {
  * @returns {void}
  */
 var template = function (content, params) {
+
     for (var key in params) {
+
         if (params.hasOwnProperty(key)) {
             const value = params[key];
             while (content.indexOf('{{' + key + '}}') !== -1)
@@ -282,6 +302,10 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_
             }
             if (prop === 'gsx$fundraising' && item[prop].$t.length) {
                 filters.push('fundraising' + item[prop].$t);
+            }
+
+            if (prop === 'gsx$fundraising17' && item[prop].$t.length) {
+                filters.push('fund17-' + item[prop].$t);
             }
             if (prop === 'gsx$awards' && item[prop].$t.length) {
                 filters.push('award');
@@ -404,10 +428,10 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_
     // Execute function when istope is done
     $grid.isotope('on', 'layoutComplete', if_zero);
 
-    // -------- Filter FUNCTION (services, clients, technologies) ----------//
+    // -------- Filter FUNCTION (services, clients, technologies, others) ----------//
     // Store filters as an array
     var filtersisotope = [],
-        $filterRow = $('#option .services, #option .clients, #option .technologies');
+        $filterRow = $('#option .services, #option .clients, #option .technologies, #option .others');
     $filterRow.on('click', '.filter_btn, .button', function (event) {
         // Display loader 
         $('#internalloader').css('display', 'inline-block');
@@ -815,7 +839,7 @@ function if_zero() {
 // ------------- Aside scroll to about section -------------//
 $("#scrollabout").click(function() {
     $('aside').animate({
-        scrollTop: $(".wrapper").position().top - 40
+        scrollTop: $(".wrapper").position().top + 41
     }, 500);
 });
 
@@ -894,4 +918,7 @@ $(document).scroll(function () {
         $('#scrolltop').removeClass('sticky');
     }
 });
+
+
+
 
