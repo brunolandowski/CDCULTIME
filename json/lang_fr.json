@@ -36,7 +36,7 @@
             "listed": "startups listées"
         },
         "services":{
-            "title": "Produits",
+            "title": "Produits, services",
             "loop":{
                 "filterservices1": "Outils de gestion pour enseigner",
                 "filterservices2": "Compétences numériques",

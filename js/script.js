@@ -120,7 +120,8 @@ function jsonload(x) {
         $('.others ul li:nth-child(1) span').html(number_fundraising);
 
         $('.others ul li:nth-child(2) p').html(data.option.fundraising17);
-        $('.others ul li:nth-child(2) spam').html(number_fundraising17);
+        $('.others ul li:nth-child(2) span').html(number_fundraising17);
+
 
 
         $('.others ul li:nth-child(3) p').html(data.option.awarded);
@@ -237,7 +238,7 @@ function jsonload(x) {
  * @returns {void}
  */
 var getData = function () {
-    return fetch('https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_pyZFF1V6k5rjiD7UFU/default/public/values?alt=json')
+    return fetch('https://spreadsheets.google.com/feeds/list/1-c4bJn6Df0UId1Hayzzu5svzX8tCbXsBf5OjkUB36GM/default/public/values?alt=json')
         .then(function (response) {
             return response.json().then(function (json) {
                 return json;
@@ -276,12 +277,23 @@ var render = function (item) {
     return template(panel, item);
 }
 
+var shuffle = function(a) {
+    var j, x, i;
+    for (i = a.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
 
 // -------- Get data and generate HTML output ----------//
 // getData().then(function (data) {
 var self = this;
-$.getJSON("https://spreadsheets.google.com/feeds/list/1XvMK6WBhSNBKHQTXEqJT5L54_pyZFF1V6k5rjiD7UFU/default/public/values?alt=json", function (data) {
-    var els = data.feed.entry.map(function (item) {
+$.getJSON("https://spreadsheets.google.com/feeds/list/1-c4bJn6Df0UId1Hayzzu5svzX8tCbXsBf5OjkUB36GM/default/public/values?alt=json", function (data) {
+    var els = shuffle(data.feed.entry).map(function (item) {
         // Tables
         var filters = [],
             services = [],
