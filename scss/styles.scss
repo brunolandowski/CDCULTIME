@@ -484,9 +484,7 @@ nav {
 			@media screen and (max-width: 499px){
     			display:none;
   			}
-  			@media screen and (min-width: 500px) and (max-width: 1000px){
-    			display:none;
-  			}
+  			
 
 
 		}
@@ -503,10 +501,7 @@ nav {
     			
 
   			}
-  			@media screen and (min-width: 500px) and (max-width: 1000px){
-    			margin-left:0px;
-    			margin-top:10px;
-  			}
+  			
 			&:hover {
 				div {
 					span {
@@ -963,7 +958,9 @@ nav {
 	}
 	
 	.sort {
-		
+		display: flex; 
+ 		flex: 1; 
+  		align-items: flex-end; 
 		p {
 			margin-left:36px;
 		}
@@ -1030,6 +1027,9 @@ nav {
 	}
 	.opt_wrap {
 		margin:50px 60px;
+		display: flex;
+  		flex-direction: row;
+  		align-items: stretch;
 		@media screen and (max-width: 499px){
     		margin:20px;
   		}
@@ -1043,7 +1043,7 @@ nav {
 		position:fixed;
 	}
 	.opt_wrap {
-		display:flex;
+		
 		@media screen and (max-width: 499px){
     		flex-wrap: wrap;
   		}
@@ -1078,18 +1078,17 @@ nav {
 		}
 	}
 	.opt_left_col {
-		width:33.333333%;
-		@media screen and (max-width: 499px){
-			margin-top:20px;
-    		width:100%;
-    		order:1;
+		display: flex; 
+ 		flex: 1; 
+  		align-items: stretch;
+  		flex-direction: column;
+		
+		
+  		@media screen and (max-width: 800px){
+			flex: inherit; 
+			width:100%;
   		}
-  		@media screen and (min-width: 500px) and (max-width: 1000px){
-    		margin-top:20px;
-    		width:50%;
-    		order:1;
-    		
-  		}
+  		
 		.services {
 			
 			
@@ -1106,18 +1105,18 @@ nav {
 		}
 	}
 	.opt_middle_col {
-		width:33.333333%;
-		@media screen and (max-width: 499px){
+		display: flex; 
+  		flex: 1; 
+ 		align-items: stretch; 
+  		flex-direction: column; 
+		
+		
+  		@media screen and (max-width: 800px){
+  			flex: inherit;
+			width:100%;
 			margin-top:20px;
-    		width:100%;
-    		order:3;
-    		
   		}
-		@media screen and (min-width: 500px) and (max-width: 1000px){
-    		margin-top:20px;
-    		width:50%;
-    		order:3;
-  		}
+		
 		.sort {
 			
 			margin-top:20px;
@@ -1128,41 +1127,48 @@ nav {
 		}
 	}
 	.opt_right_col {
-		width:33.333333%;
-		@media screen and (max-width: 499px){
-    		width:100%;
-    		order:2;
+		display: flex; 
+ 		flex: 1; 
+  		align-items: stretch; 
+  		flex-direction: column;
+		
+		
+  		@media screen and (max-width: 800px){
+  			flex: inherit;
+			width:100%;
   		}
-  		@media screen and (min-width: 500px) and (max-width: 1000px){
-    		width:50%;
-    		order:2;
-    		margin-top:20px;
-  		}
+
 		.technologies {
 
 			
 			
 		}
 		.regions {
-			@media screen and (max-width: 499px){
+
+			@media screen and (max-width: 800px){
     		margin-top:20px;
   			}
 		}
 
 		.result {
-			border-left:1px solid #CCC;
-			padding:10px 0px 5px 30px;
+			display: flex; 
+  			flex: 1; 
+  			align-items: flex-end; 
+			
+			
+			.wrapflex {
+				border-left:1px solid #CCC;
+				padding:10px 0px 5px 30px;
+			}
 			
 			@media screen and (max-width: 499px){
-    			display:none;  		
-    		}
-    		@media screen and (min-width: 500px) and (max-width: 1000px){
-    			position:absolute;
-    			left:50%;
-    			margin-top:60px;
-    			bottom:inherit;
+    			margin-top:30px;
 
+    		}
+    		@media screen and (min-width:500px) and (max-width: 800px){
+  				margin-top:50px;
   			}
+    		
 			p {	
 				
 				span {
@@ -1174,8 +1180,7 @@ nav {
 					 letter-spacing: 3px;
 				}
 			}
-			position:absolute;
-			bottom:160px;
+			
 			.resultnumber {
 				display: inline-block;
 				font-size:16px;
@@ -1188,6 +1193,7 @@ nav {
 		@media screen and (max-width: 499px){
     		margin:20px;
   		}
+  		
 		.item_dropdown {
 			p {
 				display: inline-block;

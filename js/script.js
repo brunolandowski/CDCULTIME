@@ -868,7 +868,7 @@ function socialandcopy() {
     $('aside .facebook').attr("href", "https://www.facebook.com/sharer/sharer.php?u=http%3A//"+hostname);
     $('.grid-item .item_dropdown_content .facebook').attr("href", "https://www.facebook.com/sharer/sharer.php?u="+urlencoded);
     // Twitter
-    $('aside .twitter').attr("href", "https://twitter.com/home?status=http%3A//"+hostname);
+    $('aside .twitter').attr("href", "https://twitter.com/home?status=Je découvre les startups de l'observatoire Edtech @edfab × @Caissedesdepots http%3A//"+hostname);
     $('.grid-item .item_dropdown_content .twitter').attr("href", "https://twitter.com/home?status="+urlencoded);
     // Copy Link
 }
@@ -929,6 +929,16 @@ $(document).scroll(function () {
     } else {
         $('#scrolltop').removeClass('sticky');
     }
+});
+
+
+// ------------- Avoid Body Scrolling When Scroll inside options -------------//
+$( '#option' ).on( 'mousewheel DOMMouseScroll', function ( e ) {
+    var e0 = e.originalEvent,
+        delta = e0.wheelDelta || -e0.detail;
+
+    this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+    e.preventDefault();
 });
 
 

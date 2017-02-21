@@ -83,14 +83,14 @@
             "loop":{
                 "IDF":"Île-de-France",
                 "ARA":"Auvergne-Rhône-Alpes",
-                "NA":"Nouvelle Aquitaine",
+                "NA":"Nouvelle-Aquitaine",
                 "PACA":"Provence-Alpes-Côte d'Azur",
                 "HDF":"Hauts-de-France",
                 "OCC":"Occitanie",
                 "BR":"Bretagne",
-                "PDLL":"Pays de la Loire",
-                "CVDL":"Centre Val de Loire",
-                "GE":"Grand Est",
+                "PDLL":"Pays-de-la-Loire",
+                "CVDL":"Centre-Val-de-Loire",
+                "GE":"Grand-Est",
                 "NO":"Normandie",
                 "BFC":"Bourgogne-Franche-Comté",
                 "CO":"Corse"
