@@ -11,6 +11,9 @@ function countObjectProperties(obj) {
 }
 
 // -------- Var and Array need to be declared before exectuting Statistics ----------//
+var twitterG;
+var twitterS;
+
 var circlearray = [];
 var number_startup;
 var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e4c0", "#bb7ff3", "#fbc9df"];
@@ -24,6 +27,10 @@ function jsonload(x) {
         var number_fundraising = $('.fundraising1').length;
         var number_fundraising17 = $('.fund17-1').length;
         var number_award = $('.award').length;
+
+        // Social media share generator
+        twitterG = data.socialmessage.gen;  
+        twitterS = data.socialmessage.startup;
 
         // Homepage json call
         $('#hd_bd_top p:first-of-type').html(data.homepage.top_left);
@@ -397,6 +404,7 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1-c4bJn6Df0UId1Hayzzu5svzX
 
     //Inject into DOM
     $('#grid-container').html(els);
+    $('#grid-container').prepend('<div class="grid-sizer"></div>');
 
     // Isotope plugin
     var qsRegex;
@@ -412,7 +420,8 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1-c4bJn6Df0UId1Hayzzu5svzX
         transitionDuration: 0,
         itemSelector: '.grid-item',
         masonry: {
-            gutter: 20
+            gutter: 20,
+            columnWidth : '.grid-sizer'
         },
         getSortData: {
             nameA: 'h4',
@@ -562,8 +571,19 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1-c4bJn6Df0UId1Hayzzu5svzX
             
         } else {
 
-            //update hash url
+
+        // Set Twitter post
+        var hashalone = encodeURIComponent($('article h4', this).text());
+        var cururl = window.location.href;
+        var urlencoded = encodeURIComponent(cururl);
+        $('.grid-item .item_dropdown_content .twitter').attr("href", "https://twitter.com/home?status="+hashalone+" "+twitterS+" "+urlencoded);
+
+        
+        //update hash url
         var hash = '#'.concat(encodeURIComponent($('article h4', this).text()));
+
+       
+
         if (window.history.pushState)
             window.history.pushState(null, null, hash);
         else window.location.hash = hash;
@@ -576,7 +596,9 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1-c4bJn6Df0UId1Hayzzu5svzX
         var scrolltopitem = that.offset().top,
             calcdiff = scrolltopitem - 100;
 
-             socialandcopy();
+        socialandcopy();
+        
+        
 
         $('html, body').delay(10).animate({
             scrollTop: calcdiff
@@ -862,14 +884,15 @@ function socialandcopy() {
     var hostname = location.hostname;
     var cururl = window.location.href;
     var urlencoded = encodeURIComponent(cururl);
-
   
     // Facebook
     $('aside .facebook').attr("href", "https://www.facebook.com/sharer/sharer.php?u=http%3A//"+hostname);
     $('.grid-item .item_dropdown_content .facebook').attr("href", "https://www.facebook.com/sharer/sharer.php?u="+urlencoded);
     // Twitter
-    $('aside .twitter').attr("href", "https://twitter.com/home?status=Je découvre les startups de l'observatoire Edtech @edfab × @Caissedesdepots http%3A//"+hostname);
-    $('.grid-item .item_dropdown_content .twitter').attr("href", "https://twitter.com/home?status="+urlencoded);
+
+    $('aside .twitter').attr("href", "https://twitter.com/home?status="+ twitterG +" http%3A//"+hostname);
+
+    
     // Copy Link
 }
 

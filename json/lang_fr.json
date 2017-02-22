@@ -17,9 +17,9 @@
         "desc":"Nombre d'employés décroissant",
         "creation":"Date de création",
         "validate":"Valider",
-        "other":"Autre",
-        "fundraising16":"Ayant levé des fonds avant 2017",
-        "fundraising17":"Ayant prévu de lever des fonds à partir de 2017",
+        "other":"Autres",
+        "fundraising16":"A déjà levé des fonds",
+        "fundraising17":"Souhaite lever des fonds",
         "awarded":"Récompensée"
     },
      "aside":{
@@ -36,16 +36,16 @@
             "listed": "startups listées"
         },
         "services":{
-            "title": "Produits, services",
+            "title": "Produits / services",
             "loop":{
-                "filterservices1": "Outils de gestion pour enseigner",
-                "filterservices2": "Compétences numériques",
-                "filterservices3": "Enseignement technique et professionnel",
-                "filterservices4": "Enseignement académique",
-                "filterservices5": "Services aux familles & étudiants",
+                "filterservices1": "Outils de gestion pour enseigner et former",
+                "filterservices2": "Formation à des compétences numériques",
+                "filterservices3": "Formation à des compétences techniques",
+                "filterservices4": "Formation académique",
+                "filterservices5": "Services aux familles et étudiants",
                 "filterservices6": "Activités extra-scolaires et développement personnel",
                 "filterservices7": "Services pour publics à besoins éducatifs particuliers",
-                "filterservices8": "Autre"}
+                "filterservices8": "Autres"}
 
         },
         "clients":{
@@ -54,31 +54,31 @@
                 "filterclients1": "Établissements d'enseignement",
                 "filterclients2": "Organismes de formation",
                 "filterclients3": "Entreprises",
-                "filterclients4": "Services publics / associations",
+                "filterclients4": "Services publics ou associations",
                 "filterclients5": "Particuliers",
-                "filterclients6": "Autre"}
+                "filterclients6": "Autres"}
 
         },
         "technologies":{
             "title": "Technologies",
             "loop":{
-                "filtertech1": "Contenu innovant",
-                "filtertech2": "Games & learning apps",
+                "filtertech1": "Contenus innovants",
+                "filtertech2": "Serious game / learning apps",
                 "filtertech3": "Solutions de distribution",
                 "filtertech4": "Adaptative learning",
-                "filtertech5": "LMS, CMS etc.",
+                "filtertech5": "Learning Management System / CMS",
                 "filtertech6": "Social media / outils de collaboration",
                 "filtertech7": "Plateforme d'agrégation et distribution de services",
-                "filtertech8": "Technologies de back/middle office, connections",
+                "filtertech8": "Technologies de back / middle office, connections",
                 "filtertech9": "Blended learning",
-                "filtertech10": "Supports, équipements",
-                "filtertech11": "Réalite virtuelle ou augmentée",
-                "filtertech12": "IoT & digital school places",
-                "filtertech13": "Autre"}
+                "filtertech10": "Supports / équipements",
+                "filtertech11": "Réalite virtuelle / augmentée",
+                "filtertech12": "IoT / digital school places",
+                "filtertech13": "Autres"}
 
         },
         "regions":{
-            "title":"Regions",
+            "title":"Régions",
             "loop":{
                 "IDF":"Île-de-France",
                 "ARA":"Auvergne-Rhône-Alpes",
@@ -128,6 +128,10 @@
     },
      "nothing":{
         "title":"Il n'y a pas de startup correspondante…"
+    },
+    "socialmessage":{
+        "gen":"L'observatoire %23edtech 🇫🇷 ",
+        "startup":"est sur l'observatoire %23edtech 🇫🇷 "
     }
 }
 
