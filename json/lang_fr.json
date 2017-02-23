@@ -9,7 +9,7 @@
         "bottom":"Co-réalisé avec"
     },
     "option":{
-        "selected":"startups sélectionnées",
+        "selected":"startups",
         "sortby":"Classer par",
         "random":"Aléatoire",
         "alpha":"Ordre Alphabétique",
@@ -127,7 +127,7 @@
         "realised":"Développé par"
     },
      "nothing":{
-        "title":"Il n'y a pas de startup correspondante…"
+        "title":"Pas de startups"
     },
     "socialmessage":{
         "gen":"L'observatoire %23edtech 🇫🇷 ",

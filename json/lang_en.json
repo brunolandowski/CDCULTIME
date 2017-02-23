@@ -9,7 +9,7 @@
         "bottom":"Launched in collaboration with"
     },
     "option":{
-        "selected":"selected startups",
+        "selected":"startups",
         "sortby":"Sort by",
         "random":"Random",
         "alpha":"In alphabetical order",
@@ -128,7 +128,7 @@
         "realised":"Designed by"
     },
     "nothing":{
-        "title":"There is nothing with these filters…"
+        "title":"No match"
     },
     "socialmessage":{
         "gen":"Check out the 🇫🇷  %23edtech",

@@ -3,6 +3,10 @@
 	padding:0;
 	
 }
+// CUSTOMIZE SELECTOR
+::-moz-selection { background: #fd8851; color:#F5F5F5;}
+::selection { background: #fd8851; color:#F5F5F5; }
+
 // STOP IOS STYLING INPUT FIELDS
 textarea,
 input.text,
@@ -368,7 +372,7 @@ header {
 			@media screen and (max-width: 499px){
     				bottom:10px;
   			}
-  			@media screen and (max-height: 300px){
+  			@media screen and (max-height: 600px){
     				display:none;
   			}
 			h2 {
@@ -1204,20 +1208,25 @@ nav {
   			}
     		
 			p {	
+				float:left;
+				display: inline-block;
+
 				
 				span {
 					font-size:40px;
-					margin-right:10px;
+					margin-right:5px;
 					font-weight:800;
 					color:white;
-					 font-family: 'bikobold';
-					 letter-spacing: 3px;
+					font-family: 'bikobold';
+					letter-spacing: 3px;
 				}
 			}
 			
 			.resultnumber {
-				display: none;
-				font-size:16px;
+				
+				font-size:12px;
+				
+
 
 			}
 		}
@@ -1228,6 +1237,7 @@ nav {
 		
   		
 		.item_dropdown {
+			margin-top:10px;
 			p {
 				display: inline-block;
 				background:#F5F5F5;
