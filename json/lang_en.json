@@ -4,12 +4,12 @@
         "top_middle":"Supported by",
         "main_title":"EdTech Observatory",
         "headline":"Discover French EdTech ecosystem",
-        "liste":"listed startups",
+        "liste":"listed innovators",
         "search":"Search",
         "bottom":"Launched in collaboration with"
     },
     "option":{
-        "selected":"startups",
+        "selected":"result(s)",
         "sortby":"Sort by",
         "random":"Random",
         "alpha":"In alphabetical order",
@@ -28,13 +28,15 @@
             "submit": "Join",
             "share": "Share",
             "download": "Download",
+            "xlsx":"In .xlsx format",
+            "json":"In .json format",
             "contact": "Get in touch"
         },
         "statistiques":{
             "title": "Statistics",
             "rise": "funding",
             "award": "award winners",
-            "listed": "listed startups"
+            "listed": "listed innovators"
         },
         "services":{
             "title": "Products / services",
@@ -66,7 +68,7 @@
                 "filtertech1": "Innovative contents",
                 "filtertech2": "Educational games & apps",
                 "filtertech3": "Digitial coursewares (eg MOOC)",
-                "filtertech4": "Adaptative learning tools",
+                "filtertech4": "Adaptive learning tools",
                 "filtertech5": "LMS, CMS etc.",
                 "filtertech6": "Social & collaboration tools",
                 "filtertech7": "Services platforms",
@@ -114,7 +116,7 @@
         "creation":"Date of establishment",
         "employees":"Team size",
         "based":"Located in",
-        "sharethis":"Share this startup",
+        "sharethis":"Share this innovator",
         "twitter":"On Twitter",
         "facebook":"On Facebook",
         "copylink":"Copy the link",

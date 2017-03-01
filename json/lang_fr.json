@@ -4,12 +4,12 @@
         "top_middle":"Avec le soutien de",
         "main_title":"EdTech Observatoire",
         "headline":"Découvrez les acteurs de l'EdTech française",
-        "liste":"startups listées",
+        "liste":"acteurs listés",
         "search":"Rechercher",
         "bottom":"Co-réalisé avec"
     },
     "option":{
-        "selected":"startups",
+        "selected":"résultat(s)",
         "sortby":"Classer par",
         "random":"Aléatoire",
         "alpha":"Ordre Alphabétique",
@@ -27,13 +27,15 @@
             "submit": "Rejoindre",
             "share": "Partager",
             "download": "Télécharger",
+            "xlsx":"Au format .xlsx",
+            "json":"Au format .json",
             "contact": "Contacter"
         },
         "statistiques":{
             "title": "Statistiques",
             "rise": "levées de fonds",
-            "award": "startups récompensées",
-            "listed": "startups listées"
+            "award": "acteurs récompensés",
+            "listed": "acteurs listés"
         },
         "services":{
             "title": "Produits / services",
@@ -65,7 +67,7 @@
                 "filtertech1": "Contenus innovants",
                 "filtertech2": "Serious game / learning apps",
                 "filtertech3": "Solutions de distribution",
-                "filtertech4": "Adaptative learning",
+                "filtertech4": "Adaptive learning",
                 "filtertech5": "Learning Management System / CMS",
                 "filtertech6": "Social media / outils de collaboration",
                 "filtertech7": "Plateforme d'agrégation et distribution de services",
@@ -113,7 +115,7 @@
         "creation":"Date de création",
         "employees":"Nombre de collaborateurs",
         "based":"Basée en",
-        "sharethis":"Partager cette startup",
+        "sharethis":"Partager cet acteur",
         "twitter":"Sur Twitter",
         "facebook":"Sur Facebook",
         "copylink":"Copier le lien",
@@ -121,13 +123,13 @@
     },
     "about":{
         "title":"À propos",
-        "content":"L’observatoire de la EdTech rassemble les acteurs du numérique pour l'éducation et la formation en France.</p><p>Plus de 240 organisations innovantes (startup, pme, et associations) dessinent l'école de demain, l'université du futur et promettent de révolutionner l'apprentissage tout au long de la vie.</p><p>Pour quels apprenants&nbsp;? Pour quels acheteurs&nbsp;? Grâce à quelles technologies&nbsp;? Leurs produits et leurs services sont présentés dans ce premier observatoire interactif de la EdTech française. Conçu, dans un mode collaboratif et crowdsourcé, par et pour l'écosystème numérique de l'éducation et de la formation, l'Observatoire a pour objectif de valoriser la scène EdTech française et de montrer les grandes tendances de ce secteur. Mis à jour régulièrement, cet outil doit permettre d’identifier les solutions et de faciliter les choix des décideurs en matière de services numériques innovants.</p><p>L'observatoire est le fruit de la collaboration de la Caisse des Dépôts et Cap Digital et sa structure EdFab dédiée à l’éducation, la formation et l’emploi. Il a été réalisé avec le soutien de la Maif. Il est coréalisé avec des acteurs clés de l’écosystème représentés ci-dessous&nbsp;: OpenClassRooms, 360Learning, LearnAssembly, AppScho, MyBlee Math, la région Île de France, le partenaire média Educpros, le fonds EduCapital, Ed21, l’initiative EdTechWorldTour, la fondation HEC, les clusters EducAzur et SPN Poitou-Charentes, membres du réseau thématique FrenchTech Edutainment.",
+        "content":"L’observatoire de la EdTech rassemble les acteurs du numérique pour l'éducation et la formation en France.</p><p>Plus de 240 organisations innovantes (startups, pme, et associations) dessinent l'école de demain, l'université du futur et promettent de révolutionner l'apprentissage tout au long de la vie.</p><p>Pour quels apprenants&nbsp;? Pour quels acheteurs&nbsp;? Grâce à quelles technologies&nbsp;? Leurs produits et leurs services sont présentés dans ce premier observatoire interactif de la EdTech française. Conçu, dans un mode collaboratif et crowdsourcé, par et pour l'écosystème numérique de l'éducation et de la formation, l'Observatoire a pour objectif de valoriser la scène EdTech française et de montrer les grandes tendances de ce secteur.<br>Mis à jour régulièrement, cet outil doit permettre d’identifier les solutions et de faciliter les choix des décideurs en matière de services numériques innovants.</p><p>L'observatoire est le fruit de la collaboration de la Caisse des Dépôts et Cap Digital et sa structure EdFab dédiée à l’éducation, la formation et l’emploi. Il a été réalisé avec le soutien de la Maif. Il est coréalisé avec des acteurs clés de l’écosystème représentés ci-dessous&nbsp;: OpenClassRooms, 360Learning, LearnAssembly, AppScho, MyBlee Math, la région Île de France, le partenaire média Educpros, le fonds EduCapital, Ed21, l’initiative EdTechWorldTour, la fondation HEC, les clusters EducAzur et SPN Poitou-Charentes, membres du réseau thématique FrenchTech Edutainment.",
         "contact":"Cap Digital</p><p>14 rue Alexandre Parodi</p><p>75010 Paris",
         "produced":"Co-réalisé avec",
         "realised":"Développé par"
     },
      "nothing":{
-        "title":"Pas de startups"
+        "title":"Il n'y pas de résultat correspondant avec vos filtres"
     },
     "socialmessage":{
         "gen":"L'observatoire %23edtech 🇫🇷 ",

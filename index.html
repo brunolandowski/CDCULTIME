@@ -25,7 +25,8 @@
   <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
   <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/1.0.0/dist/progressbar.js"></script>
   <script src="js/fetch.js"></script>
- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.js"></script> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
 
 </head>
 
@@ -199,7 +200,7 @@
   </div>
 
   
-  <span id="strip"><img class="arrow" src="img/arrow_up.svg"></span>
+  <span id="strip"><img alt="arrow nav up" class="arrow" src="img/arrow_up.svg"></span>
 </div>
 
 <h2 id="nothing"></h2>
@@ -211,13 +212,56 @@
 <div id="aside_placeholder"></div>
 
 <aside>
-  <span class="aside_close"><img src="img/cross_white.svg"></span>
+  <span class="aside_close"><img alt="cross close white" src="img/cross_white.svg"></span>
   <div class="inner">
     <div id="aside_header">
       <ul>
-        <li><a target="_blank" href="https://obsedtechfr.typeform.com/to/oGGQpL"></a></li>
-        <li><span class="item_dropdown"><span class="cale"></span><span><p class="sharethis"></p><img class="arrow" src="img/arrow_up.svg"><div class="item_dropdown_content"><p><a class="twitter" target="_blank">Sur Twitter</a></p><p><a target="_blank" class="facebook">Sur Facebook</a></p><p id="copylink" onclick="CopyLink()"><a>Copier le lien</a><span>copié</span></p></div></span></span></li>
-        <li><a href="ObsEdTech.xlsx" download></a></li>
+        <li><a target="_blank" href="https://obsedtechfr.typeform.com/to/NQIhdn"></a></li>
+        
+        <li>
+          <span class="item_dropdown">
+            <span class="cale"></span>
+            <span>
+              <p class="sharethis"></p>
+              <img alt="arrow up for sharing dropdown" class="arrow" src="img/arrow_up.svg">
+                <div class="item_dropdown_content">
+                  <p>
+                    <a class="twitter" target="_blank">Sur Twitter</a>
+                  </p>
+
+                  <p>
+                    <a target="_blank" class="facebook">Sur Facebook</a>
+                  </p>
+
+                  <p id="copylink" onclick="CopyLink()">
+                    <a>Copier le lien</a>
+                    <span>copié</span>
+                  </p>
+                </div>
+            </span>
+          </span>
+        </li>
+        
+        <li>
+          
+          <span class="item_dropdown">
+            <span class="cale"></span>
+            <span>
+              <p class="download"></p>
+              <img alt="arrow up for sharing dropdown" class="arrow" src="img/arrow_up.svg">
+                <div class="item_dropdown_content">
+                  <p>
+                    <a class="json" href="ObsEdTech.xlsx" download>Sur Twitter</a>
+                  </p>
+
+                  <p>
+                    <a class="xlsx" href="ObsEdTech.xlsx" download>Sur Facebook</a>
+                  </p>
+                </div>
+            </span>
+          </span>
+        </li>
+        
         <li><a href="mailto:contact@observatoire-edtech.com"></a></li>
         <li id="scrollabout"></li>
 
@@ -287,22 +331,22 @@
   
    <div class="wrapperpart">
       <p>Co-realisé avec</p>
-      <img src="img/part_capdigital_w.png">
-      <img src="img/part_edfab_w.png">
-      <img src="img/part_cdc_w.png">
-      <img src="img/part_maif_w.png">
-      <img src="img/part_openclassroom_w.png">
-      <img src="img/part_360_w.png">
-      <img src="img/part_learnassembly_w.png">
-      <img src="img/part_appscho_w.png">
-      <img src="img/part_mybleemath_w.png">
-      <img src="img/part_region_w.png">
-      <img src="img/part_educpros_w.png">
-      <img src="img/part_educapital_w.png">
-      <img src="img/part_ed21_w.png">
-      <img src="img/part_edutech_w.png">
-      <img src="img/part_educazur_w.png">
-      <img src="img/part_spn_w.png">
+      <img alt="CapDigital logo" src="img/part_capdigital_w.png">
+      <img alt="EdFab logo" src="img/part_edfab_w.png">
+      <img alt="Caisse des Dépots et consignations logo" src="img/part_cdc_w.png">
+      <img alt="Maif logo" src="img/part_maif_w.png">
+      <img alt="OpenClassRoom logo" src="img/part_openclassroom_w.png">
+      <img alt="360 Learning logo" src="img/part_360_w.png">
+      <img alt="LearnAssembly logo" src="img/part_learnassembly_w.png">
+      <img alt="AppScho logo" src="img/part_appscho_w.png">
+      <img alt="MyBleeMath logo" src="img/part_mybleemath_w.png">
+      <img alt="Région Île-de-France logo" src="img/part_region_w.png">
+      <img alt="EducPro logo" src="img/part_educpros_w.png">
+      <img alt="EduCapital logo" src="img/part_educapital_w.png">
+      <img alt="Ed21 logo" src="img/part_ed21_w.png">
+      <img alt="EduTech logo" src="img/part_edutech_w.png">
+      <img alt="EducAzur logo" src="img/part_educazur_w.png">
+      <img alt="SPN logo" src="img/part_spn_w.png">
       
       
     </div>
@@ -312,7 +356,7 @@
     <div class="wrapperfifty">
       <p>Realisé par</p>
 
-       <a target="_blank" href="http://fifty-five.com"><img src="img/part_55_w.png"></a>
+       <a target="_blank" href="http://fifty-five.com"><img alt="fifty-five logo" src="img/part_55_w.png"></a>
        <span class="fffr">fifty-five accompagne les entreprises dans l’exploitation de leurs données au service d'un marketing plus efficace.</span>
        <span class="ffen">fifty-five is a data company helping brands collect, analyse and activate their data for enhanced marketing.</span>
       
@@ -321,12 +365,13 @@
 
         <h3>Contact</h3>
         <p></p>
+        <a target="_blank" href="https://twitter.com/capedfab">@CapEdFab</a>
 
       </div>
 </aside>
 
 
-<div id="scrolltop"><img src="img/arrow_up_black.svg"></div>
+<div id="scrolltop"><img alt="arrow nav up" src="img/arrow_up_black.svg"></div>
 
 
 <script src="js/script.js"></script>
