@@ -303,7 +303,7 @@ header {
 	#hd_title {
 		color:#F5F5F5;
 		height:calc(100% - 75px);
-		
+		z-index:1;
 		background-position:bottom;
 		background: #fd505a; /* For browsers that do not support gradients */
   		background: -webkit-linear-gradient(to bottom,  #fd505a 0%,#fd8851 100%); /* For Safari 5.1 to 6.0 */
@@ -1452,6 +1452,12 @@ aside  {
     				column-count: 1;
   					}
 			 	}
+			 	a {
+			 		color:#CCCCCC;
+			 		&:hover {
+			 			opacity:.5;
+			 		}
+			 	}
 			 	p {
 					padding-right:20px;
 			 		font-size:14px;
@@ -1738,11 +1744,11 @@ aside  {
 }
 
 // P5 JS
-/*
+
 #defaultCanvas0 {
 	position:absolute;
 	top:0px;
 	opacity:.5;
+
 	z-index:0;
 	}
-*/
