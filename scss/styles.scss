@@ -306,6 +306,14 @@ header {
 		height:calc(100% - 75px);
 		z-index:1;
 		background-position:bottom;
+		background: #fd505a; /* For browsers that do not support gradients */
+  		background: -webkit-linear-gradient(to bottom,  #fd505a 0%,#fd8851 100%); /* For Safari 5.1 to 6.0 */
+  		background: -o-linear-gradient(to bottom,  #fd505a 0%,#fd8851 100%); /* For Opera 11.1 to 12.0 */
+  		background: -moz-linear-gradient(to bottom,  #fd505a 0%,#fd8851 100%); /* For Firefox 3.6 to 15 */
+  		background: linear-gradient(to bottom,  #fd505a 0%,#fd8851 100%); /* Standard syntax */
+  		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
 		
 		@media screen and (max-width: 499px){
     		height:calc(100% - 140px);
