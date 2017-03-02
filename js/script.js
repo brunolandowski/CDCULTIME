@@ -21,6 +21,11 @@ var colors_chart = ["#ff5c60", "#ffbb73", "#fcf582", "#c2fa92", "#6ec7fc", "#01e
 // -------- Function needed to load EN & FR json ----------//
 function jsonload(x) {
     $.getJSON('json/lang_' + x + '.json', function (data) {
+
+        // Set meta description for social sharing
+        $("meta[property='og\\:title']").attr("content", data.homepage.main_title);
+        $("meta[property='og\\:description']").attr("content", data.about.content);
+
          document.title = data.homepage.main_title;
         // For statistic page
         number_startup = $('.grid-item').length;
