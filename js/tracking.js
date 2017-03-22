@@ -25,25 +25,24 @@
     });
 
     // ID = 3
-    // Share and download button
-    document.querySelectorAll('div#aside_header p a').forEach(function (el) {
-        el.addEventListener('click', function () {
-            var shareText = document.querySelector('div#aside_header p.sharethis').innerText;
+    $('#aside_header li > a').each(function () {
+        $(this).click(function () {
             dataLayer.push({
                 "event": "clicButtonMenu",
-                "buttonName": shareText,
-                "subButtonName": el.innerText
+                "buttonName": $(this).text(),
+                "subButtonName": ""
             });
         });
     });
-
-    // Join and contact button
-    document.querySelectorAll('div#aside_header ul li > a').forEach(function (el) {
-        el.addEventListener('click', function () {
+    $('#aside_header p a').each(function (index) {
+        $(this).click(function () {
+            var buttonName = index < 3
+                ? $('#aside_header .sharethis').text()
+                : $('#aside_header .download').text();
             dataLayer.push({
                 "event": "clicButtonMenu",
-                "buttonName": el.innerText,
-                "subButtonName": ''
+                "buttonName": buttonName,
+                "subButtonName": $(this).text()
             });
         });
     });
