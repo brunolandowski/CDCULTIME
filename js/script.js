@@ -596,7 +596,7 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/1iAvig2WKiCOJ9tbFxPBwEld5M
             "event": "searchResult"
         });
     }
-    $('.valid').click(trackSearchResult());
+    $('.valid').click(trackSearchResult);
     $('#myInput').keyup(debounce(trackSearchResult));
 
     // ------------- Toggle startup -------------//
