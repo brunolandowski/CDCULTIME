@@ -6,23 +6,33 @@
     }
     var dataLayer = window.dataLayer || [];
 
-    // ID = 1
-    window.addEventListener('load', window.dataLayer.push({
-        'criteriaFamilyName': '',
-        'siteLanguage': getLang(),
-        'searchType': ''
-    }));
+    // $(window).on('load', function () {
+    //     dataLayer.push({
+    //         'criteriaFamilyName': '',
+    //         'siteLanguage': getLang(),
+    //         'searchType': ''
+    //     });
+    // });
 
     // ID = 2
-    $('aside').scroll(function () {
+    var handleFr = function () {
         if ($(this).scrollTop() >= 1262) {
             dataLayer.push({
-                "siteLanguage": getLang(),
+                "siteLanguage": 'FR',
                 "event": "aPropos"
             });
-            $('aside').off('scroll');
+            $('aside').off('scroll', null, handleFr);
         }
-    });
+    };
+    var handleEn = function () {
+        if ($(this).scrollTop() >= 1112) {
+            dataLayer.push({
+                "siteLanguage": 'EN',
+                "event": "aPropos"
+            });
+            $('aside').off('scroll', null, handleEn);
+        }
+    };
 
     // ID = 3
     $('#aside_header li > a').each(function () {
@@ -60,8 +70,16 @@
 
     // ID = 5
     $('#burger').click(function () {
+        var language = getLang();
+        if (language === 'FR') {
+            $('aside').off('scroll', null, handleEn);
+            $('aside').on('scroll', handleFr);
+        } else {
+            $('aside').off('scroll', null, handleFr);
+            $('aside').on('scroll', handleEn);
+        }
         dataLayer.push({
-            "siteLanguage": getLang(),
+            "siteLanguage": language,
             "event": "clicMenu"
         });
     });
