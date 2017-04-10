@@ -775,20 +775,25 @@ $(window).bind("load resize scroll", function(e) {
 */
 
 // ------------- Fixed Nav while scrolling -------------//
+
 var doc_height;
+
 $(window).bind("load resize scroll", function (e) {
     doc_height = $(window).height();
 });
 
-$(window).on("scroll", function (e) {
-    if ($(window).scrollTop() > doc_height) {
+$(window).on('mousewheel DOMMouseScroll', function (e) {
+      if ($(window).scrollTop() > doc_height) {
         $('nav').addClass('fixed');
         $('#option').addClass('fixed');
+        console.log('FIXED');
     } else {
         $('nav').removeClass('fixed');
         $('#option').removeClass('fixed');
+        console.log(doc_height);
     }
 });
+
 
 // ------------- Scroll to Next (CTA Home Page) -------------//
 $(".hd_title_cta").on("click", function () {
